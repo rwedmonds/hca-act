@@ -481,7 +481,7 @@ links:
   - connection:
       - campus-a-r2:Ethernet1
       - wan:Ethernet2
-
+  # Campus B
   - connection:
       - campus-b-r1:Ethernet1
       - wan:Ethernet3
@@ -489,7 +489,7 @@ links:
   - connection:
       - campus-b-r2:Ethernet1
       - wan:Ethernet4
-
+  # Campus C
   - connection:
       - campus-c-r1:Ethernet1
       - wan:Ethernet5
