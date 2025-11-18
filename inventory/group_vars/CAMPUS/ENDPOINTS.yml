@@ -1,0 +1,99 @@
+---
+# default_connected_endpoints_description: "{endpoint}{endpoint_port?<_}"
+
+# ----------------------------------- #
+# MARK: Port Profiles
+# ----------------------------------- #
+port_profiles:
+  - profile: "TENANT_A_B_All_Vlans"
+    mode: "trunk"
+    vlans: "110-111,210-211"
+    port_channel:
+      mode: "active"
+  - profile: "TENANT_A_Vl110"
+    mode: "access"
+    vlans: "110"
+    port_channel:
+      mode: "active"
+  - profile: "TENANT_A_Vl111"
+    mode: "access"
+    vlans: "111"
+    port_channel:
+      mode: "active"
+  - profile: "TENANT_A_Vl110_On"
+    mode: "access"
+    vlans: "110"
+    port_channel:
+      mode: "on"
+  - profile: "TENANT_A_Vl111_On"
+    mode: "access"
+    vlans: "111"
+    port_channel:
+      mode: "on"
+  - profile: "TENANT_B_Vl210-211"
+    mode: "trunk"
+    vlans: "210-211"
+    port_channel:
+      mode: "active"
+
+# ----------------------------------- #
+# MARK: Servers
+# ----------------------------------- #
+servers:
+  # --------------------------------- #
+  # CAMPUS-Leaf1
+  # --------------------------------- #
+  - name: "CAMPUS-Leaf2C"
+    adapters:
+      - switches:
+          - "CAMPUS-Leaf2A"
+          - "CAMPUS-Leaf2B"
+        switch_ports:
+          - "Ethernet5"
+          - "Ethernet5"
+        endpoint_ports:
+          - "Ethernet1"
+          - "Ethernet2"
+        profile: "TENANT_A_Vl110"
+
+  - name: "API test 2"
+    adapters:
+      - switches:
+          - "CAMPUS-Leaf1A"
+          - "CAMPUS-Leaf1B"
+        switch_ports:
+          - "Ethernet6"
+          - "Ethernet6"
+        endpoint_ports:
+          - "Ethernet1"
+          - "Ethernet2"
+        profile: "TENANT_A_Vl110_On"
+
+  # --------------------------------- #
+  # CAMPUS-Leaf2
+  # --------------------------------- #
+  - name: "CAMPUS-Leaf2C"
+    adapters:
+      - switches:
+          - "CAMPUS-Leaf2A"
+          - "CAMPUS-Leaf2B"
+        switch_ports:
+          - "Ethernet5"
+          - "Ethernet5"
+        endpoint_ports:
+          - "Ethernet1"
+          - "Ethernet2"
+        profile: "TENANT_A_Vl110"
+
+  - name: "CAMPUS-Leaf2-Server1"
+    adapters:
+      - switches:
+          - "CAMPUS-Leaf2A"
+          - "CAMPUS-Leaf2B"
+        switch_ports:
+          - "Ethernet6"
+          - "Ethernet6"
+        endpoint_ports:
+          - "Ethernet1"
+          - "Ethernet2"
+        profile: "TENANT_A_Vl111_On"
