@@ -1,0 +1,357 @@
+---
+# ------------------------------------------------------- #
+# L3LS Fabric Values - update these values with caution,
+# SOME CHANGES COULD BE DISRUPTIVE.
+# ------------------------------------------------------- #
+dc_name: "CAMPUS"
+fabric_name: "HCA"
+
+# --------------------------------------------- #
+# Update p2p mtu 9000 -> 1500
+# MTU 9000 not supported in vEOS-LAB
+# --------------------------------------------- #
+p2p_uplinks_mtu: 1500
+
+# --------------------------------------------- #
+# bgp update wait install command
+# not supported in vEOS
+# --------------------------------------------- #
+bgp_update_wait_install: false
+
+# --------------------------------------------- #
+# Management interface default gateway
+# --------------------------------------------- #
+mgmt_gateway: "192.168.0.1"
+
+# --------------------------------------------- #
+# Adjust default bfd values to avoid high CPU
+# --------------------------------------------- #
+bfd_multihop:
+  interval: 1200
+  min_rx: 1200
+  multiplier: 3
+
+# --------------------------------------------- #
+# Enable vlan aware bundles
+# --------------------------------------------- #
+evpn_vlan_aware_bundles: true
+
+# --------------------------------------------- #
+# Shutdown interfaces on devices that face
+# undeployed peers
+# --------------------------------------------- #
+shutdown_interfaces_towards_undeployed_peers: true
+
+# --------------------------------------------- #
+# Shutdown interfaces that are not in use
+# --------------------------------------------- #
+interface_defaults:
+  ethernet:
+    shutdown: true
+
+# --------------------------------------------- #
+# bgp peer groups passwords
+# --------------------------------------------- #
+bgp_peer_groups:
+  ipv4_underlay_peers:
+    password: "AQQvKeimxJu+uGQ/yYvv9w=="
+  evpn_overlay_peers:
+    password: "q+VNViP5i4rVjW1cxFv2wA=="
+  mlag_ipv4_underlay_peer:
+    password: "vnEaG8gMeQf3d3cN6PktXQ=="
+
+# --------------------------------------------- #
+# MARK: Spines
+# --------------------------------------------- #
+spine_bgp_defaults:
+  - "distance bgp 20 200 200"
+  - "graceful-restart restart-time 300"
+  - "graceful-restart"
+
+spine:
+  defaults:
+    platform: "vEOS-LAB"
+    bgp_as: "65101"
+    loopback_ipv4_pool: "192.168.244.0/24"
+  nodes:
+    - name: "campus-a-spine1"
+      id: 11
+      mgmt_ip: "192.168.0.31/24"
+    - name: "campus-a-spine2"
+      id: 12
+      mgmt_ip: "192.168.0.32/24"
+    - name: "campus-b-spine1"
+      id: 21
+      mgmt_ip: "192.168.0.41/24"
+    - name: "campus-b-spine2"
+      id: 22
+      mgmt_ip: "192.168.0.42/24"
+    - name: "campus-c-spine1"
+      id: 31
+      mgmt_ip: "192.168.0.51/24"
+    - name: "campus-c-spine2"
+      id: 32
+      mgmt_ip: "192.168.0.52/24"
+
+# --------------------------------------------- #
+# MARK: L3Leafs
+# --------------------------------------------- #
+leaf_bgp_defaults:
+  - "distance bgp 20 200 200"
+  - "graceful-restart restart-time 300"
+  - "graceful-restart"
+# --------------------------------------------- #
+# Leaf switch groups
+# A maximum of two nodes can form a leaf group
+# When two nodes are in a leaf group this will
+# automatically form MLAG pair
+# --------------------------------------------- #
+l3leaf:
+  defaults:
+    defaults:
+    platform: "vEOS-LAB"
+    loopback_ipv4_pool: "192.168.244.0/24"
+    vtep_loopback_ipv4_pool: "192.168.243.0/24"
+    uplink_interfaces:
+      - "Ethernet1"
+      - "Ethernet2"
+    uplink_ipv4_pool: "172.31.254.0/23"
+    mlag_peer_link_allowed_vlans: "2-4094"
+    mlag_interfaces:
+      - "Ethernet3"
+      - "Ethernet4"
+    mlag_peer_ipv4_pool: "10.255.255.0/24"
+    mlag_peer_l3_ipv4_pool: "10.255.254.0/24"
+    mlag_dual_primary_detection: true
+    virtual_router_mac_address: "00:1c:73:00:dc:01"
+    spanning_tree_mode: "mstp"
+    spanning_tree_priority: 16384
+  node_groups:
+    - group: "campus-a-leaf1"
+      bgp_as: "65102"
+      rack: "Rack1A"
+      uplink_switches:
+        - "campus-a-spine1"
+        - "campus-a-spine2"
+      nodes:
+        - name: "campus-a-leaf1a"
+          id: 13
+          mgmt_ip: "192.168.0.33/24"
+          uplink_switch_interfaces:
+            - "Ethernet5"
+            - "Ethernet5"
+        - name: "campus-a-leaf1b"
+          id: 14
+          mgmt_ip: "192.168.0.34/24"
+          uplink_switch_interfaces:
+            - "Ethernet6"
+            - "Ethernet6"
+    - group: "campus-a-leaf2"
+      bgp_as: "65103"
+      nodes:
+        - name: "campus-a-leaf2a"
+          id: 15
+          mgmt_ip: "192.168.0.35/24"
+          uplink_switch_interfaces:
+            - "Ethernet7"
+            - "Ethernet7"
+        - name: "campus-a-leaf2b"
+          id: 16
+          mgmt_ip: "192.168.0.36/24"
+          uplink_switch_interfaces:
+            - "Ethernet8"
+            - "Ethernet8"
+    - group: "campus-b-leaf1"
+      bgp_as: "65202"
+      rack: "Rack1A"
+      uplink_switches:
+        - "campus-b-spine1"
+        - "campus-b-spine2"
+      nodes:
+        - name: "campus-b-leaf1a"
+          id: 13
+          mgmt_ip: "192.168.0.43/24"
+          uplink_switch_interfaces:
+            - "Ethernet5"
+            - "Ethernet5"
+        - name: "campus-b-leaf1b"
+          id: 14
+          mgmt_ip: "192.168.0.44/24"
+          uplink_switch_interfaces:
+            - "Ethernet6"
+            - "Ethernet6"
+    - group: "campus-b-leaf2"
+      bgp_as: "65203"
+      nodes:
+        - name: "campus-b-leaf2a"
+          id: 15
+          mgmt_ip: "192.168.0.45/24"
+          uplink_switch_interfaces:
+            - "Ethernet7"
+            - "Ethernet7"
+        - name: "campus-b-leaf2b"
+          id: 16
+          mgmt_ip: "192.168.0.46/24"
+          uplink_switch_interfaces:
+            - "Ethernet8"
+            - "Ethernet8"
+    - group: "campus-c-leaf1"
+      bgp_as: "65302"
+      rack: "Rack1A"
+      uplink_switches:
+        - "campus-c-spine1"
+        - "campus-c-spine2"
+      nodes:
+        - name: "campus-c-leaf1a"
+          id: 13
+          mgmt_ip: "192.168.0.53/24"
+          uplink_switch_interfaces:
+            - "Ethernet5"
+            - "Ethernet5"
+        - name: "campus-c-leaf1b"
+          id: 14
+          mgmt_ip: "192.168.0.54/24"
+          uplink_switch_interfaces:
+            - "Ethernet6"
+            - "Ethernet6"
+    - group: "campus-c-leaf2"
+      bgp_as: "65303"
+      nodes:
+        - name: "campus-c-leaf2a"
+          id: 15
+          mgmt_ip: "192.168.0.55/24"
+          uplink_switch_interfaces:
+            - "Ethernet7"
+            - "Ethernet7"
+        - name: "campus-c-leaf2b"
+          id: 16
+          mgmt_ip: "192.168.0.56/24"
+          uplink_switch_interfaces:
+            - "Ethernet8"
+            - "Ethernet8"
+
+# --------------------------------------------- #
+# MARK: L2Leafs
+# --------------------------------------------- #
+l2leaf:
+  defaults:
+    platform: "vEOS-LAB"
+    uplink_switches:
+      - "campus-a-leaf2a"
+      - "campus-a-leaf2b"
+    uplink_interfaces:
+      - "Ethernet1"
+      - "Ethernet2"
+  node_groups:
+    - group: "campus-a-leaf2"
+      filter:
+      nodes:
+        - name: "campus-a-leaf2c"
+          id: 19
+          mgmt_ip: "192.168.0.41/24"
+          uplink_switches:
+            - "campus-a-leaf1a"
+            - "campus-a-leaf1b"
+          uplink_switch_interfaces:
+            - "Ethernet5"
+            - "Ethernet5"
+        - name: "campus-a-leaf2d"
+          id: 19
+          mgmt_ip: "192.168.0.42/24"
+          uplink_switches:
+            - "campus-a-leaf1a"
+            - "campus-a-leaf1b"
+          uplink_switch_interfaces:
+            - "Ethernet6"
+            - "Ethernet6"
+    - group: "campus-b-leaf2"
+      filter:
+      nodes:
+        - name: "campus-b-leaf2c"
+          id: 19
+          mgmt_ip: "192.168.0.41/24"
+          uplink_switches:
+            - "campus-b-leaf1a"
+            - "campus-b-leaf1b"
+          uplink_switch_interfaces:
+            - "Ethernet5"
+            - "Ethernet5"
+        - name: "campus-b-leaf2d"
+          id: 19
+          mgmt_ip: "192.168.0.42/24"
+          uplink_switches:
+            - "campus-b-leaf1a"
+            - "campus-b-leaf1b"
+          uplink_switch_interfaces:
+            - "Ethernet6"
+            - "Ethernet6"
+    - group: "campus-c-leaf2"
+      filter:
+      nodes:
+        - name: "campus-c-leaf2c"
+          id: 19
+          mgmt_ip: "192.168.0.41/24"
+          uplink_switches:
+            - "campus-c-leaf1a"
+            - "campus-c-leaf1b"
+          uplink_switch_interfaces:
+            - "Ethernet5"
+            - "Ethernet5"
+        - name: "campus-c-leaf2d"
+          id: 19
+          mgmt_ip: "192.168.0.42/24"
+          uplink_switches:
+            - "campus-c-leaf1a"
+            - "campus-c-leaf1b"
+          uplink_switch_interfaces:
+            - "Ethernet6"
+            - "Ethernet6"
+# --------------------------------------------- #
+# L3 Edge port definitions. This can be any port
+# in the entire Fabric, where IP interfaces are
+# defined
+# MARK: DCI
+# --------------------------------------------- #
+
+# l3_edge:
+#   # ------------------------------------------- #
+#   # Define a new IP pool that will be used to
+#   # assign IP addresses to L3 Edge interfaces
+#   # ------------------------------------------- #
+#   p2p_links_ip_pools:
+#     - name: "DCI_IP_pool"
+#       ipv4_pool: 192.168.100.0/24
+#   # ------------------------------------------- #
+#   # Define a new link profile which will match
+#   # the IP pool, the used ASNs and include the
+#   # defined interface into underlay routing
+#   # ------------------------------------------- #
+#   p2p_links_profiles:
+#     - name: "DCI_profile"
+#       ip_pool: "DCI_IP_pool"
+#       mtu: 9164
+#       as:
+#         - 65103
+#         - 65203
+#       include_in_underlay_protocol: true
+#   # ------------------------------------------- #
+#   # Define each P2P L3 link and link the nodes,
+#   # the interfaces and the profile used
+#   # ------------------------------------------- #
+#   p2p_links:
+#     - id: 1
+#       nodes:
+#         - "CAMPUS-Leaf5A"
+#         - "RE-DC2-Leaf5A"
+#       interfaces:
+#         - "Ethernet7"
+#         - "Ethernet7"
+#       profile: "DCI_profile"
+#     - id: 2
+#       nodes:
+#         - "campus-a-leaf1a"
+#         - "RE-DC2-Leaf2B"
+#       interfaces:
+#         - "Ethernet7"
+#         - "Ethernet7"
+#       profile: "DCI_profile"

@@ -21,8 +21,7 @@ tenants:
       #   svis:
       #     - id: 999
       #       name: "To_Internet"
-      #       tags:
-      #         - "Internet"
+
       #       enabled: true
       #       nodes:
       #         - node: "RE-DC1-Leaf2A"
@@ -40,28 +39,20 @@ tenants:
         svis:
           - id: 110
             name: "Blue_110"
-            tags:
-              - "blue"
             enabled: true
             ip_address_virtual: "192.168.210.1/24"
           - id: 111
             vni_override: 50111
             name: "Blue_111"
-            tags:
-              - "blue"
             enabled: true
             ip_address_virtual: "192.168.211.1/24"
           - id: 112
             vni_override: 50112
             name: "Blue_112"
-            tags:
-              - "blue"
             enabled: true
             ip_address_virtual: "192.168.212.1/24"
           - id: 113
             name: "Blue_113"
-            tags:
-              - "blue"
             enabled: true
             ip_address_virtual: "192.168.213.1/24"
 
@@ -70,14 +61,10 @@ tenants:
         svis:
           - id: 120
             name: "Red_120"
-            tags:
-              - "red"
             enabled: true
             ip_address_virtual: "192.168.220.1/24"
           - id: 121
             name: "WEBZone_121"
-            tags:
-              - "red"
             enabled: true
             ip_address_virtual: "192.168.221.1/24"
       - name: "Green"
@@ -85,13 +72,9 @@ tenants:
         svis:
           - id: 130
             name: "Green_130"
-            tags:
-              - "green"
             enabled: true
             ip_address_virtual: "192.168.230.1/24"
           - id: 131
             name: "Green_131"
-            tags:
-              - "green"
             enabled: true
             ip_address_virtual: "192.168.231.1/24"
