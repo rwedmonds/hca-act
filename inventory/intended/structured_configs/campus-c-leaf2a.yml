@@ -66,12 +66,12 @@ loopback_interfaces:
 management_api_http:
   enable_https: true
   enable_vrfs:
-  - name: MGMT
+  - name: default
 management_interfaces:
 - name: Management1
   description: OOB_MANAGEMENT
   shutdown: false
-  vrf: MGMT
+  vrf: default
   ip_address: 192.168.0.55/24
   type: oob
   gateway: 192.168.0.1
@@ -86,7 +86,7 @@ mlag_configuration:
   peer_address: 10.255.255.69
   peer_address_heartbeat:
     peer_ip: 192.168.0.56
-    vrf: MGMT
+    vrf: default
   dual_primary_detection_delay: 5
   peer_link: Port-Channel3
   reload_delay_mlag: '300'
@@ -289,7 +289,7 @@ spanning_tree:
     priority: 16384
   no_spanning_tree_vlan: 4093-4094
 static_routes:
-- vrf: MGMT
+- vrf: default
   prefix: 0.0.0.0/0
   next_hop: 192.168.0.1
 transceiver_qsfp_default_mode_4x10: true
@@ -436,7 +436,7 @@ vlans:
   - MLAG
   tenant: HCA
 vrfs:
-- name: MGMT
+- name: default
   ip_routing: false
 - name: Blue
   ip_routing: true

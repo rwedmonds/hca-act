@@ -17,8 +17,8 @@ custom_structured_configuration_prefix:
 
 management_api_http:
   enable_http: True
-  # enable_vrfs:
-  #   - name: "MGMT"
+  enable_vrfs:
+    - name: "default"
 
 # ----------------------------------- #
 # Disable LLDP on Management interface
@@ -95,13 +95,12 @@ daemon_terminattr:
 # OOB Management
 # ----------------------------------- #
 # MARK: OOB
+mgmt_interface_vrf: "default"
 management_interfaces:
   - name: "Management1"
     shutdown: false
-    vrf: "MGMT"
-    type: "oob"
 
-mgmt_vrf_routing: false
+# mgmt_vrf_routing: false
 
 # ----------------------------------- #
 # DNS Servers
@@ -129,25 +128,14 @@ clock:
   timezone: America/Chicago
 
 # ----------------------------------- #
-# RADIUS
-# ----------------------------------- #
-
-radius_server:
-  hosts:
-    - host: docker1.slacker.net
-      vrf: MGMT
-      key: 15331905173E2A1629373C3700
-
-ip_radius_source_interfaces:
-  - name: Management1
-    vrf: "default"
-
-# ----------------------------------- #
 # Raw EOS CLI commands
 # ----------------------------------- #
 
 eos_cli: no schedule tech-support
+
+# ----------------------------------- #
 # MARK: Banner
+# ----------------------------------- #
 banners:
   login: |
     * * * * * * * * * * W A R N I N G * * * * * * * * * *

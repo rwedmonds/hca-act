@@ -13,8 +13,6 @@
 - [Authentication](#authentication)
   - [Local Users](#local-users)
   - [Enable Password](#enable-password)
-  - [RADIUS Server](#radius-server)
-  - [IP RADIUS Source Interfaces](#ip-radius-source-interfaces)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
   - [SNMP](#snmp)
@@ -104,13 +102,13 @@ EOF
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.0.45/24 | 192.168.0.1 |
+| Management1 | OOB_MANAGEMENT | oob | default | 192.168.0.45/24 | 192.168.0.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
@@ -119,7 +117,6 @@ EOF
 interface Management1
    description OOB_MANAGEMENT
    no shutdown
-   vrf MGMT
    ip address 192.168.0.45/24
 ```
 
@@ -199,7 +196,7 @@ ip ssh client source-interface Loopback0
 
 | VRF Name | IPv4 ACL | IPv6 ACL |
 | -------- | -------- | -------- |
-| MGMT | - | - |
+| default | - | - |
 
 #### Management API HTTP Device Configuration
 
@@ -209,7 +206,7 @@ management api http-commands
    protocol https
    no shutdown
    !
-   vrf MGMT
+   vrf default
       no shutdown
 ```
 
@@ -240,36 +237,6 @@ username robert ssh-key ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7U+usFHr9Xhqph3Hcm
 ### Enable Password
 
 Enable password has been disabled
-
-### RADIUS Server
-
-#### RADIUS Server Hosts
-
-| VRF | RADIUS Servers | TLS | SSL Profile | Timeout | Retransmit |
-| --- | -------------- | --- | ----------- | ------- | ---------- |
-| MGMT | docker1.slacker.net | - | - | - | - |
-
-#### RADIUS Server Device Configuration
-
-```eos
-!
-radius-server host docker1.slacker.net vrf MGMT key 7 <removed>
-```
-
-### IP RADIUS Source Interfaces
-
-#### IP RADIUS Source Interfaces
-
-| VRF | Source Interface Name |
-| --- | --------------- |
-| default | Management1 |
-
-#### IP SOURCE Source Interfaces Device Configuration
-
-```eos
-!
-ip radius vrf default source-interface Management1
-```
 
 ## Monitoring
 
@@ -323,7 +290,7 @@ mlag configuration
    domain-id campus-b-leaf2
    local-interface Vlan4094
    peer-address 10.255.255.49
-   peer-address heartbeat 192.168.0.46 vrf MGMT
+   peer-address heartbeat 192.168.0.46
    peer-link Port-Channel11
    dual-primary detection delay 5 action errdisable all-interfaces
    reload-delay mlag 300
@@ -763,7 +730,6 @@ ip virtual-router mac-address 00:1c:73:00:dc:01
 | default | True |
 | Blue | True |
 | Green | True |
-| MGMT | False |
 | Red | True |
 
 #### IP Routing Device Configuration
@@ -773,7 +739,6 @@ ip virtual-router mac-address 00:1c:73:00:dc:01
 ip routing
 ip routing vrf Blue
 ip routing vrf Green
-no ip routing vrf MGMT
 ip routing vrf Red
 ```
 
@@ -785,8 +750,8 @@ ip routing vrf Red
 | --- | --------------- |
 | default | False |
 | Blue | false |
+| default | false |
 | Green | false |
-| MGMT | false |
 | Red | false |
 
 ### Static Routes
@@ -795,13 +760,13 @@ ip routing vrf Red
 
 | VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
 | --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
-| MGMT | 0.0.0.0/0 | 192.168.0.1 | - | 1 | - | - | - |
+| default | 0.0.0.0/0 | 192.168.0.1 | - | 1 | - | - | - |
 
 #### Static Routes Device Configuration
 
 ```eos
 !
-ip route vrf MGMT 0.0.0.0/0 192.168.0.1
+ip route 0.0.0.0/0 192.168.0.1
 ```
 
 ### Router BGP
@@ -1080,7 +1045,6 @@ route-map RM-MLAG-PEER-IN permit 10
 | -------- | ---------- |
 | Blue | enabled |
 | Green | enabled |
-| MGMT | disabled |
 | Red | enabled |
 
 ### VRF Instances Device Configuration
@@ -1090,8 +1054,6 @@ route-map RM-MLAG-PEER-IN permit 10
 vrf instance Blue
 !
 vrf instance Green
-!
-vrf instance MGMT
 !
 vrf instance Red
 ```

@@ -13,8 +13,6 @@
 - [Authentication](#authentication)
   - [Local Users](#local-users)
   - [Enable Password](#enable-password)
-  - [RADIUS Server](#radius-server)
-  - [IP RADIUS Source Interfaces](#ip-radius-source-interfaces)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
   - [SNMP](#snmp)
@@ -85,13 +83,13 @@ EOF
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.0.58/24 | 192.168.0.1 |
+| Management1 | OOB_MANAGEMENT | oob | default | 192.168.0.58/24 | 192.168.0.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
@@ -100,7 +98,6 @@ EOF
 interface Management1
    description OOB_MANAGEMENT
    no shutdown
-   vrf MGMT
    ip address 192.168.0.58/24
 ```
 
@@ -180,7 +177,7 @@ ip ssh client source-interface Loopback0
 
 | VRF Name | IPv4 ACL | IPv6 ACL |
 | -------- | -------- | -------- |
-| MGMT | - | - |
+| default | - | - |
 
 #### Management API HTTP Device Configuration
 
@@ -190,7 +187,7 @@ management api http-commands
    protocol https
    no shutdown
    !
-   vrf MGMT
+   vrf default
       no shutdown
 ```
 
@@ -221,36 +218,6 @@ username robert ssh-key ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7U+usFHr9Xhqph3Hcm
 ### Enable Password
 
 Enable password has been disabled
-
-### RADIUS Server
-
-#### RADIUS Server Hosts
-
-| VRF | RADIUS Servers | TLS | SSL Profile | Timeout | Retransmit |
-| --- | -------------- | --- | ----------- | ------- | ---------- |
-| MGMT | docker1.slacker.net | - | - | - | - |
-
-#### RADIUS Server Device Configuration
-
-```eos
-!
-radius-server host docker1.slacker.net vrf MGMT key 7 <removed>
-```
-
-### IP RADIUS Source Interfaces
-
-#### IP RADIUS Source Interfaces
-
-| VRF | Source Interface Name |
-| --- | --------------- |
-| default | Management1 |
-
-#### IP SOURCE Source Interfaces Device Configuration
-
-```eos
-!
-ip radius vrf default source-interface Management1
-```
 
 ## Monitoring
 
@@ -434,12 +401,10 @@ service routing protocols model multi-agent
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
-| MGMT | False |
 
 #### IP Routing Device Configuration
 
 ```eos
-no ip routing vrf MGMT
 ```
 
 ### IPv6 Routing
@@ -449,7 +414,7 @@ no ip routing vrf MGMT
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
-| MGMT | false |
+| default | false |
 
 ### Static Routes
 
@@ -457,13 +422,13 @@ no ip routing vrf MGMT
 
 | VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
 | --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
-| MGMT | 0.0.0.0/0 | 192.168.0.1 | - | 1 | - | - | - |
+| default | 0.0.0.0/0 | 192.168.0.1 | - | 1 | - | - | - |
 
 #### Static Routes Device Configuration
 
 ```eos
 !
-ip route vrf MGMT 0.0.0.0/0 192.168.0.1
+ip route 0.0.0.0/0 192.168.0.1
 ```
 
 ## Multicast
@@ -487,13 +452,10 @@ ip route vrf MGMT 0.0.0.0/0 192.168.0.1
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
-| MGMT | disabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
-!
-vrf instance MGMT
 ```
 
 ## EOS CLI Device Configuration
