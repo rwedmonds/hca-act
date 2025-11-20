@@ -58,6 +58,10 @@ deploy_campus_b_cvp: ## Deploy CAMPUS_C AVD configs through CVP
 #                       Validate                          #
 # ------------------------------------------------------- #
 
+.PHONY: validate_state_all
+validate_state_campus_a: ## Validate state of all campuses
+				ansible-playbook playbooks/validate_state.yml --ask-vault-password
+
 .PHONY: validate_state_campus_a
 validate_state_campus_a: ## Validate state of CAMPUS_A
 				ansible-playbook playbooks/validate_state.yml --ask-vault-password --limit CAMPUS_A

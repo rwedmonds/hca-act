@@ -1,0 +1,22 @@
+---
+- name: Validate Network State
+  hosts: "HCA"
+  connection: httpapi
+  gather_facts: false
+
+  tasks:
+    - name: Include Ansible Vault
+      ansible.builtin.include_vars:
+        file: auth.yml
+
+    - name: Validate
+      ansible.builtin.import_role:
+        name: arista.avd.eos_validate_state
+      environment:
+        OPENSSL_CONF: /etc/ssl/openssl.cnf
+      vars:
+        use_anta: true
+        save_catalog: true
+        only_failed_tests: false
+        skip_tests:
+          - category: AvdTestHardware
