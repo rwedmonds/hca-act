@@ -1,0 +1,187 @@
+---
+# ------------------------------------------------------- #
+# Global Settings
+# ------------------------------------------------------- #
+
+# ----------------------------------- #
+# Prefix for
+# custom_structured_configuration
+# ----------------------------------- #
+
+custom_structured_configuration_prefix:
+  - csc_
+
+# ----------------------------------- #
+# Management API HTTP
+# ----------------------------------- #
+
+management_api_http:
+  enable_http: True
+  # enable_vrfs:
+  #   - name: "MGMT"
+
+# ----------------------------------- #
+# Disable LLDP on Management interface
+# ----------------------------------- #
+
+csc_ethernet_interfaces:
+  - name: "Management1"
+    lldp:
+      transmit: false
+      receive: false
+
+# ----------------------------------- #
+# Source SSH sessions from Lo0
+# ----------------------------------- #
+
+ip_ssh_client_source_interfaces:
+  - name: "Loopback0"
+
+# ----------------------------------- #
+# Local Users
+# ----------------------------------- #
+# MARK: Users
+local_users:
+  - name: "admin"
+    privilege: 15
+    role: "network-admin"
+    sha512_password: "$6$RWWNi/U4IjK9U3Nv$/bMitcVhMFiqvUIJtAAeTOTSyvqAHK.XpJi12NI0.YTJlzbl9FiCGi2EDfIWo14Evi/sj5i1Rxspmkbso0Tun1"
+
+  - name: "cvpadmin"
+    privilege: 15
+    role: "network-admin"
+    sha512_password: "$6$6PorspAoWf2hUSNp$3CT1iPrvr7uhgCdAN2QBZuO7Aqu..EFjOK5SHUXSP44qJ91OQ/I.88B4iyDufM35wwqS1JhbmS3ejsDAxvOGL/"
+
+  - name: "ansible"
+    privilege: 15
+    role: "network-admin"
+    sha512_password: "$6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/"
+
+  - name: "robert"
+    privilege: 15
+    role: "network-admin"
+    no_password: true
+    ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7U+usFHr9Xhqph3HcmaWpi/Tjl0a3aof1AQRvSXuOw redmonds@redmonds"
+
+# ----------------------------------- #
+# Enable Password
+# ----------------------------------- #
+
+enable_password:
+  hash_algorithm: "sha512"
+  key: "$6$Q5Pg0k.kTwgJ89NX$j0438CJoJx2RiuCsygN8GtpTrWPNWlZQIytcMQQRhLhv7oK0HNaXgbhDKsUUksrL22UDMx9tMfE9ufd0YJmkx1"
+
+# ----------------------------------- #
+# TerminAttr Config
+# ----------------------------------- #
+# MARK: TerminAttr
+daemon_terminattr:
+  # Address of the gRPC server on CloudVision
+  # TCP 9910 is used for on-prem CV
+  # TCP 443 is used on CV as a Service
+  cvaddrs: # For single cluster
+    - "192.168.0.5:9910"
+  cvauth:
+    method: "token"
+    token_file: "/tmp/cv-onboarding-token"
+  cvvrf: "default"
+  # Exclude paths from Sysdb on the ingest side
+  # ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
+  # Exclude paths from the shared memory table
+  smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
+  disable_aaa: true
+
+# ----------------------------------- #
+# OOB Management
+# ----------------------------------- #
+# MARK: OOB
+management_interfaces:
+  - name: "Management1"
+    shutdown: false
+    vrf: "MGMT"
+    type: "oob"
+
+mgmt_vrf_routing: false
+
+# ----------------------------------- #
+# DNS Servers
+# ----------------------------------- #
+# MARK: Servers
+ip_name_servers:
+  - ip_address: "169.254.169.254"
+    vrf: "default"
+
+# ----------------------------------- #
+# NTP Servers
+# ----------------------------------- #
+# NTP Servers IP or DNS name, first NTP server will be preferred,
+# and sourced from Management VRF
+
+ntp:
+  local_interface:
+    name: "Management1"
+    vrf: "default"
+  servers:
+    - name: "1.pool.ntp.org"
+      vrf: "default"
+
+clock:
+  timezone: America/Chicago
+
+# ----------------------------------- #
+# RADIUS
+# ----------------------------------- #
+
+radius_server:
+  hosts:
+    - host: docker1.slacker.net
+      vrf: MGMT
+      key: 15331905173E2A1629373C3700
+
+ip_radius_source_interfaces:
+  - name: Management1
+    vrf: "default"
+
+# ----------------------------------- #
+# Raw EOS CLI commands
+# ----------------------------------- #
+
+eos_cli: no schedule tech-support
+# MARK: Banner
+banners:
+  login: |
+    * * * * * * * * * * W A R N I N G * * * * * * * * * *
+    This computer system is the property of me.
+    It is for authorized use only.
+    By using this system, all users acknowledge notice of,
+    and agree to comply with, the Acceptable Use Policy
+    (“AUP”).
+    Unauthorized or improper use of this system may result
+    in administrative disciplinary action.
+    By continuing to use this system you indicate your
+    awareness of and consent to these terms and
+    conditions of use.
+    * * * * * * * * * * W A R N I N G * * * * * * * * * *
+    EOF
+  motd: |
+    ******************************************
+    *    __    __    ______     ___          *
+    *    |  |  |  |  /      |   /   \        *
+    *    |  |__|  | |  ,----'  /  ^  \       *
+    *    |   __   | |  |      /  /_\  \      *
+    *    |  |  |  | |  `----./  _____  \     *
+    *    |__|  |__|  \______/__/     \__\    *
+    *                                        *
+    ******************************************
+    EOF
+
+# ----------------------------------- #
+# SNMP Settings Test
+# ----------------------------------- #
+snmp_settings:
+  location: true
+
+snmp_server:
+  vrfs:
+    - name: "default"
+      enable: true

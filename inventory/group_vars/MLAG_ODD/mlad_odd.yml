@@ -1,0 +1,4 @@
+generate_cv_tags:
+  device_tags:
+    - name: "MLAG"
+      value: "odd"

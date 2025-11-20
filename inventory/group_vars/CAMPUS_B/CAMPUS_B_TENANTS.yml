@@ -6,31 +6,6 @@ tenants:
   - name: "HCA"
     mac_vrf_vni_base: 10000
     vrfs:
-      # - name: "Internet"
-      #   vrf_vni: 999
-      #   vtep_diagnostic:
-      #     loopback: 999
-      #     loopback_ip_range: 192.168.201.0/24
-      #   static_routes:
-      #     - destination_address_prefix: "0.0.0.0/0"
-      #       gateway: "192.168.20.1"
-      #       name: "To_Internet"
-      #       nodes:
-      #         - "RE-DC1-Leaf2A"
-      #         - "RE-DC1-Leaf2B"
-      #   svis:
-      #     - id: 999
-      #       name: "To_Internet"
-
-      #       enabled: true
-      #       nodes:
-      #         - node: "RE-DC1-Leaf2A"
-      #           ip_virtual_router_addresses:
-      #             - "192.168.20.98"
-      #         - node: "RE-DC1-Leaf2B"
-      #           ip_virtual_router_addresses:
-      #             - "192.168.20.99"
-
       - name: "Blue"
         vrf_vni: 10
         vtep_diagnostic:

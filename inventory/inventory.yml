@@ -1,11 +1,5 @@
 ---
 all:
-  vars:
-    eos_designs_custom_templates:
-      - template: "snmp_template.j2"
-        options:
-          list_merge: prepend
-          strip_empty_keys: false
   children:
     # ------------------------------- #
     # MARK: CVaaS
@@ -13,11 +7,11 @@ all:
     CVAAS:
       hosts:
         CVAAS:
-          ansible_host: "apiserver.cv-staging.corp.arista.io"
-          ansible_httpapi_host: "apiserver.cv-staging.corp.arista.io"
+          ansible_host: "10.18.183.94"
+          ansible_httpapi_host: "10.18.183.94"
           ansible_user: "cvaas"
-          ansible_password: "{{lookup('file', '../global_vars/cvaas.token')}}"
-          ansible_ssh_pass: "{{lookup('file', '../global_vars/cvaas.token')}}"
+          ansible_password: "{{lookup('file', '../global_vars/cv.token')}}"
+          ansible_ssh_pass: "{{lookup('file', '../global_vars/cv.token')}}"
           ansible_become: true
           ansible_become_method: enable
           ansible_connection: httpapi
@@ -70,11 +64,9 @@ all:
                 type: l2leaf
               hosts:
                 campus-a-leaf2c:
-                  ansible_host: 192.168.0.38
+                  ansible_host: 192.168.0.37
                 campus-a-leaf2d:
-                  ansible_host: 192.168.0.39
-                campus-b-leaf2c:
-                  ansible_host: 192.168.0.47
+                  ansible_host: 192.168.0.38
 
         # --------------------------- #
         # MARK: Campus-B
@@ -101,10 +93,6 @@ all:
                   ansible_host: 192.168.0.45
                 campus-b-leaf2b:
                   ansible_host: 192.168.0.46
-                campus-b-leaf2c:
-                  ansible_host: 192.168.0.47
-                campus-b-leaf2d:
-                  ansible_host: 192.168.0.48
             CAMPUS_B_L2LEAFS:
               vars:
                 type: l2leaf
@@ -123,33 +111,29 @@ all:
               vars:
                 type: spine
               hosts:
-                campus-b-spine1:
+                campus-c-spine1:
                   ansible_host: 192.168.0.51
-                campus-b-spine2:
+                campus-c-spine2:
                   ansible_host: 192.168.0.52
             CAMPUS_C_L3LEAFS:
               vars:
                 type: l3leaf
               hosts:
-                campus-b-leaf1a:
+                campus-c-leaf1a:
                   ansible_host: 192.168.0.53
-                campus-b-leaf1b:
+                campus-c-leaf1b:
                   ansible_host: 192.168.0.54
-                campus-b-leaf2a:
+                campus-c-leaf2a:
                   ansible_host: 192.168.0.55
-                campus-b-leaf2b:
+                campus-c-leaf2b:
                   ansible_host: 192.168.0.56
-                campus-b-leaf2c:
-                  ansible_host: 192.168.0.57
-                campus-b-leaf2d:
-                  ansible_host: 192.168.0.58
             CAMPUS_C_L2LEAFS:
               vars:
                 type: l2leaf
               hosts:
-                campus-b-leaf2c:
+                campus-c-leaf2c:
                   ansible_host: 192.168.0.57
-                campus-b-leaf2d:
+                campus-c-leaf2d:
                   ansible_host: 192.168.0.58
 
         CAMPUS_BORDERLEAFS:
@@ -161,10 +145,6 @@ all:
               campus-b-leaf2b:
               campus-c-leaf2a:
               campus-c-leaf2b:
-        LEAF_DEFAULTS:
-          children:
-            campus_l3leafs:
-            campus_l2leafs:
         MLAG_ODD:
           children:
             hosts:

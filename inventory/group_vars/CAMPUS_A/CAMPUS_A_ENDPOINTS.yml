@@ -41,9 +41,9 @@ port_profiles:
 # ----------------------------------- #
 servers:
   # --------------------------------- #
-  # campus-a
+  # leaf1
   # --------------------------------- #
-  - name: "leaf1-server1"
+  - name: "campus-a-leaf1-server1"
     adapters:
       - switches:
           - "campus-a-leaf1a"
@@ -53,56 +53,13 @@ servers:
           - "Ethernet1"
         profile: "TENANT_A_Vl110"
 
-  - name: "leaf2-server1"
+  # --------------------------------- #
+  # leaf2
+  # --------------------------------- #
+  - name: "campus-a-leaf2-server1"
     adapters:
       - switches:
           - "campus-a-leaf2c"
-        switch_ports:
-          - "Ethernet6"
-        endpoint_ports:
-          - "Ethernet1"
-        profile: "TENANT_A_Vl110"
-
-  # --------------------------------- #
-  # campus-b
-  # --------------------------------- #
-  - name: "leaf1-server1"
-    adapters:
-      - switches:
-          - "campus-b-leaf1a"
-        switch_ports:
-          - "Ethernet5"
-        endpoint_ports:
-          - "Ethernet1"
-        profile: "TENANT_A_Vl110"
-
-  - name: "leaf2-server1"
-    adapters:
-      - switches:
-          - "campus-b-leaf2c"
-        switch_ports:
-          - "Ethernet6"
-        endpoint_ports:
-          - "Ethernet1"
-        profile: "TENANT_A_Vl110"
-
-  # --------------------------------- #
-  # campus-c
-  # --------------------------------- #
-  - name: "leaf1-server1"
-    adapters:
-      - switches:
-          - "campus-c-leaf1a"
-        switch_ports:
-          - "Ethernet5"
-        endpoint_ports:
-          - "Ethernet1"
-        profile: "TENANT_A_Vl110"
-
-  - name: "leaf2-server1"
-    adapters:
-      - switches:
-          - "campus-c-leaf2c"
         switch_ports:
           - "Ethernet6"
         endpoint_ports:
