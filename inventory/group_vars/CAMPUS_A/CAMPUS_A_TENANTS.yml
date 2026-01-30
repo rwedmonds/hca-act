@@ -42,6 +42,7 @@ tenants:
             name: "WEBZone_121"
             enabled: true
             ip_address_virtual: "192.168.221.1/24"
+
       - name: "Green"
         vrf_vni: 12
         svis:

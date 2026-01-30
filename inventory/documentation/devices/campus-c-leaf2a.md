@@ -278,7 +278,7 @@ snmp-server location HCA CAMPUS campus-c-leaf2a
 
 | Domain-id | Local-interface | Peer-address | Peer-link |
 | --------- | --------------- | ------------ | --------- |
-| campus-c-leaf2 | Vlan4094 | 10.255.255.69 | Port-Channel3 |
+| campus-c-leaf2 | Vlan4094 | 10.255.255.69 | Port-Channel11 |
 
 Dual primary detection is enabled. The detection delay is 5 seconds.
 
@@ -291,7 +291,7 @@ mlag configuration
    local-interface Vlan4094
    peer-address 10.255.255.69
    peer-address heartbeat 192.168.0.56
-   peer-link Port-Channel3
+   peer-link Port-Channel11
    dual-primary detection delay 5 action errdisable all-interfaces
    reload-delay mlag 300
    reload-delay non-mlag 330
@@ -431,8 +431,8 @@ interface defaults
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet3 | MLAG_campus-c-leaf2b_Ethernet3 | *trunk | *2-4094 | *- | *MLAG | 3 |
-| Ethernet4 | MLAG_campus-c-leaf2b_Ethernet4 | *trunk | *2-4094 | *- | *MLAG | 3 |
+| Ethernet11 | MLAG_campus-c-leaf2b_Ethernet11 | *trunk | *2-4094 | *- | *MLAG | 11 |
+| Ethernet12 | MLAG_campus-c-leaf2b_Ethernet12 | *trunk | *2-4094 | *- | *MLAG | 11 |
 
 *Inherited from Port-Channel Interface
 
@@ -440,15 +440,15 @@ interface defaults
 
 ```eos
 !
-interface Ethernet3
-   description MLAG_campus-c-leaf2b_Ethernet3
+interface Ethernet11
+   description MLAG_campus-c-leaf2b_Ethernet11
    no shutdown
-   channel-group 3 mode active
+   channel-group 11 mode active
 !
-interface Ethernet4
-   description MLAG_campus-c-leaf2b_Ethernet4
+interface Ethernet12
+   description MLAG_campus-c-leaf2b_Ethernet12
    no shutdown
-   channel-group 3 mode active
+   channel-group 11 mode active
 !
 interface Management1
    no lldp transmit
@@ -463,14 +463,14 @@ interface Management1
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel3 | MLAG_campus-c-leaf2b_Port-Channel3 | trunk | 2-4094 | - | MLAG | - | - | - | - |
+| Port-Channel11 | MLAG_campus-c-leaf2b_Port-Channel11 | trunk | 2-4094 | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
-interface Port-Channel3
-   description MLAG_campus-c-leaf2b_Port-Channel3
+interface Port-Channel11
+   description MLAG_campus-c-leaf2b_Port-Channel11
    no shutdown
    switchport trunk allowed vlan 2-4094
    switchport mode trunk

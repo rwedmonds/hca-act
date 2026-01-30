@@ -1,0 +1,124 @@
+[
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.",
+    "result": "failure",
+    "messages": [
+      "Port: Ethernet1 Neighbor: campus-a-leaf1a Neighbor Port: Ethernet5 - No LLDP neighbors"
+    ],
+    "custom_field": "Local: Ethernet1 - Remote: campus-a-leaf1a Ethernet5"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.",
+    "result": "failure",
+    "messages": [
+      "Port: Ethernet2 Neighbor: campus-a-leaf1b Neighbor Port: Ethernet5 - No LLDP neighbors"
+    ],
+    "custom_field": "Local: Ethernet2 - Remote: campus-a-leaf1b Ethernet5"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Ethernet1 - Status mismatch - Expected: up/up, Actual: down/down"
+    ],
+    "custom_field": "Interface Ethernet1 - L2_campus-a-leaf1a_Ethernet5 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Ethernet2 - Status mismatch - Expected: up/up, Actual: down/down"
+    ],
+    "custom_field": "Interface Ethernet2 - L2_campus-a-leaf1b_Ethernet5 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Ethernet6 - Status mismatch - Expected: up/up, Actual: down/down"
+    ],
+    "custom_field": "Interface Ethernet6 - SERVER_campus-a-leaf2-server1_Ethernet1 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Management1 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Port-Channel1 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown"
+    ],
+    "custom_field": "Interface Port-Channel1 - L2_campus-a-leaf1_Port-Channel5 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Port-Channel6 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown"
+    ],
+    "custom_field": "Interface Port-Channel6 - SERVER_campus-a-leaf2-server1 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "failure",
+    "messages": [
+      "NTP status mismatch - Expected: synchronised Actual: unsynchronised"
+    ]
+  },
+  {
+    "name": "campus-a-leaf2c",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
+    "result": "success"
+  }
+]

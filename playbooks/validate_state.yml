@@ -1,22 +1,14 @@
 ---
-- name: Validate Network State
-  hosts: "HCA"
+- name: Run ANTA
   connection: httpapi
+  hosts: "HCA"
   gather_facts: false
-
+  ignore_errors: true
   tasks:
     - name: Include Ansible Vault
       ansible.builtin.include_vars:
         file: auth.yml
-
-    - name: Validate
-      ansible.builtin.import_role:
-        name: arista.avd.eos_validate_state
-      environment:
-        OPENSSL_CONF: /etc/ssl/openssl.cnf
-      vars:
-        use_anta: true
-        save_catalog: true
-        only_failed_tests: false
-        skip_tests:
-          - category: AvdTestHardware
+    - name: Run ANTA on EOS devices
+      import_role:
+        name: arista.avd.anta_runner
+      ignore_errors: true

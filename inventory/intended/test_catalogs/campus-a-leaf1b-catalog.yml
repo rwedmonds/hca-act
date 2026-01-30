@@ -1,0 +1,368 @@
+anta.tests.connectivity:
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-leaf1a
+      neighbor_port: Ethernet3
+      port: Ethernet3
+    result_overwrite:
+      custom_field: 'Local: Ethernet3 - Remote: campus-a-leaf1a Ethernet3'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-leaf1a
+      neighbor_port: Ethernet4
+      port: Ethernet4
+    result_overwrite:
+      custom_field: 'Local: Ethernet4 - Remote: campus-a-leaf1a Ethernet4'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-spine1
+      neighbor_port: Ethernet6
+      port: Ethernet1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1 - Remote: campus-a-spine1 Ethernet6'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-spine2
+      neighbor_port: Ethernet6
+      port: Ethernet2
+    result_overwrite:
+      custom_field: 'Local: Ethernet2 - Remote: campus-a-spine2 Ethernet6'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-leaf2c
+      neighbor_port: Ethernet2
+      port: Ethernet5
+    result_overwrite:
+      custom_field: 'Local: Ethernet5 - Remote: campus-a-leaf2c Ethernet2'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-leaf2d
+      neighbor_port: Ethernet2
+      port: Ethernet6
+    result_overwrite:
+      custom_field: 'Local: Ethernet6 - Remote: campus-a-leaf2d Ethernet2'
+- VerifyReachability:
+    hosts:
+    - destination: 172.31.254.52
+      repeat: 1
+      source: 172.31.254.53
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet1 (IP: 172.31.254.53) - Destination:
+        campus-a-spine1 Ethernet6 (IP: 172.31.254.52)'
+- VerifyReachability:
+    hosts:
+    - destination: 172.31.254.54
+      repeat: 1
+      source: 172.31.254.55
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: P2P Interface Ethernet2 (IP: 172.31.254.55) - Destination:
+        campus-a-spine2 Ethernet6 (IP: 172.31.254.54)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.244.11
+      repeat: 1
+      source: 192.168.244.14
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.14) - Destination: campus-a-spine1
+        Loopback0 (IP: 192.168.244.11)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.244.12
+      repeat: 1
+      source: 192.168.244.14
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.14) - Destination: campus-a-spine2
+        Loopback0 (IP: 192.168.244.12)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.244.13
+      repeat: 1
+      source: 192.168.244.14
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.14) - Destination: campus-a-leaf1a
+        Loopback0 (IP: 192.168.244.13)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.244.14
+      repeat: 1
+      source: 192.168.244.14
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.14) - Destination: campus-a-leaf1b
+        Loopback0 (IP: 192.168.244.14)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.244.15
+      repeat: 1
+      source: 192.168.244.14
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.14) - Destination: campus-a-leaf2a
+        Loopback0 (IP: 192.168.244.15)'
+- VerifyReachability:
+    hosts:
+    - destination: 192.168.244.16
+      repeat: 1
+      source: 192.168.244.14
+      vrf: default
+    result_overwrite:
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.14) - Destination: campus-a-leaf2b
+        Loopback0 (IP: 192.168.244.16)'
+anta.tests.interfaces:
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet3
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet3 - MLAG_campus-a-leaf1a_Ethernet3 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet4
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet4 - MLAG_campus-a-leaf1a_Ethernet4 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1 - P2P_campus-a-spine1_Ethernet6 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet2 - P2P_campus-a-spine2_Ethernet6 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet5
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet5 - L2_campus-a-leaf2c_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet6
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet6 - L2_campus-a-leaf2d_Ethernet2 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Management1
+      status: up
+    result_overwrite:
+      custom_field: Interface Management1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel3
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel3 - MLAG_campus-a-leaf1a_Port-Channel3 =
+        'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel5
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel5 - L2_campus-a-leaf2c_Port-Channel1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel6
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel6 - L2_campus-a-leaf2d_Port-Channel1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan4093
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4093 - MLAG_L3 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan4094
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan4094 - MLAG = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan110
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan110 - Blue_110 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan111
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan111 - Blue_111 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan112
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan112 - Blue_112 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan113
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan113 - Blue_113 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan3009
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan3009 - MLAG_L3_VRF_Blue = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan130
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan130 - Green_130 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan131
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan131 - Green_131 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan3011
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan3011 - MLAG_L3_VRF_Green = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan120
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan120 - Red_120 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan121
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan121 - WEBZone_121 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vlan3010
+      status: up
+    result_overwrite:
+      custom_field: Interface Vlan3010 - MLAG_L3_VRF_Red = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Loopback0
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback0 - ROUTER_ID = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Loopback1
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback1 - VXLAN_TUNNEL_SOURCE = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Loopback100
+      status: up
+    result_overwrite:
+      custom_field: Interface Loopback100 - DIAG_VRF_Blue = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Vxlan1
+      status: up
+    result_overwrite:
+      custom_field: Interface Vxlan1 = 'up'
+anta.tests.mlag:
+- VerifyMlagStatus: null
+anta.tests.routing.bgp:
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.244.11
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: campus-a-spine1 (IP: 192.168.244.11)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: evpn
+      peers:
+      - 192.168.244.12
+    result_overwrite:
+      custom_field: 'BGP EVPN Peer: campus-a-spine2 (IP: 192.168.244.12)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 10.255.254.24
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: campus-a-leaf1a (IP: 10.255.254.24)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 172.31.254.52
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: campus-a-spine1 (IP: 172.31.254.52)'
+- VerifyBGPSpecificPeers:
+    address_families:
+    - afi: ipv4
+      peers:
+      - 172.31.254.54
+      safi: unicast
+    result_overwrite:
+      custom_field: 'BGP IPv4 Unicast Peer: campus-a-spine2 (IP: 172.31.254.54)'
+anta.tests.routing.generic:
+- VerifyRoutingProtocolModel:
+    model: multi-agent
+    result_overwrite:
+      custom_field: 'Routing protocol model: multi-agent'
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.244.11 - Peer: campus-a-spine1'
+    routes:
+    - 192.168.244.11
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.244.12 - Peer: campus-a-spine2'
+    routes:
+    - 192.168.244.12
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.244.13 - Peer: campus-a-leaf1a'
+    routes:
+    - 192.168.244.13
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.244.14 - Peer: campus-a-leaf1b'
+    routes:
+    - 192.168.244.14
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.244.15 - Peer: campus-a-leaf2a'
+    routes:
+    - 192.168.244.15
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.244.16 - Peer: campus-a-leaf2b'
+    routes:
+    - 192.168.244.16
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.243.13 - Peer: campus-a-leaf1a'
+    routes:
+    - 192.168.243.13
+- VerifyRoutingTableEntry:
+    result_overwrite:
+      custom_field: 'Route: 192.168.243.15 - Peer: campus-a-leaf2a'
+    routes:
+    - 192.168.243.15
+anta.tests.system:
+- VerifyNTP: null
+- VerifyReloadCause: null

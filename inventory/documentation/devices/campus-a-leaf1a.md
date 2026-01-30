@@ -278,7 +278,7 @@ snmp-server location HCA CAMPUS_A Rack1A campus-a-leaf1a
 
 | Domain-id | Local-interface | Peer-address | Peer-link |
 | --------- | --------------- | ------------ | --------- |
-| campus-a-leaf1 | Vlan4094 | 10.255.255.25 | Port-Channel3 |
+| campus-a-leaf1 | Vlan4094 | 10.255.255.25 | Port-Channel11 |
 
 Dual primary detection is enabled. The detection delay is 5 seconds.
 
@@ -291,7 +291,7 @@ mlag configuration
    local-interface Vlan4094
    peer-address 10.255.255.25
    peer-address heartbeat 192.168.0.34
-   peer-link Port-Channel3
+   peer-link Port-Channel11
    dual-primary detection delay 5 action errdisable all-interfaces
    reload-delay mlag 300
    reload-delay non-mlag 330
@@ -431,10 +431,10 @@ interface defaults
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet3 | MLAG_campus-a-leaf1b_Ethernet3 | *trunk | *2-4094 | *- | *MLAG | 3 |
-| Ethernet4 | MLAG_campus-a-leaf1b_Ethernet4 | *trunk | *2-4094 | *- | *MLAG | 3 |
 | Ethernet5 | SERVER_campus-a-leaf1-server1_Ethernet1 | *access | *110,110-113,120-121,130-131 | *- | *- | 5 |
 | Ethernet6 | L2_campus-a-leaf2d_Ethernet1 | *trunk | *110-113,120-121,130-131 | *- | *- | 6 |
+| Ethernet11 | MLAG_campus-a-leaf1b_Ethernet11 | *trunk | *2-4094 | *- | *MLAG | 11 |
+| Ethernet12 | MLAG_campus-a-leaf1b_Ethernet12 | *trunk | *2-4094 | *- | *MLAG | 11 |
 
 *Inherited from Port-Channel Interface
 
@@ -463,16 +463,6 @@ interface Ethernet2
    no switchport
    ip address 172.31.254.51/31
 !
-interface Ethernet3
-   description MLAG_campus-a-leaf1b_Ethernet3
-   no shutdown
-   channel-group 3 mode active
-!
-interface Ethernet4
-   description MLAG_campus-a-leaf1b_Ethernet4
-   no shutdown
-   channel-group 3 mode active
-!
 interface Ethernet5
    description SERVER_campus-a-leaf1-server1_Ethernet1
    no shutdown
@@ -482,6 +472,16 @@ interface Ethernet6
    description L2_campus-a-leaf2d_Ethernet1
    no shutdown
    channel-group 6 mode active
+!
+interface Ethernet11
+   description MLAG_campus-a-leaf1b_Ethernet11
+   no shutdown
+   channel-group 11 mode active
+!
+interface Ethernet12
+   description MLAG_campus-a-leaf1b_Ethernet12
+   no shutdown
+   channel-group 11 mode active
 !
 interface Management1
    no lldp transmit
@@ -496,21 +496,13 @@ interface Management1
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel3 | MLAG_campus-a-leaf1b_Port-Channel3 | trunk | 2-4094 | - | MLAG | - | - | - | - |
 | Port-Channel5 | SERVER_campus-a-leaf1-server1 | access | 110,110-113,120-121,130-131 | - | - | - | - | 5 | - |
 | Port-Channel6 | L2_campus-a-leaf2d_Port-Channel1 | trunk | 110-113,120-121,130-131 | - | - | - | - | 6 | - |
+| Port-Channel11 | MLAG_campus-a-leaf1b_Port-Channel11 | trunk | 2-4094 | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
-!
-interface Port-Channel3
-   description MLAG_campus-a-leaf1b_Port-Channel3
-   no shutdown
-   switchport trunk allowed vlan 2-4094
-   switchport mode trunk
-   switchport trunk group MLAG
-   switchport
 !
 interface Port-Channel5
    description SERVER_campus-a-leaf1-server1
@@ -528,6 +520,14 @@ interface Port-Channel6
    switchport mode trunk
    switchport
    mlag 6
+!
+interface Port-Channel11
+   description MLAG_campus-a-leaf1b_Port-Channel11
+   no shutdown
+   switchport trunk allowed vlan 2-4094
+   switchport mode trunk
+   switchport trunk group MLAG
+   switchport
 ```
 
 ### Loopback Interfaces

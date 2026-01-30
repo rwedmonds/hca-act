@@ -4,14 +4,14 @@
 
 .PHONY: help
 help: ## Display help message (*: main entry points / []: part of an entry point)
-        @grep -E '^[0-9a-zA-Z_-]+\.*[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[0-9a-zA-Z_-]+\.*[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 # ------------------------------------------------------- #
 #                         Build                           #
 # ------------------------------------------------------- #
 
 .PHONY: build_all
-build_dual_dc: ## Build AVD configs for all campuses
+build_all: ## Build AVD configs for all campuses
 				ansible-playbook playbooks/fabric_deploy.yml --tags build
 
 .PHONY: build_campus_a
@@ -23,7 +23,7 @@ build_campus_b: ## Build AVD configs for CAMPUS_B
 				ansible-playbook playbooks/fabric_deploy.yml --tags build --limit CAMPUS_B
 
 .PHONY: build_campus_c
-build_campus_b: ## Build AVD configs for CAMPUS_C
+build_campus_c: ## Build AVD configs for CAMPUS_C
 				ansible-playbook playbooks/fabric_deploy.yml --tags build --limit CAMPUS_C
 
 # ------------------------------------------------------- #
@@ -31,7 +31,7 @@ build_campus_b: ## Build AVD configs for CAMPUS_C
 # ------------------------------------------------------- #
 
 .PHONY: deploy_all
-deploy_dual_dc: ## Build AVD configs for all campuses
+deploy_all: ## Build AVD configs for all campuses
 				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml
 
 .PHONY: deploy_campus_a_cvp
@@ -43,7 +43,7 @@ deploy_campus_b_cvp: ## Deploy CAMPUS_B AVD configs through CVP
 				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --limit CAMPUS_B
 
 .PHONY: deploy_campus_c_cvp
-deploy_campus_b_cvp: ## Deploy CAMPUS_C AVD configs through CVP
+deploy_campus_c_cvp: ## Deploy CAMPUS_C AVD configs through CVP
 				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --limit CAMPUS_C
 
 # .PHONY: deploy_cert
@@ -59,17 +59,17 @@ deploy_campus_b_cvp: ## Deploy CAMPUS_C AVD configs through CVP
 # ------------------------------------------------------- #
 
 .PHONY: validate_state_all
-validate_state_campus_a: ## Validate state of all campuses
-				ansible-playbook playbooks/validate_state.yml --ask-vault-password
+validate_state_all: ## Validate state of all campuses
+				ansible-playbook playbooks/validate_state.yml -i inventory/act_inventory.yml --ask-vault-password
 
 .PHONY: validate_state_campus_a
 validate_state_campus_a: ## Validate state of CAMPUS_A
-				ansible-playbook playbooks/validate_state.yml --ask-vault-password --limit CAMPUS_A
+				ansible-playbook playbooks/validate_state.yml -i inventory/act_inventory.yml --ask-vault-password --limit CAMPUS_A
 
 .PHONY: validate_state_campus_b
 validate_state_campus_b: ## Validate state of CAMPUS_B
-				ansible-playbook playbooks/validate_state.yml --ask-vault-password --limit CAMPUS_B
+				ansible-playbook playbooks/validate_state.yml -i inventory/act_inventory.yml --ask-vault-password --limit CAMPUS_B
 
 .PHONY: validate_state_campus_c
-validate_state_campus_b: ## Validate state of CAMPUS_C
-				ansible-playbook playbooks/validate_state.yml --ask-vault-password --limit CAMPUS_C
+validate_state_campus_c: ## Validate state of CAMPUS_C
+				ansible-playbook playbooks/validate_state.yml -i inventory/act_inventory.yml --ask-vault-password --limit CAMPUS_C

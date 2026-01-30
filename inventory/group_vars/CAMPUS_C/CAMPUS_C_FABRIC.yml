@@ -99,14 +99,17 @@ l3leaf:
     platform: "vEOS-LAB"
     loopback_ipv4_pool: "192.168.224.0/24"
     vtep_loopback_ipv4_pool: "192.168.223.0/24"
+    uplink_switches:
+      - "campus-c-spine1"
+      - "campus-c-spine2"
     uplink_interfaces:
       - "Ethernet1"
       - "Ethernet2"
     uplink_ipv4_pool: "172.31.254.0/23"
     mlag_peer_link_allowed_vlans: "2-4094"
     mlag_interfaces:
-      - "Ethernet3"
-      - "Ethernet4"
+      - "Ethernet11"
+      - "Ethernet12"
     mlag_peer_ipv4_pool: "10.255.255.0/24"
     mlag_peer_l3_ipv4_pool: "10.255.254.0/24"
     mlag_dual_primary_detection: true
@@ -117,9 +120,6 @@ l3leaf:
     - group: "campus-c-leaf1"
       bgp_as: "65302"
       rack: "Rack1A"
-      uplink_switches:
-        - "campus-c-spine1"
-        - "campus-c-spine2"
       nodes:
         - name: "campus-c-leaf1a"
           id: 33

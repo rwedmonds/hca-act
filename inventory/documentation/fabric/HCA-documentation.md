@@ -55,16 +55,16 @@
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
 | l3leaf | campus-a-leaf1a | Ethernet1 | spine | campus-a-spine1 | Ethernet5 |
 | l3leaf | campus-a-leaf1a | Ethernet2 | spine | campus-a-spine2 | Ethernet5 |
-| l3leaf | campus-a-leaf1a | Ethernet3 | mlag_peer | campus-a-leaf1b | Ethernet3 |
-| l3leaf | campus-a-leaf1a | Ethernet4 | mlag_peer | campus-a-leaf1b | Ethernet4 |
 | l3leaf | campus-a-leaf1a | Ethernet5 | l2leaf | campus-a-leaf2c | Ethernet1 |
 | l3leaf | campus-a-leaf1a | Ethernet6 | l2leaf | campus-a-leaf2d | Ethernet1 |
+| l3leaf | campus-a-leaf1a | Ethernet11 | mlag_peer | campus-a-leaf1b | Ethernet11 |
+| l3leaf | campus-a-leaf1a | Ethernet12 | mlag_peer | campus-a-leaf1b | Ethernet12 |
 | l3leaf | campus-a-leaf1b | Ethernet1 | spine | campus-a-spine1 | Ethernet6 |
 | l3leaf | campus-a-leaf1b | Ethernet2 | spine | campus-a-spine2 | Ethernet6 |
 | l3leaf | campus-a-leaf1b | Ethernet5 | l2leaf | campus-a-leaf2c | Ethernet2 |
 | l3leaf | campus-a-leaf1b | Ethernet6 | l2leaf | campus-a-leaf2d | Ethernet2 |
-| l3leaf | campus-a-leaf2a | Ethernet3 | mlag_peer | campus-a-leaf2b | Ethernet3 |
-| l3leaf | campus-a-leaf2a | Ethernet4 | mlag_peer | campus-a-leaf2b | Ethernet4 |
+| l3leaf | campus-a-leaf2a | Ethernet11 | mlag_peer | campus-a-leaf2b | Ethernet11 |
+| l3leaf | campus-a-leaf2a | Ethernet12 | mlag_peer | campus-a-leaf2b | Ethernet12 |
 | l3leaf | campus-b-leaf1a | Ethernet1 | spine | campus-b-spine1 | Ethernet5 |
 | l3leaf | campus-b-leaf1a | Ethernet2 | spine | campus-b-spine2 | Ethernet5 |
 | l3leaf | campus-b-leaf1a | Ethernet5 | l2leaf | campus-b-leaf2c | Ethernet1 |
@@ -79,16 +79,16 @@
 | l3leaf | campus-b-leaf2a | Ethernet12 | mlag_peer | campus-b-leaf2b | Ethernet12 |
 | l3leaf | campus-c-leaf1a | Ethernet1 | spine | campus-c-spine1 | Ethernet5 |
 | l3leaf | campus-c-leaf1a | Ethernet2 | spine | campus-c-spine2 | Ethernet5 |
-| l3leaf | campus-c-leaf1a | Ethernet3 | mlag_peer | campus-c-leaf1b | Ethernet3 |
-| l3leaf | campus-c-leaf1a | Ethernet4 | mlag_peer | campus-c-leaf1b | Ethernet4 |
 | l3leaf | campus-c-leaf1a | Ethernet5 | l2leaf | campus-c-leaf2c | Ethernet1 |
 | l3leaf | campus-c-leaf1a | Ethernet6 | l2leaf | campus-c-leaf2d | Ethernet1 |
+| l3leaf | campus-c-leaf1a | Ethernet11 | mlag_peer | campus-c-leaf1b | Ethernet11 |
+| l3leaf | campus-c-leaf1a | Ethernet12 | mlag_peer | campus-c-leaf1b | Ethernet12 |
 | l3leaf | campus-c-leaf1b | Ethernet1 | spine | campus-c-spine1 | Ethernet6 |
 | l3leaf | campus-c-leaf1b | Ethernet2 | spine | campus-c-spine2 | Ethernet6 |
 | l3leaf | campus-c-leaf1b | Ethernet5 | l2leaf | campus-c-leaf2c | Ethernet2 |
 | l3leaf | campus-c-leaf1b | Ethernet6 | l2leaf | campus-c-leaf2d | Ethernet2 |
-| l3leaf | campus-c-leaf2a | Ethernet3 | mlag_peer | campus-c-leaf2b | Ethernet3 |
-| l3leaf | campus-c-leaf2a | Ethernet4 | mlag_peer | campus-c-leaf2b | Ethernet4 |
+| l3leaf | campus-c-leaf2a | Ethernet11 | mlag_peer | campus-c-leaf2b | Ethernet11 |
+| l3leaf | campus-c-leaf2a | Ethernet12 | mlag_peer | campus-c-leaf2b | Ethernet12 |
 
 ## Fabric IP Allocation
 

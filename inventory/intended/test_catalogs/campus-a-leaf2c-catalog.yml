@@ -1,0 +1,56 @@
+anta.tests.connectivity:
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-leaf1a
+      neighbor_port: Ethernet5
+      port: Ethernet1
+    result_overwrite:
+      custom_field: 'Local: Ethernet1 - Remote: campus-a-leaf1a Ethernet5'
+- VerifyLLDPNeighbors:
+    neighbors:
+    - neighbor_device: campus-a-leaf1b
+      neighbor_port: Ethernet5
+      port: Ethernet2
+    result_overwrite:
+      custom_field: 'Local: Ethernet2 - Remote: campus-a-leaf1b Ethernet5'
+anta.tests.interfaces:
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet1
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet1 - L2_campus-a-leaf1a_Ethernet5 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet2
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet2 - L2_campus-a-leaf1b_Ethernet5 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Ethernet6
+      status: up
+    result_overwrite:
+      custom_field: Interface Ethernet6 - SERVER_campus-a-leaf2-server1_Ethernet1
+        = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Management1
+      status: up
+    result_overwrite:
+      custom_field: Interface Management1 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel1
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel1 - L2_campus-a-leaf1_Port-Channel5 = 'up'
+- VerifyInterfacesStatus:
+    interfaces:
+    - name: Port-Channel6
+      status: up
+    result_overwrite:
+      custom_field: Interface Port-Channel6 - SERVER_campus-a-leaf2-server1 = 'up'
+anta.tests.system:
+- VerifyNTP: null
+- VerifyReloadCause: null

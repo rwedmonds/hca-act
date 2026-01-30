@@ -1,0 +1,153 @@
+[
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s) for given address families.",
+    "result": "success",
+    "custom_field": "BGP EVPN Peer: campus-a-leaf1a (IP: 192.168.244.13)"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s) for given address families.",
+    "result": "success",
+    "custom_field": "BGP EVPN Peer: campus-a-leaf1b (IP: 192.168.244.14)"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s) for given address families.",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: campus-a-leaf1a (IP: 172.31.254.49)"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s) for given address families.",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: campus-a-leaf1b (IP: 172.31.254.53)"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.",
+    "result": "success",
+    "custom_field": "Local: Ethernet5 - Remote: campus-a-leaf1a Ethernet1"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.",
+    "result": "success",
+    "custom_field": "Local: Ethernet6 - Remote: campus-a-leaf1b Ethernet1"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: P2P Interface Ethernet5 (IP: 172.31.254.48) - Destination: campus-a-leaf1a Ethernet1 (IP: 172.31.254.49)"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: P2P Interface Ethernet6 (IP: 172.31.254.52) - Destination: campus-a-leaf1b Ethernet1 (IP: 172.31.254.53)"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Ethernet5 - P2P_campus-a-leaf1a_Ethernet1 = 'up'"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Ethernet6 - P2P_campus-a-leaf1b_Ethernet1 = 'up'"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Loopback0 - ROUTER_ID = 'up'"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Management1 = 'up'"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyRoutingProtocolModel",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies the configured routing protocol model.",
+    "result": "success",
+    "custom_field": "Routing protocol model: multi-agent"
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "failure",
+    "messages": [
+      "NTP status mismatch - Expected: synchronised Actual: unsynchronised"
+    ]
+  },
+  {
+    "name": "campus-a-spine1",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
+    "result": "success"
+  }
+]

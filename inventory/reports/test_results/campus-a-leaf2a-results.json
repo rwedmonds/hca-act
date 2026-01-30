@@ -1,0 +1,483 @@
+[
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s) for given address families.",
+    "result": "failure",
+    "messages": [
+      "AFI: ipv4 SAFI: unicast VRF: default Peer: 10.255.254.29 - Incorrect session state - Expected: Established Actual: Active"
+    ],
+    "custom_field": "BGP IPv4 Unicast Peer: campus-a-leaf2b (IP: 10.255.254.29)"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.",
+    "result": "failure",
+    "messages": [
+      "Port: Ethernet3 Neighbor: campus-a-leaf2b Neighbor Port: Ethernet3 - No LLDP neighbors"
+    ],
+    "custom_field": "Local: Ethernet3 - Remote: campus-a-leaf2b Ethernet3"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.",
+    "result": "failure",
+    "messages": [
+      "Port: Ethernet4 Neighbor: campus-a-leaf2b Neighbor Port: Ethernet4 - No LLDP neighbors"
+    ],
+    "custom_field": "Local: Ethernet4 - Remote: campus-a-leaf2b Ethernet4"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "failure",
+    "messages": [
+      "Host: 192.168.244.13 Source: 192.168.244.15 VRF: default - Packet loss detected - Transmitted: 1 Received: 0"
+    ],
+    "custom_field": "Source: Loopback0 (IP: 192.168.244.15) - Destination: campus-a-leaf1a Loopback0 (IP: 192.168.244.13)"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "failure",
+    "messages": [
+      "Host: 192.168.244.14 Source: 192.168.244.15 VRF: default - Packet loss detected - Transmitted: 1 Received: 0"
+    ],
+    "custom_field": "Source: Loopback0 (IP: 192.168.244.15) - Destination: campus-a-leaf1b Loopback0 (IP: 192.168.244.14)"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 192.168.244.15) - Destination: campus-a-leaf2a Loopback0 (IP: 192.168.244.15)"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "failure",
+    "messages": [
+      "Host: 192.168.244.16 Source: 192.168.244.15 VRF: default - Packet loss detected - Transmitted: 1 Received: 0"
+    ],
+    "custom_field": "Source: Loopback0 (IP: 192.168.244.15) - Destination: campus-a-leaf2b Loopback0 (IP: 192.168.244.16)"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "failure",
+    "messages": [
+      "Host: 192.168.244.11 Source: 192.168.244.15 VRF: default - Packet loss detected - Transmitted: 1 Received: 0"
+    ],
+    "custom_field": "Source: Loopback0 (IP: 192.168.244.15) - Destination: campus-a-spine1 Loopback0 (IP: 192.168.244.11)"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test network reachability to one or many destination IP(s).",
+    "result": "failure",
+    "messages": [
+      "Host: 192.168.244.12 Source: 192.168.244.15 VRF: default - Packet loss detected - Transmitted: 1 Received: 0"
+    ],
+    "custom_field": "Source: Loopback0 (IP: 192.168.244.15) - Destination: campus-a-spine2 Loopback0 (IP: 192.168.244.12)"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Ethernet3 - MLAG_campus-a-leaf2b_Ethernet3 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Ethernet4 - MLAG_campus-a-leaf2b_Ethernet4 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Loopback0 - ROUTER_ID = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Loopback1 - VXLAN_TUNNEL_SOURCE = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Loopback100 - DIAG_VRF_Blue = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Management1 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Port-Channel3 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown"
+    ],
+    "custom_field": "Interface Port-Channel3 - MLAG_campus-a-leaf2b_Port-Channel3 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan110 - Blue_110 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan111 - Blue_111 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan112 - Blue_112 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan113 - Blue_113 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan120 - Red_120 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan121 - WEBZone_121 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan130 - Green_130 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan131 - Green_131 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Vlan3009 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown"
+    ],
+    "custom_field": "Interface Vlan3009 - MLAG_L3_VRF_Blue = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Vlan3010 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown"
+    ],
+    "custom_field": "Interface Vlan3010 - MLAG_L3_VRF_Red = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Vlan3011 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown"
+    ],
+    "custom_field": "Interface Vlan3011 - MLAG_L3_VRF_Green = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "failure",
+    "messages": [
+      "Vlan4093 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown"
+    ],
+    "custom_field": "Interface Vlan4093 - MLAG_L3 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vlan4094 - MLAG = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the operational states of specified interfaces to ensure they match expected configurations.",
+    "result": "success",
+    "custom_field": "Interface Vxlan1 = 'up'"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyMlagStatus",
+    "categories": [
+      "mlag"
+    ],
+    "description": "Verifies the health status of the MLAG configuration.",
+    "result": "failure",
+    "messages": [
+      "MLAG negotiation status mismatch - Expected: connected Actual: connecting",
+      "Operational state of the MLAG peer link is not correct - Expected: up Actual: lowerLayerDown"
+    ]
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingProtocolModel",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies the configured routing protocol model.",
+    "result": "success",
+    "custom_field": "Routing protocol model: multi-agent"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "failure",
+    "messages": [
+      "The following route(s) are missing from the routing table of VRF default: 192.168.243.13"
+    ],
+    "custom_field": "Route: 192.168.243.13 - Peer: campus-a-leaf1a"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 192.168.243.15 - Peer: campus-a-leaf2a"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "failure",
+    "messages": [
+      "The following route(s) are missing from the routing table of VRF default: 192.168.244.11"
+    ],
+    "custom_field": "Route: 192.168.244.11 - Peer: campus-a-spine1"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "failure",
+    "messages": [
+      "The following route(s) are missing from the routing table of VRF default: 192.168.244.12"
+    ],
+    "custom_field": "Route: 192.168.244.12 - Peer: campus-a-spine2"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "failure",
+    "messages": [
+      "The following route(s) are missing from the routing table of VRF default: 192.168.244.13"
+    ],
+    "custom_field": "Route: 192.168.244.13 - Peer: campus-a-leaf1a"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "failure",
+    "messages": [
+      "The following route(s) are missing from the routing table of VRF default: 192.168.244.14"
+    ],
+    "custom_field": "Route: 192.168.244.14 - Peer: campus-a-leaf1b"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 192.168.244.15 - Peer: campus-a-leaf2a"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "failure",
+    "messages": [
+      "The following route(s) are missing from the routing table of VRF default: 192.168.244.16"
+    ],
+    "custom_field": "Route: 192.168.244.16 - Peer: campus-a-leaf2b"
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "failure",
+    "messages": [
+      "NTP status mismatch - Expected: synchronised Actual: unsynchronised"
+    ]
+  },
+  {
+    "name": "campus-a-leaf2a",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
+    "result": "success"
+  }
+]

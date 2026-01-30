@@ -1,0 +1,291 @@
+Device,Test Name,Test Status,Message(s),Test description,Test category
+campus-a-leaf1a,VerifyBGPPeerSession,failure,Peer: 10.255.254.25 VRF: default - Incorrect session state - Expected: Established Actual: Active,Verifies the session state of BGP peers.,BGP
+campus-a-leaf1a,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-leaf1a,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-leaf1a,VerifyLLDPNeighbors,failure,Port: Ethernet3 Neighbor: campus-a-leaf1b Neighbor Port: Ethernet3 - No LLDP neighbors - Port: Ethernet4 Neighbor: campus-a-leaf1b Neighbor Port: Ethernet4 - No LLDP neighbors - Port: Ethernet6 Neighbor: campus-a-leaf2d Neighbor Port: Ethernet1 - No LLDP neighbors,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-leaf1a,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+campus-a-leaf1a,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+campus-a-leaf1a,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-leaf1a,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-leaf1a,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-leaf1a,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-leaf1a,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-leaf1a,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+campus-a-leaf1a,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-leaf1a,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-leaf1a,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-leaf1a,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-leaf1a,VerifyInterfacesStatus,failure,"Ethernet3 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet4 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet6 - Status mismatch - Expected: up/up, Actual: down/down - Port-Channel3 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Port-Channel5 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Port-Channel6 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3009 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3010 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3011 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan4093 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown",Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-leaf1a,VerifyPortChannels,failure,"Port-Channel5 - Inactive port(s) - Ethernet5 - Port-Channel3 - Inactive port(s) - Ethernet3, Ethernet4 - Port-Channel6 - Inactive port(s) - Ethernet6",Verifies there are no inactive ports in port channels.,Interfaces
+campus-a-leaf1a,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-leaf1a,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:28 campus-a-leaf1a ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1420) -- Master ProcMgr (PID=1420) exiting.
+ Nov 20 19:04:28 campus-a-leaf1a Stp: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to StpTxRx (pid:1839) at tbl://stpTxRxListen/+n closed by peer (EOF)
+ Nov 20 19:04:28 campus-a-leaf1a Stp: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://stpTxRxListen/+n-in)(StpTxRx (pid:1839))
+ Nov 20 14:46:57 campus-a-leaf1a ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-6aae83b8-a1c8-404c-acf5-5834d6919668 has expired.The system configuration will be rolled back.
+ Nov 20 14:55:04 campus-a-leaf1a ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-06482780-88d0-48ff-a78c-60d81e18f5f1 has expired.The system configuration will be rolled back.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-leaf1a,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+campus-a-leaf1a,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+campus-a-leaf1a,VerifyMlagStatus,failure,MLAG negotiation status mismatch - Expected: connected Actual: connecting - Operational state of the MLAG peer link is not correct - Expected: up Actual: lowerLayerDown,Verifies the health status of the MLAG configuration.,MLAG
+campus-a-leaf1a,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-leaf1a,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-leaf1a,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-leaf1a,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-leaf1a,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-leaf1a,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-leaf1a,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-leaf1a,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-leaf1a,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+campus-a-leaf1a,VerifyVxlanConfigSanity,failure,Vxlan Category: localVtep - Config sanity check is not passing,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+campus-a-leaf1b,VerifyBGPPeerSession,failure,Peer: 10.255.254.24 VRF: default - Incorrect session state - Expected: Established Actual: Active,Verifies the session state of BGP peers.,BGP
+campus-a-leaf1b,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-leaf1b,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-leaf1b,VerifyLLDPNeighbors,failure,Port: Ethernet3 Neighbor: campus-a-leaf1a Neighbor Port: Ethernet3 - No LLDP neighbors - Port: Ethernet4 Neighbor: campus-a-leaf1a Neighbor Port: Ethernet4 - No LLDP neighbors - Port: Ethernet5 Neighbor: campus-a-leaf2c Neighbor Port: Ethernet2 - No LLDP neighbors - Port: Ethernet6 Neighbor: campus-a-leaf2d Neighbor Port: Ethernet2 - No LLDP neighbors,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-leaf1b,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+campus-a-leaf1b,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+campus-a-leaf1b,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-leaf1b,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-leaf1b,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-leaf1b,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-leaf1b,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-leaf1b,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+campus-a-leaf1b,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-leaf1b,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-leaf1b,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-leaf1b,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-leaf1b,VerifyInterfacesStatus,failure,"Ethernet3 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet4 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet5 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet6 - Status mismatch - Expected: up/up, Actual: down/down - Port-Channel3 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Port-Channel5 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Port-Channel6 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3009 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3010 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3011 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan4093 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown",Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-leaf1b,VerifyPortChannels,failure,"Port-Channel3 - Inactive port(s) - Ethernet3, Ethernet4 - Port-Channel5 - Inactive port(s) - Ethernet5 - Port-Channel6 - Inactive port(s) - Ethernet6",Verifies there are no inactive ports in port channels.,Interfaces
+campus-a-leaf1b,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-leaf1b,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:32 campus-a-leaf1b ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1422) -- Master ProcMgr (PID=1422) exiting.
+ Nov 20 14:43:13 campus-a-leaf1b Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.244.12 (VRF default AS 65101) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 20 14:46:58 campus-a-leaf1b ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-dd95ebe8-2b32-48ee-aa1f-9373b7ef5c65 has expired.The system configuration will be rolled back.
+ Nov 20 14:55:05 campus-a-leaf1b ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-c9bfb320-85c3-474f-9f07-18c9e5522e53 has expired.The system configuration will be rolled back.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-leaf1b,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+campus-a-leaf1b,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+campus-a-leaf1b,VerifyMlagStatus,failure,MLAG negotiation status mismatch - Expected: connected Actual: connecting - Operational state of the MLAG peer link is not correct - Expected: up Actual: lowerLayerDown,Verifies the health status of the MLAG configuration.,MLAG
+campus-a-leaf1b,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-leaf1b,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-leaf1b,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-leaf1b,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-leaf1b,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-leaf1b,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-leaf1b,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-leaf1b,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-leaf1b,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+campus-a-leaf1b,VerifyVxlanConfigSanity,failure,Vxlan Category: localVtep - Config sanity check is not passing,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+campus-a-leaf2a,VerifyBGPPeerSession,failure,Peer: 10.255.254.29 VRF: default - Incorrect session state - Expected: Established Actual: Active,Verifies the session state of BGP peers.,BGP
+campus-a-leaf2a,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-leaf2a,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-leaf2a,VerifyLLDPNeighbors,failure,Port: Ethernet3 Neighbor: campus-a-leaf2b Neighbor Port: Ethernet3 - No LLDP neighbors - Port: Ethernet4 Neighbor: campus-a-leaf2b Neighbor Port: Ethernet4 - No LLDP neighbors,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-leaf2a,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-leaf2a,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-leaf2a,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-leaf2a,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-leaf2a,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-leaf2a,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+campus-a-leaf2a,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-leaf2a,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-leaf2a,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-leaf2a,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-leaf2a,VerifyInterfacesStatus,failure,"Port-Channel3 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3009 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3010 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3011 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan4093 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown",Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-leaf2a,VerifyPortChannels,failure,"Port-Channel3 - Inactive port(s) - Ethernet3, Ethernet4",Verifies there are no inactive ports in port channels.,Interfaces
+campus-a-leaf2a,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-leaf2a,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:35 campus-a-leaf2a ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1425) -- Master ProcMgr (PID=1425) exiting.
+ Nov 20 14:46:58 campus-a-leaf2a ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-82754d83-31a3-436f-be76-0b038357b172 has expired.The system configuration will be rolled back.
+ Nov 20 14:55:05 campus-a-leaf2a ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-feec3126-513f-4096-be6e-dc7d832651b0 has expired.The system configuration will be rolled back.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-leaf2a,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+campus-a-leaf2a,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+campus-a-leaf2a,VerifyMlagStatus,failure,MLAG negotiation status mismatch - Expected: connected Actual: connecting - Operational state of the MLAG peer link is not correct - Expected: up Actual: lowerLayerDown,Verifies the health status of the MLAG configuration.,MLAG
+campus-a-leaf2a,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-leaf2a,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-leaf2a,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-leaf2a,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-leaf2a,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-leaf2a,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-leaf2a,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-leaf2a,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-leaf2a,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+campus-a-leaf2a,VerifyVxlanConfigSanity,failure,Vxlan Category: localVtep - Config sanity check is not passing,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+campus-a-leaf2b,VerifyBGPPeerSession,failure,Peer: 10.255.254.28 VRF: default - Incorrect session state - Expected: Established Actual: Active,Verifies the session state of BGP peers.,BGP
+campus-a-leaf2b,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-leaf2b,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-leaf2b,VerifyLLDPNeighbors,failure,Port: Ethernet3 Neighbor: campus-a-leaf2a Neighbor Port: Ethernet3 - No LLDP neighbors - Port: Ethernet4 Neighbor: campus-a-leaf2a Neighbor Port: Ethernet4 - No LLDP neighbors,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-leaf2b,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-leaf2b,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-leaf2b,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-leaf2b,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-leaf2b,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-leaf2b,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+campus-a-leaf2b,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-leaf2b,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-leaf2b,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-leaf2b,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-leaf2b,VerifyInterfacesStatus,failure,"Port-Channel3 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3009 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3010 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan3011 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Vlan4093 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown",Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-leaf2b,VerifyPortChannels,failure,"Port-Channel3 - Inactive port(s) - Ethernet3, Ethernet4",Verifies there are no inactive ports in port channels.,Interfaces
+campus-a-leaf2b,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-leaf2b,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:33 campus-a-leaf2b ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1421) -- Master ProcMgr (PID=1421) exiting.
+ Nov 20 19:04:33 campus-a-leaf2b Stp: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to StpTxRx (pid:1843) at tbl://stpTxRxListen/+n closed by peer (EOF)
+ Nov 20 19:04:33 campus-a-leaf2b Stp: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://stpTxRxListen/+n-in)(StpTxRx (pid:1843))
+ Nov 20 14:46:57 campus-a-leaf2b ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-55e67da9-9bc5-4a2a-b9b5-adf2e54ed97c has expired.The system configuration will be rolled back.
+ Nov 20 14:55:04 campus-a-leaf2b ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-0e75c58a-2814-4e90-82d8-1f23c577491a has expired.The system configuration will be rolled back.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-leaf2b,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+campus-a-leaf2b,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+campus-a-leaf2b,VerifyMlagStatus,failure,MLAG negotiation status mismatch - Expected: connected Actual: connecting - Operational state of the MLAG peer link is not correct - Expected: up Actual: lowerLayerDown,Verifies the health status of the MLAG configuration.,MLAG
+campus-a-leaf2b,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-leaf2b,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-leaf2b,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-leaf2b,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-leaf2b,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-leaf2b,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-leaf2b,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-leaf2b,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-leaf2b,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+campus-a-leaf2b,VerifyVxlanConfigSanity,failure,Vxlan Category: localVtep - Config sanity check is not passing,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+campus-a-leaf2c,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-leaf2c,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-leaf2c,VerifyLLDPNeighbors,failure,Port: Ethernet1 Neighbor: campus-a-leaf1a Neighbor Port: Ethernet5 - No LLDP neighbors - Port: Ethernet2 Neighbor: campus-a-leaf1b Neighbor Port: Ethernet5 - No LLDP neighbors,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-leaf2c,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-leaf2c,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-leaf2c,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-leaf2c,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-leaf2c,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-leaf2c,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+campus-a-leaf2c,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-leaf2c,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-leaf2c,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-leaf2c,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-leaf2c,VerifyInterfacesStatus,failure,"Ethernet1 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet2 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet6 - Status mismatch - Expected: up/up, Actual: down/down - Port-Channel1 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown - Port-Channel6 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown",Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-leaf2c,VerifyPortChannels,failure,"Port-Channel6 - Inactive port(s) - Ethernet6 - Port-Channel1 - Inactive port(s) - Ethernet1, Ethernet2",Verifies there are no inactive ports in port channels.,Interfaces
+campus-a-leaf2c,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-leaf2c,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:37 campus-a-leaf2c ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1421) -- Master ProcMgr (PID=1421) exiting.
+ Nov 20 14:46:58 campus-a-leaf2c ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-120e9f66-6b1e-447a-b8cc-1da308f91f65 has expired.The system configuration will be rolled back.
+ Nov 20 14:55:05 campus-a-leaf2c ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-40a2a9b5-df47-43a7-be53-e497fbfe3292 has expired.The system configuration will be rolled back.
+ Nov 20 15:17:49 campus-a-leaf2c Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AirStream (pid:2749) at tbl://sysdb/-51 (Closing the connection because agent was deconfigured.)
+ Nov 20 15:17:49 campus-a-leaf2c AirStream: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:2619) at tbl://sysdb/ closed by peer (EOF)
+ Nov 20 15:17:49 campus-a-leaf2c AirStream: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/-in)(Sysdb (pid:2619))
+ Nov 20 15:17:49 campus-a-leaf2c AirStream: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-leaf2c,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-leaf2c,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-leaf2c,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-leaf2c,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-leaf2c,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-leaf2c,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-leaf2c,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-leaf2c,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-leaf2c,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+campus-a-leaf2d,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-leaf2d,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-leaf2d,VerifyLLDPNeighbors,failure,Port: Ethernet1 Neighbor: campus-a-leaf1a Neighbor Port: Ethernet6 - No LLDP neighbors - Port: Ethernet2 Neighbor: campus-a-leaf1b Neighbor Port: Ethernet6 - No LLDP neighbors,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-leaf2d,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-leaf2d,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-leaf2d,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-leaf2d,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-leaf2d,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-leaf2d,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+campus-a-leaf2d,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-leaf2d,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-leaf2d,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-leaf2d,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-leaf2d,VerifyInterfacesStatus,failure,"Ethernet1 - Status mismatch - Expected: up/up, Actual: down/down - Ethernet2 - Status mismatch - Expected: up/up, Actual: down/down - Port-Channel1 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown",Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-leaf2d,VerifyPortChannels,failure,"Port-Channel1 - Inactive port(s) - Ethernet1, Ethernet2",Verifies there are no inactive ports in port channels.,Interfaces
+campus-a-leaf2d,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-leaf2d,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:41 campus-a-leaf2d ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1423) -- Master ProcMgr (PID=1423) exiting.
+ Nov 20 14:46:58 campus-a-leaf2d ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-1bf21a94-f08f-4f42-851a-2123b34ea517 has expired.The system configuration will be rolled back.
+ Nov 20 14:55:05 campus-a-leaf2d ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-86f0dd9b-b324-40d1-8dee-ff8c7530457f has expired.The system configuration will be rolled back.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-leaf2d,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-leaf2d,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-leaf2d,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-leaf2d,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-leaf2d,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-leaf2d,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-leaf2d,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-leaf2d,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-leaf2d,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+campus-a-spine1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+campus-a-spine1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-spine1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-spine1,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-spine1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+campus-a-spine1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+campus-a-spine1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-spine1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-spine1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-spine1,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-spine1,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-spine1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-spine1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-spine1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-spine1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-spine1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-spine1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-spine1,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:38 campus-a-spine1 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1421) -- Master ProcMgr (PID=1421) exiting.
+ Nov 20 19:04:38 campus-a-spine1 Stp: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to StpTxRx (pid:1845) at tbl://stpTxRxListen/+n closed by peer (EOF)
+ Nov 20 19:04:38 campus-a-spine1 Stp: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://stpTxRxListen/+n-in)(StpTxRx (pid:1845))
+ Nov 20 14:46:57 campus-a-spine1 ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-eec4b578-2467-4502-b2d4-19e071917ce6 has expired.The system configuration will be rolled back.
+ Nov 20 14:55:04 campus-a-spine1 ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-eb867e32-b720-4ded-910c-f82e13916b93 has expired.The system configuration will be rolled back.
+ Nov 20 14:55:05 campus-a-spine1 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.244.13 (VRF default AS 65102) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 20 14:55:05 campus-a-spine1 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.244.14 (VRF default AS 65102) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-spine1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-spine1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-spine1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-spine1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-spine1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-spine1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-spine1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-spine1,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-spine1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+campus-a-spine2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+campus-a-spine2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+campus-a-spine2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+campus-a-spine2,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+campus-a-spine2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+campus-a-spine2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+campus-a-spine2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+campus-a-spine2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+campus-a-spine2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+campus-a-spine2,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+campus-a-spine2,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+campus-a-spine2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+campus-a-spine2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+campus-a-spine2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+campus-a-spine2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+campus-a-spine2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+campus-a-spine2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+campus-a-spine2,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 20 19:04:36 campus-a-spine2 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1421) -- Master ProcMgr (PID=1421) exiting.
+ Nov 20 19:04:36 campus-a-spine2 Stp: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to StpTxRx (pid:1842) at tbl://stpTxRxListen/+n closed by peer (EOF)
+ Nov 20 19:04:36 campus-a-spine2 Stp: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://stpTxRxListen/+n-in)(StpTxRx (pid:1842))
+ Nov 20 14:43:12 campus-a-spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.244.14 (VRF default AS 65102) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 20 14:46:57 campus-a-spine2 ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-376a3bbd-90a0-4d0f-b8d2-eccec3dc83fb has expired.The system configuration will be rolled back.
+ Nov 20 14:55:04 campus-a-spine2 ConfigAgent: %SYS-3-CONFIG_SESSION_COMMIT_TIMER_TIMEDOUT: The commit timer on session cvp-provisioning-cf8f0b7a-98ee-429f-8af1-4d8705829953 has expired.The system configuration will be rolled back.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+campus-a-spine2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+campus-a-spine2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+campus-a-spine2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+campus-a-spine2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+campus-a-spine2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+campus-a-spine2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+campus-a-spine2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+campus-a-spine2,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: unsynchronised,Verifies if NTP is synchronised.,System
+campus-a-spine2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System

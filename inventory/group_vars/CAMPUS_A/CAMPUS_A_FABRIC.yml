@@ -105,8 +105,8 @@ l3leaf:
     uplink_ipv4_pool: "172.31.254.0/23"
     mlag_peer_link_allowed_vlans: "2-4094"
     mlag_interfaces:
-      - "Ethernet3"
-      - "Ethernet4"
+      - "Ethernet11"
+      - "Ethernet12"
     mlag_peer_ipv4_pool: "10.255.255.0/24"
     mlag_peer_l3_ipv4_pool: "10.255.254.0/24"
     mlag_dual_primary_detection: true
