@@ -24,6 +24,26 @@ ethernet_interfaces:
   peer_type: l3leaf
   switchport:
     enabled: false
+- name: Ethernet7
+  description: P2P_campus-c-leaf2a_Ethernet1
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.31.254.136/31
+  peer: campus-c-leaf2a
+  peer_interface: Ethernet1
+  peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet8
+  description: P2P_campus-c-leaf2b_Ethernet1
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.31.254.140/31
+  peer: campus-c-leaf2b
+  peer_interface: Ethernet1
+  peer_type: l3leaf
+  switchport:
+    enabled: false
 - name: Management1
   lldp:
     transmit: false
@@ -122,6 +142,16 @@ router_bgp:
     remote_as: '65302'
     peer: campus-c-leaf1b
     description: campus-c-leaf1b_Ethernet1
+  - ip_address: 172.31.254.137
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65303'
+    peer: campus-c-leaf2a
+    description: campus-c-leaf2a_Ethernet1
+  - ip_address: 172.31.254.141
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65303'
+    peer: campus-c-leaf2b
+    description: campus-c-leaf2b_Ethernet1
   - ip_address: 192.168.224.33
     peer_group: EVPN-OVERLAY-PEERS
     remote_as: '65302'
@@ -132,6 +162,16 @@ router_bgp:
     remote_as: '65302'
     peer: campus-c-leaf1b
     description: campus-c-leaf1b_Loopback0
+  - ip_address: 192.168.224.35
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65303'
+    peer: campus-c-leaf2a
+    description: campus-c-leaf2a_Loopback0
+  - ip_address: 192.168.224.36
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65303'
+    peer: campus-c-leaf2b
+    description: campus-c-leaf2b_Loopback0
   redistribute:
     connected:
       enabled: true

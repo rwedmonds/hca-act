@@ -38,14 +38,14 @@
         },
         "neighbors": [
           {
-            "port": "Ethernet3",
+            "port": "Ethernet11",
             "neighbor_device": "campus-a-leaf2a",
-            "neighbor_port": "Ethernet3"
+            "neighbor_port": "Ethernet11"
           },
           {
-            "port": "Ethernet4",
+            "port": "Ethernet12",
             "neighbor_device": "campus-a-leaf2a",
-            "neighbor_port": "Ethernet4"
+            "neighbor_port": "Ethernet12"
           }
         ]
       }
@@ -192,11 +192,11 @@
         },
         "interfaces": [
           {
-            "name": "Ethernet3",
+            "name": "Ethernet11",
             "status": "up"
           },
           {
-            "name": "Ethernet4",
+            "name": "Ethernet12",
             "status": "up"
           },
           {
@@ -216,7 +216,7 @@
             "status": "up"
           },
           {
-            "name": "Port-Channel3",
+            "name": "Port-Channel11",
             "status": "up"
           },
           {

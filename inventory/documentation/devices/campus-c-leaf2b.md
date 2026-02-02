@@ -3,7 +3,6 @@
 ## Table of Contents
 
 - [Management](#management)
-  - [Banner](#banner)
   - [Management Interfaces](#management-interfaces)
   - [IP Name Servers](#ip-name-servers)
   - [Clock Settings](#clock-settings)
@@ -58,41 +57,6 @@
 - [EOS CLI Device Configuration](#eos-cli-device-configuration)
 
 ## Management
-
-### Banner
-
-#### Login Banner
-
-```text
-* * * * * * * * * * W A R N I N G * * * * * * * * * *
-This computer system is the property of me.
-It is for authorized use only.
-By using this system, all users acknowledge notice of,
-and agree to comply with, the Acceptable Use Policy
-(“AUP”).
-Unauthorized or improper use of this system may result
-in administrative disciplinary action.
-By continuing to use this system you indicate your
-awareness of and consent to these terms and
-conditions of use.
-* * * * * * * * * * W A R N I N G * * * * * * * * * *
-EOF
-```
-
-#### MOTD Banner
-
-```text
-******************************************
-*    __    __    ______     ___          *
-*    |  |  |  |  /      |   /   \        *
-*    |  |__|  | |  ,----'  /  ^  \       *
-*    |   __   | |  |      /  /_\  \      *
-*    |  |  |  | |  `----./  _____  \     *
-*    |__|  |__|  \______/__/     \__\    *
-*                                        *
-******************************************
-EOF
-```
 
 ### Management Interfaces
 
@@ -436,9 +400,30 @@ interface defaults
 
 *Inherited from Port-Channel Interface
 
+##### IPv4
+
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet1 | P2P_campus-c-spine1_Ethernet8 | - | 172.31.254.141/31 | default | 1500 | False | - | - |
+| Ethernet2 | P2P_campus-c-spine2_Ethernet8 | - | 172.31.254.143/31 | default | 1500 | False | - | - |
+
 #### Ethernet Interfaces Device Configuration
 
 ```eos
+!
+interface Ethernet1
+   description P2P_campus-c-spine1_Ethernet8
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.31.254.141/31
+!
+interface Ethernet2
+   description P2P_campus-c-spine2_Ethernet8
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.31.254.143/31
 !
 interface Ethernet11
    description MLAG_campus-c-leaf2a_Ethernet11
@@ -820,6 +805,10 @@ ASN Notation: asplain
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 10.255.254.68 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 172.31.254.140 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 172.31.254.142 | 65101 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 192.168.224.31 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 192.168.224.32 | 65101 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.255.254.68 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Blue | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 | 10.255.254.68 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Green | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 | 10.255.254.68 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Red | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
@@ -877,6 +866,18 @@ router bgp 65303
    neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes 12000
    neighbor 10.255.254.68 peer group MLAG-IPv4-UNDERLAY-PEER
    neighbor 10.255.254.68 description campus-c-leaf2a_Vlan4093
+   neighbor 172.31.254.140 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.254.140 remote-as 65101
+   neighbor 172.31.254.140 description campus-c-spine1_Ethernet8
+   neighbor 172.31.254.142 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.254.142 remote-as 65101
+   neighbor 172.31.254.142 description campus-c-spine2_Ethernet8
+   neighbor 192.168.224.31 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.224.31 remote-as 65101
+   neighbor 192.168.224.31 description campus-c-spine1_Loopback0
+   neighbor 192.168.224.32 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.224.32 remote-as 65101
+   neighbor 192.168.224.32 description campus-c-spine2_Loopback0
    redistribute connected route-map RM-CONN-2-BGP
    !
    vlan-aware-bundle Blue

@@ -48,16 +48,6 @@
             "neighbor_port": "Ethernet6"
           },
           {
-            "port": "Ethernet3",
-            "neighbor_device": "campus-a-leaf1a",
-            "neighbor_port": "Ethernet3"
-          },
-          {
-            "port": "Ethernet4",
-            "neighbor_device": "campus-a-leaf1a",
-            "neighbor_port": "Ethernet4"
-          },
-          {
             "port": "Ethernet5",
             "neighbor_device": "campus-a-leaf2c",
             "neighbor_port": "Ethernet2"
@@ -66,6 +56,16 @@
             "port": "Ethernet6",
             "neighbor_device": "campus-a-leaf2d",
             "neighbor_port": "Ethernet2"
+          },
+          {
+            "port": "Ethernet11",
+            "neighbor_device": "campus-a-leaf1a",
+            "neighbor_port": "Ethernet11"
+          },
+          {
+            "port": "Ethernet12",
+            "neighbor_device": "campus-a-leaf1a",
+            "neighbor_port": "Ethernet12"
           }
         ]
       }
@@ -274,19 +274,19 @@
             "status": "up"
           },
           {
-            "name": "Ethernet3",
-            "status": "up"
-          },
-          {
-            "name": "Ethernet4",
-            "status": "up"
-          },
-          {
             "name": "Ethernet5",
             "status": "up"
           },
           {
             "name": "Ethernet6",
+            "status": "up"
+          },
+          {
+            "name": "Ethernet11",
+            "status": "up"
+          },
+          {
+            "name": "Ethernet12",
             "status": "up"
           },
           {
@@ -306,15 +306,15 @@
             "status": "up"
           },
           {
-            "name": "Port-Channel3",
-            "status": "up"
-          },
-          {
             "name": "Port-Channel5",
             "status": "up"
           },
           {
             "name": "Port-Channel6",
+            "status": "up"
+          },
+          {
+            "name": "Port-Channel11",
             "status": "up"
           },
           {

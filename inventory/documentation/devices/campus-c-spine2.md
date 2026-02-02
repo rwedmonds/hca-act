@@ -3,7 +3,6 @@
 ## Table of Contents
 
 - [Management](#management)
-  - [Banner](#banner)
   - [Management Interfaces](#management-interfaces)
   - [IP Name Servers](#ip-name-servers)
   - [Clock Settings](#clock-settings)
@@ -43,41 +42,6 @@
 - [EOS CLI Device Configuration](#eos-cli-device-configuration)
 
 ## Management
-
-### Banner
-
-#### Login Banner
-
-```text
-* * * * * * * * * * W A R N I N G * * * * * * * * * *
-This computer system is the property of me.
-It is for authorized use only.
-By using this system, all users acknowledge notice of,
-and agree to comply with, the Acceptable Use Policy
-(“AUP”).
-Unauthorized or improper use of this system may result
-in administrative disciplinary action.
-By continuing to use this system you indicate your
-awareness of and consent to these terms and
-conditions of use.
-* * * * * * * * * * W A R N I N G * * * * * * * * * *
-EOF
-```
-
-#### MOTD Banner
-
-```text
-******************************************
-*    __    __    ______     ___          *
-*    |  |  |  |  /      |   /   \        *
-*    |  |__|  | |  ,----'  /  ^  \       *
-*    |   __   | |  |      /  /_\  \      *
-*    |  |  |  | |  `----./  _____  \     *
-*    |__|  |__|  \______/__/     \__\    *
-*                                        *
-******************************************
-EOF
-```
 
 ### Management Interfaces
 
@@ -319,6 +283,8 @@ interface defaults
 | --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet5 | P2P_campus-c-leaf1a_Ethernet2 | - | 172.31.254.130/31 | default | 1500 | False | - | - |
 | Ethernet6 | P2P_campus-c-leaf1b_Ethernet2 | - | 172.31.254.134/31 | default | 1500 | False | - | - |
+| Ethernet7 | P2P_campus-c-leaf2a_Ethernet2 | - | 172.31.254.138/31 | default | 1500 | False | - | - |
+| Ethernet8 | P2P_campus-c-leaf2b_Ethernet2 | - | 172.31.254.142/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -337,6 +303,20 @@ interface Ethernet6
    mtu 1500
    no switchport
    ip address 172.31.254.134/31
+!
+interface Ethernet7
+   description P2P_campus-c-leaf2a_Ethernet2
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.31.254.138/31
+!
+interface Ethernet8
+   description P2P_campus-c-leaf2b_Ethernet2
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.31.254.142/31
 !
 interface Management1
    no lldp transmit
@@ -462,8 +442,12 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 172.31.254.131 | 65302 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 172.31.254.135 | 65302 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 172.31.254.139 | 65303 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 172.31.254.143 | 65303 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.224.33 | 65302 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.224.34 | 65302 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 192.168.224.35 | 65303 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 192.168.224.36 | 65303 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -499,12 +483,24 @@ router bgp 65101
    neighbor 172.31.254.135 peer group IPv4-UNDERLAY-PEERS
    neighbor 172.31.254.135 remote-as 65302
    neighbor 172.31.254.135 description campus-c-leaf1b_Ethernet2
+   neighbor 172.31.254.139 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.254.139 remote-as 65303
+   neighbor 172.31.254.139 description campus-c-leaf2a_Ethernet2
+   neighbor 172.31.254.143 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.254.143 remote-as 65303
+   neighbor 172.31.254.143 description campus-c-leaf2b_Ethernet2
    neighbor 192.168.224.33 peer group EVPN-OVERLAY-PEERS
    neighbor 192.168.224.33 remote-as 65302
    neighbor 192.168.224.33 description campus-c-leaf1a_Loopback0
    neighbor 192.168.224.34 peer group EVPN-OVERLAY-PEERS
    neighbor 192.168.224.34 remote-as 65302
    neighbor 192.168.224.34 description campus-c-leaf1b_Loopback0
+   neighbor 192.168.224.35 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.224.35 remote-as 65303
+   neighbor 192.168.224.35 description campus-c-leaf2a_Loopback0
+   neighbor 192.168.224.36 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.224.36 remote-as 65303
+   neighbor 192.168.224.36 description campus-c-leaf2b_Loopback0
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn

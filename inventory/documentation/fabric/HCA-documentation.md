@@ -87,8 +87,12 @@
 | l3leaf | campus-c-leaf1b | Ethernet2 | spine | campus-c-spine2 | Ethernet6 |
 | l3leaf | campus-c-leaf1b | Ethernet5 | l2leaf | campus-c-leaf2c | Ethernet2 |
 | l3leaf | campus-c-leaf1b | Ethernet6 | l2leaf | campus-c-leaf2d | Ethernet2 |
+| l3leaf | campus-c-leaf2a | Ethernet1 | spine | campus-c-spine1 | Ethernet7 |
+| l3leaf | campus-c-leaf2a | Ethernet2 | spine | campus-c-spine2 | Ethernet7 |
 | l3leaf | campus-c-leaf2a | Ethernet11 | mlag_peer | campus-c-leaf2b | Ethernet11 |
 | l3leaf | campus-c-leaf2a | Ethernet12 | mlag_peer | campus-c-leaf2b | Ethernet12 |
+| l3leaf | campus-c-leaf2b | Ethernet1 | spine | campus-c-spine1 | Ethernet8 |
+| l3leaf | campus-c-leaf2b | Ethernet2 | spine | campus-c-spine2 | Ethernet8 |
 
 ## Fabric IP Allocation
 
@@ -96,7 +100,7 @@
 
 | Uplink IPv4 Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ---------------- | ------------------- | ------------------ | ------------------ |
-| 172.31.254.0/23 | 512 | 24 | 4.69 % |
+| 172.31.254.0/23 | 512 | 32 | 6.25 % |
 
 ### Point-To-Point Links Node Allocation
 
@@ -114,6 +118,10 @@
 | campus-c-leaf1a | Ethernet2 | 172.31.254.131/31 | campus-c-spine2 | Ethernet5 | 172.31.254.130/31 |
 | campus-c-leaf1b | Ethernet1 | 172.31.254.133/31 | campus-c-spine1 | Ethernet6 | 172.31.254.132/31 |
 | campus-c-leaf1b | Ethernet2 | 172.31.254.135/31 | campus-c-spine2 | Ethernet6 | 172.31.254.134/31 |
+| campus-c-leaf2a | Ethernet1 | 172.31.254.137/31 | campus-c-spine1 | Ethernet7 | 172.31.254.136/31 |
+| campus-c-leaf2a | Ethernet2 | 172.31.254.139/31 | campus-c-spine2 | Ethernet7 | 172.31.254.138/31 |
+| campus-c-leaf2b | Ethernet1 | 172.31.254.141/31 | campus-c-spine1 | Ethernet8 | 172.31.254.140/31 |
+| campus-c-leaf2b | Ethernet2 | 172.31.254.143/31 | campus-c-spine2 | Ethernet8 | 172.31.254.142/31 |
 
 ### Loopback Interfaces (BGP EVPN Peering)
 

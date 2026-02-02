@@ -3,7 +3,6 @@
 ## Table of Contents
 
 - [Management](#management)
-  - [Banner](#banner)
   - [Management Interfaces](#management-interfaces)
   - [IP Name Servers](#ip-name-servers)
   - [Clock Settings](#clock-settings)
@@ -43,41 +42,6 @@
 - [EOS CLI Device Configuration](#eos-cli-device-configuration)
 
 ## Management
-
-### Banner
-
-#### Login Banner
-
-```text
-* * * * * * * * * * W A R N I N G * * * * * * * * * *
-This computer system is the property of me.
-It is for authorized use only.
-By using this system, all users acknowledge notice of,
-and agree to comply with, the Acceptable Use Policy
-(“AUP”).
-Unauthorized or improper use of this system may result
-in administrative disciplinary action.
-By continuing to use this system you indicate your
-awareness of and consent to these terms and
-conditions of use.
-* * * * * * * * * * W A R N I N G * * * * * * * * * *
-EOF
-```
-
-#### MOTD Banner
-
-```text
-******************************************
-*    __    __    ______     ___          *
-*    |  |  |  |  /      |   /   \        *
-*    |  |__|  | |  ,----'  /  ^  \       *
-*    |   __   | |  |      /  /_\  \      *
-*    |  |  |  | |  `----./  _____  \     *
-*    |__|  |__|  \______/__/     \__\    *
-*                                        *
-******************************************
-EOF
-```
 
 ### Management Interfaces
 
