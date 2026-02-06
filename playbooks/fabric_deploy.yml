@@ -3,10 +3,16 @@
   hosts: "HCA"
   connection: local
   gather_facts: false
+  vars_files:
+    - ../inventory/global_vars/secrets.yml
   collections:
     - arista.avd
     - arista.cvp
   tasks:
+    - name: Include Ansible Vault
+      ansible.builtin.include_vars:
+        file: ../inventory/global_vars/secrets.yml
+
     - name: generate intended variables
       tags:
         - "build"

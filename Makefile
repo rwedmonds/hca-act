@@ -12,19 +12,19 @@ help: ## Display help message (*: main entry points / []: part of an entry point
 
 .PHONY: build_all
 build_all: ## Build AVD configs for all campuses
-				ansible-playbook playbooks/fabric_deploy.yml --tags build
+				ansible-playbook playbooks/fabric_deploy.yml --tags build --ask-vault-password
 
 .PHONY: build_campus_a
 build_campus_a: ## Build AVD configs for CAMPUS_A
-				ansible-playbook playbooks/fabric_deploy.yml --tags build --limit CAMPUS_A
+				ansible-playbook playbooks/fabric_deploy.yml --tags build --ask-vault-password --limit CAMPUS_A
 
 .PHONY: build_campus_b
 build_campus_b: ## Build AVD configs for CAMPUS_B
-				ansible-playbook playbooks/fabric_deploy.yml --tags build --limit CAMPUS_B
+				ansible-playbook playbooks/fabric_deploy.yml --tags build --ask-vault-password --limit CAMPUS_B
 
 .PHONY: build_campus_c
 build_campus_c: ## Build AVD configs for CAMPUS_C
-				ansible-playbook playbooks/fabric_deploy.yml --tags build --limit CAMPUS_C
+				ansible-playbook playbooks/fabric_deploy.yml --tags build --ask-vault-password --limit CAMPUS_C
 
 # ------------------------------------------------------- #
 #                         Deploy                          #
@@ -32,19 +32,19 @@ build_campus_c: ## Build AVD configs for CAMPUS_C
 
 .PHONY: deploy_all
 deploy_all: ## Build AVD configs for all campuses
-				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml
+				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --ask-vault-password
 
 .PHONY: deploy_campus_a_cvp
 deploy_campus_a_cvp: ## Deploy CAMPUS_A AVD configs through CVP
-				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --limit CAMPUS_A
+				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --ask-vault-password --limit CAMPUS_A
 
 .PHONY: deploy_campus_b_cvp
 deploy_campus_b_cvp: ## Deploy CAMPUS_B AVD configs through CVP
-				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --limit CAMPUS_B
+				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --ask-vault-password --limit CAMPUS_B
 
 .PHONY: deploy_campus_c_cvp
 deploy_campus_c_cvp: ## Deploy CAMPUS_C AVD configs through CVP
-				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --limit CAMPUS_C
+				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --ask-vault-password --limit CAMPUS_C
 
 # .PHONY: deploy_cert
 # deploy_cert: ## Deploy xyz.crt to switches
