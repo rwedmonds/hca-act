@@ -1,0 +1,197 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: false
+  hash_algorithm: sha512
+  key: $6$Q5Pg0k.kTwgJ89NX$j0438CJoJx2RiuCsygN8GtpTrWPNWlZQIytcMQQRhLhv7oK0HNaXgbhDKsUUksrL22UDMx9tMfE9ufd0YJmkx1
+ethernet_interfaces:
+- name: Ethernet11
+  description: MLAG_campus-d-leaf2b_Ethernet11
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+  peer: campus-d-leaf2b
+  peer_interface: Ethernet11
+  peer_type: mlag_peer
+- name: Ethernet12
+  description: MLAG_campus-d-leaf2b_Ethernet12
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+  peer: campus-d-leaf2b
+  peer_interface: Ethernet12
+  peer_type: mlag_peer
+- name: Ethernet1
+  description: L2_campus-d-spine1_Ethernet7
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  peer: campus-d-spine1
+  peer_interface: Ethernet7
+  peer_type: l3spine
+- name: Ethernet2
+  description: L2_campus-d-spine2_Ethernet7
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  peer: campus-d-spine2
+  peer_interface: Ethernet7
+  peer_type: l3spine
+- name: Ethernet5
+  description: L2_campus-d-leaf2c_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 5
+    mode: active
+  peer: campus-d-leaf2c
+  peer_interface: Ethernet1
+  peer_type: l2leaf
+- name: Ethernet6
+  description: L2_campus-d-leaf2d_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 6
+    mode: active
+  peer: campus-d-leaf2d
+  peer_interface: Ethernet1
+  peer_type: l2leaf
+- name: Management1
+  lldp:
+    transmit: false
+    receive: false
+hostname: campus-d-leaf2a
+ip_igmp_snooping:
+  globally_enabled: true
+ip_routing: true
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$RWWNi/U4IjK9U3Nv$/bMitcVhMFiqvUIJtAAeTOTSyvqAHK.XpJi12NI0.YTJlzbl9FiCGi2EDfIWo14Evi/sj5i1Rxspmkbso0Tun1
+- name: ansible
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$Dzu11L7yp9j3nCM9$FSptxMPyIL555OMO.ldnjDXgwZmrfMYwHSr0uznE5Qoqvd9a6UdjiFcJUhGLtvXVZR1r.A/iF5aAt50hf/EK4/
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$6PorspAoWf2hUSNp$3CT1iPrvr7uhgCdAN2QBZuO7Aqu..EFjOK5SHUXSP44qJ91OQ/I.88B4iyDufM35wwqS1JhbmS3ejsDAxvOGL/
+- name: robert
+  privilege: 15
+  role: network-admin
+  no_password: true
+  ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7U+usFHr9Xhqph3HcmaWpi/Tjl0a3aof1AQRvSXuOw redmonds@redmonds
+management_api_http:
+  enable_https: true
+  enable_vrfs:
+  - name: default
+management_interfaces:
+- name: Management1
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: default
+  ip_address: 192.168.0.65
+  type: oob
+  gateway: 192.168.0.1
+metadata:
+  is_deployed: true
+  platform: vEOS
+  dc_name: CAMPUS
+  fabric_name: HCA
+mlag_configuration:
+  domain_id: campus-d-leaf2
+  local_interface: Vlan4094
+  peer_address: 192.168.255.5
+  peer_link: Port-Channel11
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+port_channel_interfaces:
+- name: Port-Channel11
+  description: MLAG_campus-d-leaf2b_Port-Channel11
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 2-4094
+      groups:
+      - MLAG
+- name: Port-Channel1
+  description: L2_campus-d-spines_Port-Channel7
+  shutdown: false
+  mlag: 1
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 10,20,30,40
+- name: Port-Channel5
+  description: L2_campus-d-leaf2c_Port-Channel1
+  shutdown: false
+  mlag: 5
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 10,20,30,40
+- name: Port-Channel6
+  description: L2_campus-d-leaf2d_Port-Channel1
+  shutdown: false
+  mlag: 6
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 10,20,30,40
+service_routing_protocols_model: multi-agent
+snmp_server:
+  location: HCA CAMPUS campus-d-leaf2a
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 32768
+  no_spanning_tree_vlan: '4094'
+static_routes:
+- vrf: default
+  prefix: 0.0.0.0/0
+  next_hop: 192.168.0.1
+transceiver_qsfp_default_mode_4x10: true
+vlan_interfaces:
+- name: Vlan4094
+  description: MLAG
+  shutdown: false
+  ip_address: 192.168.255.4/31
+  mtu: 1500
+  no_autostate: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+vlans:
+- id: 4094
+  name: MLAG
+  trunk_groups:
+  - MLAG
+  tenant: system
+- id: 10
+  name: MGMT
+  tenant: HCA
+- id: 20
+  name: USER
+  tenant: HCA
+- id: 30
+  name: VOICE
+  tenant: HCA
+- id: 40
+  name: PACS
+  tenant: HCA
+vrfs:
+- name: default
+  ip_routing: false

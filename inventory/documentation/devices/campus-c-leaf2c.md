@@ -181,7 +181,15 @@ username robert ssh-key ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7U+usFHr9Xhqph3Hcm
 
 ### Enable Password
 
-Enable password has been disabled
+sha512 encrypted enable password is configured
+
+#### Enable Password Device Configuration
+
+```eos
+!
+enable password sha512 <removed>
+!
+```
 
 ## Monitoring
 
@@ -238,42 +246,26 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 110 | Blue_110 | - |
-| 111 | Blue_111 | - |
-| 112 | Blue_112 | - |
-| 113 | Blue_113 | - |
-| 120 | Red_120 | - |
-| 121 | WEBZone_121 | - |
-| 130 | Green_130 | - |
-| 131 | Green_131 | - |
+| 10 | MGMT | - |
+| 20 | USER | - |
+| 30 | VOICE | - |
+| 40 | PACS | - |
 
 ### VLANs Device Configuration
 
 ```eos
 !
-vlan 110
-   name Blue_110
+vlan 10
+   name MGMT
 !
-vlan 111
-   name Blue_111
+vlan 20
+   name USER
 !
-vlan 112
-   name Blue_112
+vlan 30
+   name VOICE
 !
-vlan 113
-   name Blue_113
-!
-vlan 120
-   name Red_120
-!
-vlan 121
-   name WEBZone_121
-!
-vlan 130
-   name Green_130
-!
-vlan 131
-   name Green_131
+vlan 40
+   name PACS
 ```
 
 ## Interfaces
@@ -301,8 +293,8 @@ interface defaults
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_campus-c-leaf1a_Ethernet5 | *trunk | *110-113,120-121,130-131 | *- | *- | 1 |
-| Ethernet2 | L2_campus-c-leaf1b_Ethernet5 | *trunk | *110-113,120-121,130-131 | *- | *- | 1 |
+| Ethernet1 | L2_campus-c-leaf1a_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
+| Ethernet2 | L2_campus-c-leaf1b_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
 
 *Inherited from Port-Channel Interface
 
@@ -333,7 +325,7 @@ interface Management1
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_campus-c-leaf1_Port-Channel5 | trunk | 110-113,120-121,130-131 | - | - | - | - | - | - |
+| Port-Channel1 | L2_campus-c-leaf1_Port-Channel5 | trunk | 10,20,30,40 | - | - | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
@@ -342,7 +334,7 @@ interface Management1
 interface Port-Channel1
    description L2_campus-c-leaf1_Port-Channel5
    no shutdown
-   switchport trunk allowed vlan 110-113,120-121,130-131
+   switchport trunk allowed vlan 10,20,30,40
    switchport mode trunk
    switchport
 ```

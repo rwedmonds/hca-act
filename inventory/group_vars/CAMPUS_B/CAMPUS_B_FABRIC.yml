@@ -71,7 +71,7 @@ spine_bgp_defaults:
 spine:
   defaults:
     platform: "vEOS-LAB"
-    bgp_as: "65101"
+    bgp_as: 65100
     loopback_ipv4_pool: "192.168.234.0/24"
   nodes:
     - name: "campus-b-spine1"
@@ -97,12 +97,12 @@ leaf_bgp_defaults:
 l3leaf:
   defaults:
     platform: "vEOS-LAB"
-    loopback_ipv4_pool: "192.168.234.0/24"
-    vtep_loopback_ipv4_pool: "192.168.233.0/24"
+    loopback_ipv4_pool: "172.16.20.0/24"
+    vtep_loopback_ipv4_pool: "172.16.21.0/24"
     uplink_interfaces:
       - "Ethernet1"
       - "Ethernet2"
-    uplink_ipv4_pool: "172.31.254.0/23"
+    uplink_ipv4_pool: "172.16.0.0/24"
     mlag_peer_link_allowed_vlans: "2-4094"
     mlag_interfaces:
       - "Ethernet11"
@@ -113,12 +113,14 @@ l3leaf:
     virtual_router_mac_address: "00:1c:73:00:dc:01"
     spanning_tree_mode: "mstp"
     spanning_tree_priority: 16384
+
   node_groups:
     - group: "campus-b-leaf1"
-      bgp_as: "65102"
+      bgp_as: 65201
       uplink_switches:
         - "campus-b-spine1"
         - "campus-b-spine2"
+
       nodes:
         - name: "campus-b-leaf1a"
           id: 23
@@ -126,27 +128,97 @@ l3leaf:
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
+
         - name: "campus-b-leaf1b"
           id: 24
           mgmt_ip: "192.168.0.44/24"
           uplink_switch_interfaces:
             - "Ethernet6"
             - "Ethernet6"
+
     - group: "campus-b-leaf2"
-      bgp_as: "65203"
+      bgp_as: 65202
       nodes:
+
         - name: "campus-b-leaf2a"
           id: 25
           mgmt_ip: "192.168.0.45/24"
           uplink_switch_interfaces:
             - "Ethernet7"
             - "Ethernet7"
+          l3_interfaces:
+            - name: "Ethernet3"
+              ip_address: "169.254.20.0/31"
+              enabled: true
+          structured_config:
+            router_bgp:
+              bgp:
+                default:
+                  ipv4_unicast: false
+              distance:
+                external_routes: 20
+                internal_routes: 200
+                local_routes: 200
+              graceful_restart:
+                enabled: true
+              maximum_paths:
+                paths: 4
+                ecmp: 4
+              peer_groups:
+                - name: "WAN"
+                  remote_as: 65534
+                  description: "WAN Routers"
+                  bfd: true
+                  send_community: "all"
+                  maximum_routes: 12000
+              neighbors:
+                - ip_address: "169.254.20.1"
+                  peer_group: "WAN"
+                  description: "WAN Router"
+              address_family_ipv4:
+                peer_groups:
+                  - name: "WAN"
+                    activate: true
+
         - name: "campus-b-leaf2b"
           id: 26
           mgmt_ip: "192.168.0.46/24"
           uplink_switch_interfaces:
             - "Ethernet8"
             - "Ethernet8"
+          l3_interfaces:
+            - name: "Ethernet3"
+              ip_address: "169.254.20.2/31"
+              enabled: true
+          structured_config:
+            router_bgp:
+              bgp:
+                default:
+                  ipv4_unicast: false
+              distance:
+                external_routes: 20
+                internal_routes: 200
+                local_routes: 200
+              graceful_restart:
+                enabled: true
+              maximum_paths:
+                paths: 4
+                ecmp: 4
+              peer_groups:
+                - name: "WAN"
+                  remote_as: 65534
+                  description: "WAN Routers"
+                  bfd: true
+                  send_community: "all"
+                  maximum_routes: 12000
+              neighbors:
+                - ip_address: "169.254.20.3"
+                  peer_group: "WAN"
+                  description: "WAN Router"
+              address_family_ipv4:
+                peer_groups:
+                  - name: "WAN"
+                    activate: true
 
 # --------------------------------------------- #
 # MARK: L2Leafs
@@ -161,9 +233,11 @@ l2leaf:
     uplink_interfaces:
       - "Ethernet1"
       - "Ethernet2"
+
   node_groups:
     - group: "campus-b-leaf2"
       filter:
+
       nodes:
         - name: "campus-b-leaf2c"
           id: 27
@@ -174,6 +248,7 @@ l2leaf:
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
+
         - name: "campus-b-leaf2d"
           id: 28
           mgmt_ip: "192.168.0.48/24"

@@ -2,13 +2,15 @@ aaa_root:
   disabled: true
 config_end: true
 enable_password:
-  disabled: true
+  disabled: false
+  hash_algorithm: sha512
+  key: $6$Q5Pg0k.kTwgJ89NX$j0438CJoJx2RiuCsygN8GtpTrWPNWlZQIytcMQQRhLhv7oK0HNaXgbhDKsUUksrL22UDMx9tMfE9ufd0YJmkx1
 ethernet_interfaces:
 - name: Ethernet5
   description: P2P_campus-c-leaf1a_Ethernet2
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.130/31
+  ip_address: 172.16.0.130/31
   peer: campus-c-leaf1a
   peer_interface: Ethernet2
   peer_type: l3leaf
@@ -18,7 +20,7 @@ ethernet_interfaces:
   description: P2P_campus-c-leaf1b_Ethernet2
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.134/31
+  ip_address: 172.16.0.134/31
   peer: campus-c-leaf1b
   peer_interface: Ethernet2
   peer_type: l3leaf
@@ -28,7 +30,7 @@ ethernet_interfaces:
   description: P2P_campus-c-leaf2a_Ethernet2
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.138/31
+  ip_address: 172.16.0.138/31
   peer: campus-c-leaf2a
   peer_interface: Ethernet2
   peer_type: l3leaf
@@ -38,7 +40,7 @@ ethernet_interfaces:
   description: P2P_campus-c-leaf2b_Ethernet2
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.142/31
+  ip_address: 172.16.0.142/31
   peer: campus-c-leaf2b
   peer_interface: Ethernet2
   peer_type: l3leaf
@@ -108,7 +110,7 @@ router_bfd:
     min_rx: 1200
     multiplier: 3
 router_bgp:
-  as: '65101'
+  as: '65300'
   router_id: 192.168.224.32
   maximum_paths:
     paths: 4
@@ -132,44 +134,44 @@ router_bgp:
     send_community: all
     maximum_routes: 0
   neighbors:
-  - ip_address: 172.31.254.131
+  - ip_address: 172.16.0.131
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65302'
+    remote_as: '65301'
     peer: campus-c-leaf1a
     description: campus-c-leaf1a_Ethernet2
-  - ip_address: 172.31.254.135
+  - ip_address: 172.16.0.135
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65302'
+    remote_as: '65301'
     peer: campus-c-leaf1b
     description: campus-c-leaf1b_Ethernet2
-  - ip_address: 172.31.254.139
+  - ip_address: 172.16.0.139
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65303'
+    remote_as: '65302'
     peer: campus-c-leaf2a
     description: campus-c-leaf2a_Ethernet2
-  - ip_address: 172.31.254.143
+  - ip_address: 172.16.0.143
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65303'
+    remote_as: '65302'
     peer: campus-c-leaf2b
     description: campus-c-leaf2b_Ethernet2
-  - ip_address: 192.168.224.33
+  - ip_address: 172.16.30.33
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65302'
+    remote_as: '65301'
     peer: campus-c-leaf1a
     description: campus-c-leaf1a_Loopback0
-  - ip_address: 192.168.224.34
+  - ip_address: 172.16.30.34
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65302'
+    remote_as: '65301'
     peer: campus-c-leaf1b
     description: campus-c-leaf1b_Loopback0
-  - ip_address: 192.168.224.35
+  - ip_address: 172.16.30.35
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65303'
+    remote_as: '65302'
     peer: campus-c-leaf2a
     description: campus-c-leaf2a_Loopback0
-  - ip_address: 192.168.224.36
+  - ip_address: 172.16.30.36
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65303'
+    remote_as: '65302'
     peer: campus-c-leaf2b
     description: campus-c-leaf2b_Loopback0
   redistribute:

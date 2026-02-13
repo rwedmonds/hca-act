@@ -1,4 +1,4 @@
 {
-  "image": "ghcr.io/aristanetworks/avd/universal:python3.11-avd-v5.7.0",
+  "image": "ghcr.io/aristanetworks/avd/universal:python3.11-avd-v5.7.2",
   "remoteUser": "avd"
 }

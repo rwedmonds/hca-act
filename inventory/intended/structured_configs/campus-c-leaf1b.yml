@@ -2,7 +2,9 @@ aaa_root:
   disabled: true
 config_end: true
 enable_password:
-  disabled: true
+  disabled: false
+  hash_algorithm: sha512
+  key: $6$Q5Pg0k.kTwgJ89NX$j0438CJoJx2RiuCsygN8GtpTrWPNWlZQIytcMQQRhLhv7oK0HNaXgbhDKsUUksrL22UDMx9tMfE9ufd0YJmkx1
 ethernet_interfaces:
 - name: Ethernet11
   description: MLAG_campus-c-leaf1a_Ethernet11
@@ -26,7 +28,7 @@ ethernet_interfaces:
   description: P2P_campus-c-spine1_Ethernet6
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.133/31
+  ip_address: 172.16.0.133/31
   peer: campus-c-spine1
   peer_interface: Ethernet6
   peer_type: spine
@@ -36,7 +38,7 @@ ethernet_interfaces:
   description: P2P_campus-c-spine2_Ethernet6
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.135/31
+  ip_address: 172.16.0.135/31
   peer: campus-c-spine2
   peer_interface: Ethernet6
   peer_type: spine
@@ -91,16 +93,11 @@ loopback_interfaces:
 - name: Loopback0
   description: ROUTER_ID
   shutdown: false
-  ip_address: 192.168.224.34/32
+  ip_address: 172.16.30.34/32
 - name: Loopback1
   description: VXLAN_TUNNEL_SOURCE
   shutdown: false
-  ip_address: 192.168.223.33/32
-- name: Loopback100
-  description: DIAG_VRF_Blue
-  shutdown: false
-  vrf: Blue
-  ip_address: 192.168.200.34/32
+  ip_address: 172.16.31.33/32
 management_api_http:
   enable_https: true
   enable_vrfs:
@@ -116,7 +113,6 @@ management_interfaces:
 metadata:
   is_deployed: true
   platform: vEOS-LAB
-  rack: Rack1A
   dc_name: CAMPUS
   fabric_name: HCA
 mlag_configuration:
@@ -149,7 +145,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 110-113,120-121,130-131
+      allowed_vlan: 10,20,30,40
 - name: Port-Channel6
   description: L2_campus-c-leaf2d_Port-Channel1
   shutdown: false
@@ -158,18 +154,24 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 110-113,120-121,130-131
+      allowed_vlan: 10,20,30,40
 prefix_lists:
 - name: PL-LOOPBACKS-EVPN-OVERLAY
   sequence_numbers:
   - sequence: 10
-    action: permit 192.168.224.0/24 eq 32
+    action: permit 172.16.30.0/24 eq 32
   - sequence: 20
-    action: permit 192.168.223.0/24 eq 32
-- name: PL-MLAG-PEER-VRFS
+    action: permit 172.16.31.0/24 eq 32
+- name: PL-SVI-VRF-DEFAULT
   sequence_numbers:
   - sequence: 10
-    action: permit 10.255.254.64/31
+    action: permit 10.30.10.0/24
+  - sequence: 20
+    action: permit 10.30.20.0/24
+  - sequence: 30
+    action: permit 10.30.30.0/24
+  - sequence: 40
+    action: permit 10.30.40.0/24
 route_maps:
 - name: RM-MLAG-PEER-IN
   sequence_numbers:
@@ -184,12 +186,22 @@ route_maps:
     type: permit
     match:
     - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
-- name: RM-CONN-2-BGP-VRFS
+  - sequence: 30
+    type: permit
+    match:
+    - ip address prefix-list PL-SVI-VRF-DEFAULT
+- name: RM-EVPN-EXPORT-VRF-DEFAULT
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-SVI-VRF-DEFAULT
+- name: RM-BGP-UNDERLAY-PEERS-OUT
   sequence_numbers:
   - sequence: 10
     type: deny
     match:
-    - ip address prefix-list PL-MLAG-PEER-VRFS
+    - ip address prefix-list PL-SVI-VRF-DEFAULT
   - sequence: 20
     type: permit
 router_bfd:
@@ -198,8 +210,8 @@ router_bfd:
     min_rx: 1200
     multiplier: 3
 router_bgp:
-  as: '65302'
-  router_id: 192.168.224.34
+  as: '65301'
+  router_id: 172.16.30.34
   maximum_paths:
     paths: 4
     ecmp: 4
@@ -209,7 +221,7 @@ router_bgp:
   peer_groups:
   - name: MLAG-IPv4-UNDERLAY-PEER
     type: ipv4
-    remote_as: '65302'
+    remote_as: '65301'
     description: campus-c-leaf1a
     next_hop_self: true
     password: vnEaG8gMeQf3d3cN6PktXQ==
@@ -221,6 +233,7 @@ router_bgp:
     password: AQQvKeimxJu+uGQ/yYvv9w==
     send_community: all
     maximum_routes: 12000
+    route_map_out: RM-BGP-UNDERLAY-PEERS-OUT
   - name: EVPN-OVERLAY-PEERS
     type: evpn
     update_source: Loopback0
@@ -234,24 +247,24 @@ router_bgp:
     peer_group: MLAG-IPv4-UNDERLAY-PEER
     peer: campus-c-leaf1a
     description: campus-c-leaf1a_Vlan4093
-  - ip_address: 172.31.254.132
+  - ip_address: 172.16.0.132
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65101'
+    remote_as: '65300'
     peer: campus-c-spine1
     description: campus-c-spine1_Ethernet6
-  - ip_address: 172.31.254.134
+  - ip_address: 172.16.0.134
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65101'
+    remote_as: '65300'
     peer: campus-c-spine2
     description: campus-c-spine2_Ethernet6
   - ip_address: 192.168.224.31
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65101'
+    remote_as: '65300'
     peer: campus-c-spine1
     description: campus-c-spine1_Loopback0
   - ip_address: 192.168.224.32
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65101'
+    remote_as: '65300'
     peer: campus-c-spine2
     description: campus-c-spine2_Loopback0
   redistribute:
@@ -259,30 +272,14 @@ router_bgp:
       enabled: true
       route_map: RM-CONN-2-BGP
   vlan_aware_bundles:
-  - name: Blue
-    rd: 192.168.224.34:10
+  - name: default
+    rd: 172.16.30.34:10
     route_targets:
       both:
       - '10:10'
     redistribute_routes:
     - learned
-    vlan: 110-113
-  - name: Green
-    rd: 192.168.224.34:12
-    route_targets:
-      both:
-      - '12:12'
-    redistribute_routes:
-    - learned
-    vlan: 130-131
-  - name: Red
-    rd: 192.168.224.34:11
-    route_targets:
-      both:
-      - '11:11'
-    redistribute_routes:
-    - learned
-    vlan: 120-121
+    vlan: 10,20,30,40
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
@@ -296,8 +293,8 @@ router_bgp:
     - name: EVPN-OVERLAY-PEERS
       activate: false
   vrfs:
-  - name: Blue
-    rd: 192.168.224.34:10
+  - name: default
+    rd: 172.16.30.34:10
     route_targets:
       import:
       - address_family: evpn
@@ -307,58 +304,10 @@ router_bgp:
       - address_family: evpn
         route_targets:
         - '10:10'
-    router_id: 192.168.224.34
-    neighbors:
-    - ip_address: 10.255.254.64
-      peer_group: MLAG-IPv4-UNDERLAY-PEER
-      description: campus-c-leaf1a_Vlan3009
-    redistribute:
-      connected:
-        enabled: true
-        route_map: RM-CONN-2-BGP-VRFS
-  - name: Green
-    rd: 192.168.224.34:12
-    route_targets:
-      import:
-      - address_family: evpn
-        route_targets:
-        - '12:12'
-      export:
-      - address_family: evpn
-        route_targets:
-        - '12:12'
-    router_id: 192.168.224.34
-    neighbors:
-    - ip_address: 10.255.254.64
-      peer_group: MLAG-IPv4-UNDERLAY-PEER
-      description: campus-c-leaf1a_Vlan3011
-    redistribute:
-      connected:
-        enabled: true
-        route_map: RM-CONN-2-BGP-VRFS
-  - name: Red
-    rd: 192.168.224.34:11
-    route_targets:
-      import:
-      - address_family: evpn
-        route_targets:
-        - '11:11'
-      export:
-      - address_family: evpn
-        route_targets:
-        - '11:11'
-    router_id: 192.168.224.34
-    neighbors:
-    - ip_address: 10.255.254.64
-      peer_group: MLAG-IPv4-UNDERLAY-PEER
-      description: campus-c-leaf1a_Vlan3010
-    redistribute:
-      connected:
-        enabled: true
-        route_map: RM-CONN-2-BGP-VRFS
+        - route-map RM-EVPN-EXPORT-VRF-DEFAULT
 service_routing_protocols_model: multi-agent
 snmp_server:
-  location: HCA CAMPUS Rack1A campus-c-leaf1b
+  location: HCA CAMPUS campus-c-leaf1b
 spanning_tree:
   mode: mstp
   mst_instances:
@@ -370,9 +319,6 @@ static_routes:
   prefix: 0.0.0.0/0
   next_hop: 192.168.0.1
 transceiver_qsfp_default_mode_4x10: true
-virtual_source_nat_vrfs:
-- name: Blue
-  ip_address: 192.168.200.34
 vlan_interfaces:
 - name: Vlan4093
   description: MLAG_L3
@@ -385,78 +331,26 @@ vlan_interfaces:
   ip_address: 10.255.255.65/31
   mtu: 1500
   no_autostate: true
-- name: Vlan110
-  description: Blue_110
+- name: Vlan10
+  description: MGMT
   shutdown: false
-  vrf: Blue
-  ip_address_virtual: 192.168.210.1/24
+  ip_address_virtual: 10.30.10.1/24
   tenant: HCA
-- name: Vlan111
-  description: Blue_111
+- name: Vlan20
+  description: USER
   shutdown: false
-  vrf: Blue
-  ip_address_virtual: 192.168.211.1/24
+  ip_address_virtual: 10.30.20.1/24
   tenant: HCA
-- name: Vlan112
-  description: Blue_112
+- name: Vlan30
+  description: VOICE
   shutdown: false
-  vrf: Blue
-  ip_address_virtual: 192.168.212.1/24
+  ip_address_virtual: 10.30.30.1/24
   tenant: HCA
-- name: Vlan113
-  description: Blue_113
+- name: Vlan40
+  description: PACS
   shutdown: false
-  vrf: Blue
-  ip_address_virtual: 192.168.213.1/24
+  ip_address_virtual: 10.30.40.1/24
   tenant: HCA
-- name: Vlan3009
-  description: MLAG_L3_VRF_Blue
-  shutdown: false
-  vrf: Blue
-  ip_address: 10.255.254.65/31
-  mtu: 1500
-  tenant: HCA
-  type: underlay_peering
-- name: Vlan130
-  description: Green_130
-  shutdown: false
-  vrf: Green
-  ip_address_virtual: 192.168.230.1/24
-  tenant: HCA
-- name: Vlan131
-  description: Green_131
-  shutdown: false
-  vrf: Green
-  ip_address_virtual: 192.168.231.1/24
-  tenant: HCA
-- name: Vlan3011
-  description: MLAG_L3_VRF_Green
-  shutdown: false
-  vrf: Green
-  ip_address: 10.255.254.65/31
-  mtu: 1500
-  tenant: HCA
-  type: underlay_peering
-- name: Vlan120
-  description: Red_120
-  shutdown: false
-  vrf: Red
-  ip_address_virtual: 192.168.220.1/24
-  tenant: HCA
-- name: Vlan121
-  description: WEBZone_121
-  shutdown: false
-  vrf: Red
-  ip_address_virtual: 192.168.221.1/24
-  tenant: HCA
-- name: Vlan3010
-  description: MLAG_L3_VRF_Red
-  shutdown: false
-  vrf: Red
-  ip_address: 10.255.254.65/31
-  mtu: 1500
-  tenant: HCA
-  type: underlay_peering
 vlan_internal_order:
   allocation: ascending
   range:
@@ -473,57 +367,21 @@ vlans:
   trunk_groups:
   - MLAG
   tenant: system
-- id: 110
-  name: Blue_110
+- id: 10
+  name: MGMT
   tenant: HCA
-- id: 111
-  name: Blue_111
+- id: 20
+  name: USER
   tenant: HCA
-- id: 112
-  name: Blue_112
+- id: 30
+  name: VOICE
   tenant: HCA
-- id: 113
-  name: Blue_113
-  tenant: HCA
-- id: 3009
-  name: MLAG_L3_VRF_Blue
-  trunk_groups:
-  - MLAG
-  tenant: HCA
-- id: 130
-  name: Green_130
-  tenant: HCA
-- id: 131
-  name: Green_131
-  tenant: HCA
-- id: 3011
-  name: MLAG_L3_VRF_Green
-  trunk_groups:
-  - MLAG
-  tenant: HCA
-- id: 120
-  name: Red_120
-  tenant: HCA
-- id: 121
-  name: WEBZone_121
-  tenant: HCA
-- id: 3010
-  name: MLAG_L3_VRF_Red
-  trunk_groups:
-  - MLAG
+- id: 40
+  name: PACS
   tenant: HCA
 vrfs:
 - name: default
   ip_routing: false
-- name: Blue
-  ip_routing: true
-  tenant: HCA
-- name: Green
-  ip_routing: true
-  tenant: HCA
-- name: Red
-  ip_routing: true
-  tenant: HCA
 vxlan_interface:
   vxlan1:
     description: campus-c-leaf1b_VTEP
@@ -532,26 +390,14 @@ vxlan_interface:
       udp_port: 4789
       virtual_router_encapsulation_mac_address: mlag-system-id
       vlans:
-      - id: 110
-        vni: 10110
-      - id: 111
-        vni: 50111
-      - id: 112
-        vni: 50112
-      - id: 113
-        vni: 10113
-      - id: 130
-        vni: 10130
-      - id: 131
-        vni: 10131
-      - id: 120
-        vni: 10120
-      - id: 121
-        vni: 10121
+      - id: 10
+        vni: 10010
+      - id: 20
+        vni: 10020
+      - id: 30
+        vni: 10030
+      - id: 40
+        vni: 10040
       vrfs:
-      - name: Blue
+      - name: default
         vni: 10
-      - name: Green
-        vni: 12
-      - name: Red
-        vni: 11

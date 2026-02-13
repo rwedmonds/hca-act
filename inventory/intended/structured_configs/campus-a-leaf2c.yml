@@ -2,7 +2,9 @@ aaa_root:
   disabled: true
 config_end: true
 enable_password:
-  disabled: true
+  disabled: false
+  hash_algorithm: sha512
+  key: $6$Q5Pg0k.kTwgJ89NX$j0438CJoJx2RiuCsygN8GtpTrWPNWlZQIytcMQQRhLhv7oK0HNaXgbhDKsUUksrL22UDMx9tMfE9ufd0YJmkx1
 ethernet_interfaces:
 - name: Ethernet1
   description: L2_campus-a-leaf1a_Ethernet5
@@ -82,7 +84,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: 110-113,120-121,130-131
+      allowed_vlan: 10,20,30,40
 - name: Port-Channel6
   description: SERVER_campus-a-leaf2-server1
   shutdown: false
@@ -104,29 +106,17 @@ vlan_internal_order:
     beginning: 1006
     ending: 1199
 vlans:
-- id: 110
-  name: Blue_110
+- id: 10
+  name: MGMT
   tenant: HCA
-- id: 111
-  name: Blue_111
+- id: 20
+  name: USER
   tenant: HCA
-- id: 112
-  name: Blue_112
+- id: 30
+  name: VOICE
   tenant: HCA
-- id: 113
-  name: Blue_113
-  tenant: HCA
-- id: 130
-  name: Green_130
-  tenant: HCA
-- id: 131
-  name: Green_131
-  tenant: HCA
-- id: 120
-  name: Red_120
-  tenant: HCA
-- id: 121
-  name: WEBZone_121
+- id: 40
+  name: PACS
   tenant: HCA
 vrfs:
 - name: default

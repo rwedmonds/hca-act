@@ -185,7 +185,15 @@ username robert ssh-key ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7U+usFHr9Xhqph3Hcm
 
 ### Enable Password
 
-Enable password has been disabled
+sha512 encrypted enable password is configured
+
+#### Enable Password Device Configuration
+
+```eos
+!
+enable password sha512 <removed>
+!
+```
 
 ## Monitoring
 
@@ -281,8 +289,8 @@ interface defaults
 
 | Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet5 | P2P_campus-b-leaf1a_Ethernet2 | - | 172.31.254.90/31 | default | 1500 | False | - | - |
-| Ethernet6 | P2P_campus-b-leaf1b_Ethernet2 | - | 172.31.254.94/31 | default | 1500 | False | - | - |
+| Ethernet5 | P2P_campus-b-leaf1a_Ethernet2 | - | 172.16.0.90/31 | default | 1500 | False | - | - |
+| Ethernet6 | P2P_campus-b-leaf1b_Ethernet2 | - | 172.16.0.94/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -293,14 +301,14 @@ interface Ethernet5
    no shutdown
    mtu 1500
    no switchport
-   ip address 172.31.254.90/31
+   ip address 172.16.0.90/31
 !
 interface Ethernet6
    description P2P_campus-b-leaf1b_Ethernet2
    no shutdown
    mtu 1500
    no switchport
-   ip address 172.31.254.94/31
+   ip address 172.16.0.94/31
 !
 interface Management1
    no lldp transmit
@@ -391,7 +399,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65101 | 192.168.234.22 |
+| 65100 | 192.168.234.22 |
 
 | BGP Tuning |
 | ---------- |
@@ -424,10 +432,10 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 172.31.254.91 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 172.31.254.95 | 65102 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 192.168.234.23 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
-| 192.168.234.24 | 65102 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 172.16.0.91 | 65201 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 172.16.0.95 | 65201 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 172.16.20.23 | 65201 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 172.16.20.24 | 65201 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -441,7 +449,7 @@ ASN Notation: asplain
 
 ```eos
 !
-router bgp 65101
+router bgp 65100
    router-id 192.168.234.22
    no bgp default ipv4-unicast
    maximum-paths 4 ecmp 4
@@ -457,18 +465,18 @@ router bgp 65101
    neighbor IPv4-UNDERLAY-PEERS password 7 <removed>
    neighbor IPv4-UNDERLAY-PEERS send-community
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
-   neighbor 172.31.254.91 peer group IPv4-UNDERLAY-PEERS
-   neighbor 172.31.254.91 remote-as 65102
-   neighbor 172.31.254.91 description campus-b-leaf1a_Ethernet2
-   neighbor 172.31.254.95 peer group IPv4-UNDERLAY-PEERS
-   neighbor 172.31.254.95 remote-as 65102
-   neighbor 172.31.254.95 description campus-b-leaf1b_Ethernet2
-   neighbor 192.168.234.23 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.234.23 remote-as 65102
-   neighbor 192.168.234.23 description campus-b-leaf1a_Loopback0
-   neighbor 192.168.234.24 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.234.24 remote-as 65102
-   neighbor 192.168.234.24 description campus-b-leaf1b_Loopback0
+   neighbor 172.16.0.91 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.16.0.91 remote-as 65201
+   neighbor 172.16.0.91 description campus-b-leaf1a_Ethernet2
+   neighbor 172.16.0.95 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.16.0.95 remote-as 65201
+   neighbor 172.16.0.95 description campus-b-leaf1b_Ethernet2
+   neighbor 172.16.20.23 peer group EVPN-OVERLAY-PEERS
+   neighbor 172.16.20.23 remote-as 65201
+   neighbor 172.16.20.23 description campus-b-leaf1a_Loopback0
+   neighbor 172.16.20.24 peer group EVPN-OVERLAY-PEERS
+   neighbor 172.16.20.24 remote-as 65201
+   neighbor 172.16.20.24 description campus-b-leaf1b_Loopback0
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn

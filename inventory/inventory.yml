@@ -2,7 +2,7 @@
 all:
   children:
     # ------------------------------- #
-    # MARK: CVaaS
+    # CVaaS
     # ------------------------------- #
     CVAAS:
       hosts:
@@ -22,7 +22,7 @@ all:
           ansible_python_interpreter: $(which python3)
 
     # ------------------------------- #
-    # MARK: HCA Fabric
+    # HCA Fabric
     # ------------------------------- #
     HCA:
       vars:
@@ -35,7 +35,7 @@ all:
         ansible_become_method: enable
       children:
         # --------------------------- #
-        # MARK: Campus-A
+        # Campus-A
         # --------------------------- #
         CAMPUS_A:
           children:
@@ -69,7 +69,7 @@ all:
                   ansible_host: 192.168.0.38
 
         # --------------------------- #
-        # MARK: Campus-B
+        # Campus-B
         # --------------------------- #
         CAMPUS_B:
           children:
@@ -103,7 +103,7 @@ all:
                   ansible_host: 192.168.0.48
 
         # --------------------------- #
-        # MARK: Campus-C
+        # Campus-C
         # --------------------------- #
         CAMPUS_C:
           children:
@@ -136,6 +136,36 @@ all:
                 campus-c-leaf2d:
                   ansible_host: 192.168.0.58
 
+        # --------------------------- #
+        # Campus-D
+        # --------------------------- #
+        CAMPUS_D:
+          children:
+            CAMPUS_D_SPINES:
+              vars:
+                type: l3spine
+              hosts:
+                campus-d-spine1:
+                  ansible_host: 192.168.0.61
+                campus-d-spine2:
+                  ansible_host: 192.168.0.62
+            CAMPUS_D_L3LEAFS:
+              vars:
+                type: l2leaf
+              hosts:
+                campus-d-leaf1a:
+                  ansible_host: 192.168.0.63
+                campus-d-leaf1b:
+                  ansible_host: 192.168.0.64
+                campus-d-leaf2a:
+                  ansible_host: 192.168.0.65
+                campus-d-leaf2b:
+                  ansible_host: 192.168.0.66
+                campus-d-leaf2c:
+                  ansible_host: 192.168.0.67
+                campus-d-leaf2d:
+                  ansible_host: 192.168.0.68
+
         CAMPUS_BORDERLEAFS:
           children:
             hosts:
@@ -154,6 +184,8 @@ all:
               campus-b-leaf2a:
               campus-c-leaf1a:
               campus-c-leaf2a:
+              campus-d-leaf1a:
+              campus-d-leaf2a:
         MLAG_EVEN:
           children:
             hosts:
@@ -163,3 +195,6 @@ all:
               campus-b-leaf2b:
               campus-c-leaf1b:
               campus-c-leaf2b:
+              campus-d-leaf1b:
+              campus-d-leaf2b:
+

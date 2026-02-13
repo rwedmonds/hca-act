@@ -2,13 +2,15 @@ aaa_root:
   disabled: true
 config_end: true
 enable_password:
-  disabled: true
+  disabled: false
+  hash_algorithm: sha512
+  key: $6$Q5Pg0k.kTwgJ89NX$j0438CJoJx2RiuCsygN8GtpTrWPNWlZQIytcMQQRhLhv7oK0HNaXgbhDKsUUksrL22UDMx9tMfE9ufd0YJmkx1
 ethernet_interfaces:
 - name: Ethernet5
   description: P2P_campus-a-leaf1a_Ethernet1
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.48/31
+  ip_address: 172.16.0.48/31
   peer: campus-a-leaf1a
   peer_interface: Ethernet1
   peer_type: l3leaf
@@ -18,7 +20,7 @@ ethernet_interfaces:
   description: P2P_campus-a-leaf1b_Ethernet1
   shutdown: false
   mtu: 1500
-  ip_address: 172.31.254.52/31
+  ip_address: 172.16.0.52/31
   peer: campus-a-leaf1b
   peer_interface: Ethernet1
   peer_type: l3leaf
@@ -88,7 +90,7 @@ router_bfd:
     min_rx: 1200
     multiplier: 3
 router_bgp:
-  as: '65101'
+  as: '65100'
   router_id: 192.168.244.11
   maximum_paths:
     paths: 4
@@ -112,24 +114,24 @@ router_bgp:
     send_community: all
     maximum_routes: 0
   neighbors:
-  - ip_address: 172.31.254.49
+  - ip_address: 172.16.0.49
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65102'
+    remote_as: '65101'
     peer: campus-a-leaf1a
     description: campus-a-leaf1a_Ethernet1
-  - ip_address: 172.31.254.53
+  - ip_address: 172.16.0.53
     peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65102'
+    remote_as: '65101'
     peer: campus-a-leaf1b
     description: campus-a-leaf1b_Ethernet1
-  - ip_address: 192.168.244.13
+  - ip_address: 172.16.10.13
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65102'
+    remote_as: '65101'
     peer: campus-a-leaf1a
     description: campus-a-leaf1a_Loopback0
-  - ip_address: 192.168.244.14
+  - ip_address: 172.16.10.14
     peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65102'
+    remote_as: '65101'
     peer: campus-a-leaf1b
     description: campus-a-leaf1b_Loopback0
   redistribute:

@@ -1,55 +1,29 @@
 ---
-# RE-DC1 Tenants Networks
-# Documentation of Tenant specific information - Vlans/VRFs
+# ----------------------------------- #
+# HCA Tenants Networks
+# ----------------------------------- #
 tenants:
-  # Tenant A Specific Information - VRFs / VLANs
+  # HCA Specific Information - VRFs / VLANs
   - name: "HCA"
     mac_vrf_vni_base: 10000
     vrfs:
-      - name: "Blue"
+      - name: "default"
         vrf_vni: 10
-        vtep_diagnostic:
-          loopback: 100
-          loopback_ip_range: "192.168.200.0/24"
         svis:
-          - id: 110
-            name: "Blue_110"
+          - id: 10
+            name: "MGMT"
             enabled: true
-            ip_address_virtual: "192.168.210.1/24"
-          - id: 111
-            vni_override: 50111
-            name: "Blue_111"
+            ip_address_virtual: "10.20.10.1/24"
+          - id: 20
+            name: "USER"
             enabled: true
-            ip_address_virtual: "192.168.211.1/24"
-          - id: 112
-            vni_override: 50112
-            name: "Blue_112"
+            ip_address_virtual: "10.20.20.1/24"
+          - id: 30
+            name: "VOICE"
             enabled: true
-            ip_address_virtual: "192.168.212.1/24"
-          - id: 113
-            name: "Blue_113"
+            ip_address_virtual: "10.20.30.1/24"
+          - id: 40
+            name: "PACS"
             enabled: true
-            ip_address_virtual: "192.168.213.1/24"
+            ip_address_virtual: "10.20.40.1/24"
 
-      - name: "Red"
-        vrf_vni: 11
-        svis:
-          - id: 120
-            name: "Red_120"
-            enabled: true
-            ip_address_virtual: "192.168.220.1/24"
-          - id: 121
-            name: "WEBZone_121"
-            enabled: true
-            ip_address_virtual: "192.168.221.1/24"
-      - name: "Green"
-        vrf_vni: 12
-        svis:
-          - id: 130
-            name: "Green_130"
-            enabled: true
-            ip_address_virtual: "192.168.230.1/24"
-          - id: 131
-            name: "Green_131"
-            enabled: true
-            ip_address_virtual: "192.168.231.1/24"

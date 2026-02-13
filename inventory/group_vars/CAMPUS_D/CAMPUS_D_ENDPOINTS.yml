@@ -1,0 +1,62 @@
+---
+# ----------------------------------- #
+# Port Profiles
+# ----------------------------------- #
+port_profiles:
+  - profile: "TENANT_A_B_All_Vlans"
+    mode: "trunk"
+    vlans: "110-111,210-211"
+    port_channel:
+      mode: "active"
+  - profile: "TENANT_A_Vl110"
+    mode: "access"
+    vlans: "110"
+    port_channel:
+      mode: "active"
+  - profile: "TENANT_A_Vl111"
+    mode: "access"
+    vlans: "111"
+    port_channel:
+      mode: "active"
+  - profile: "TENANT_A_Vl110_On"
+    mode: "access"
+    vlans: "110"
+    port_channel:
+      mode: "on"
+  - profile: "TENANT_A_Vl111_On"
+    mode: "access"
+    vlans: "111"
+    port_channel:
+      mode: "on"
+  - profile: "TENANT_B_Vl210-211"
+    mode: "trunk"
+    vlans: "210-211"
+    port_channel:
+      mode: "active"
+
+# ----------------------------------- #
+# Servers
+# ----------------------------------- #
+servers:
+  # --------------------------------- #
+  # campus-d
+  # --------------------------------- #
+  - name: "campus-d-leaf1-server1"
+    adapters:
+      - switches:
+          - "campus-a-leaf1a"
+        switch_ports:
+          - "Ethernet5"
+        endpoint_ports:
+          - "Ethernet1"
+        profile: "TENANT_A_Vl110"
+
+  - name: "campus-d-leaf2-server1"
+    adapters:
+      - switches:
+          - "campus-a-leaf2c"
+        switch_ports:
+          - "Ethernet6"
+        endpoint_ports:
+          - "Ethernet1"
+        profile: "TENANT_A_Vl110"

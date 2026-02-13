@@ -1,0 +1,786 @@
+# ----------------------------------- #
+# Node Types
+# ----------------------------------- #
+veos:
+  # Define the global vEOS node parameters
+  username: cvpadmin
+  password: arista123
+  version: 4.32.3M
+  internet_access: true
+
+generic:
+  # Define global generic node parameters
+  username: cvpadmin
+  password: arista123
+  version: ubuntu-2204-lts
+
+# ----------------------------------- #
+# Nodes
+# ----------------------------------- #
+nodes:
+  # ----------------------- #
+  # Campus A
+  # ----------------------- #
+  - a-spine1:
+      ip_addr: 192.168.0.31
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-spine2:
+      ip_addr: 192.168.0.32
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-leaf1a:
+      ip_addr: 192.168.0.33
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-leaf1b:
+      ip_addr: 192.168.0.34
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-leaf2a:
+      ip_addr: 192.168.0.35
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-leaf2b:
+      ip_addr: 192.168.0.36
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-leaf2c:
+      ip_addr: 192.168.0.37
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-leaf2d:
+      ip_addr: 192.168.0.38
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-bleaf1:
+      ip_addr: 192.168.0.133
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-bleaf2:
+      ip_addr: 192.168.0.134
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Campus B
+  # ----------------------- #
+  - b-spine1:
+      ip_addr: 192.168.0.41
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-spine2:
+      ip_addr: 192.168.0.42
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf1a:
+      ip_addr: 192.168.0.43
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf1b:
+      ip_addr: 192.168.0.44
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf2a:
+      ip_addr: 192.168.0.45
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf2b:
+      ip_addr: 192.168.0.46
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf2c:
+      ip_addr: 192.168.0.47
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf2d:
+      ip_addr: 192.168.0.48
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-apswitch1:
+      ip_addr: 192.168.0.49
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-wlan1:
+      ip_addr: 192.168.0.145
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-wlan2:
+      ip_addr: 192.168.0.146
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-bleaf1:
+      ip_addr: 192.168.0.143
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-bleaf2:
+      ip_addr: 192.168.0.144
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-apswitch:
+      ip_addr: 192.168.0.147
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Campus C
+  # ----------------------- #
+  - c-spine1:
+      ip_addr: 192.168.0.51
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-spine2:
+      ip_addr: 192.168.0.52
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-leaf1a:
+      ip_addr: 192.168.0.53
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-leaf1b:
+      ip_addr: 192.168.0.54
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-leaf2a:
+      ip_addr: 192.168.0.55
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-leaf2b:
+      ip_addr: 192.168.0.56
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-leaf2c:
+      ip_addr: 192.168.0.57
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-leaf2d:
+      ip_addr: 192.168.0.58
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-bleaf1:
+      ip_addr: 192.168.0.153
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-bleaf2:
+      ip_addr: 192.168.0.154
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Campus D
+  # ----------------------- #
+  - d-spine1:
+      ip_addr: 192.168.0.61
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-spine2:
+      ip_addr: 192.168.0.62
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-leaf1a:
+      ip_addr: 192.168.0.63
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-leaf1b:
+      ip_addr: 192.168.0.64
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-leaf2a:
+      ip_addr: 192.168.0.65
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-leaf2b:
+      ip_addr: 192.168.0.66
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-leaf2c:
+      ip_addr: 192.168.0.67
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-leaf2d:
+      ip_addr: 192.168.0.68
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Campus A Hosts
+  # ----------------------- #
+  - a-leaf1-server1:
+      ip_addr: 192.168.0.111
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - a-leaf2-server1:
+      ip_addr: 192.168.0.112
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Campus B Hosts
+  # ----------------------- #
+  - b-leaf1-server1:
+      ip_addr: 192.168.0.121
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf2-server1:
+      ip_addr: 192.168.0.122
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - b-leaf2-wifi:
+      ip_addr: 192.168.0.123
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Campus C Hosts
+  # ----------------------- #
+  - c-leaf1-server1:
+      ip_addr: 192.168.0.131
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - c-leaf2-server1:
+      ip_addr: 192.168.0.132
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Campus D Hosts
+  # ----------------------- #
+  - d-leaf1-server1:
+      ip_addr: 192.168.0.141
+      node_type: veos
+      ports:
+        - Ethernet1-12
+  - d-leaf2-server1:
+      ip_addr: 192.168.0.142
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+  # ----------------------- #
+  # Tools & Routers
+  # ----------------------- #
+  - ansible:
+      ip_addr: 192.168.0.6
+      node_type: generic
+  - wan1:
+      ip_addr: 192.168.0.7
+      node_type: veos
+      ports:
+        - Ethernet1-12
+
+links:
+  # --------------------------------- #
+  # Campus A
+  # --------------------------------- #
+
+  # ----------------------- #
+  # Leaf 1
+  # ----------------------- #
+  - connection:
+      - a-leaf1a:Ethernet1
+      - a-spine1:Ethernet5
+
+  - connection:
+      - a-leaf1a:Ethernet2
+      - a-spine2:Ethernet5
+
+  - connection:
+      - a-leaf1b:Ethernet1
+      - a-spine1:Ethernet6
+
+  - connection:
+      - a-leaf1b:Ethernet2
+      - a-spine2:Ethernet6
+
+  - connection:
+      - a-leaf1a:Ethernet11
+      - a-leaf1b:Ethernet11
+
+  - connection:
+      - a-leaf1a:Ethernet12
+      - a-leaf1b:Ethernet12
+
+  - connection:
+      - a-leaf1a:Ethernet5
+      - a-leaf1-server1:Ethernet1
+
+  # ----------------------- #
+  # Leaf 2
+  # ----------------------- #
+  - connection:
+      - a-leaf2a:Ethernet1
+      - a-spine1:Ethernet7
+
+  - connection:
+      - a-leaf2a:Ethernet2
+      - a-spine2:Ethernet7
+
+  - connection:
+      - a-leaf2b:Ethernet1
+      - a-spine1:Ethernet8
+
+  - connection:
+      - a-leaf2b:Ethernet2
+      - a-spine2:Ethernet8
+
+  - connection:
+      - a-leaf2a:Ethernet11
+      - a-leaf2b:Ethernet11
+
+  - connection:
+      - a-leaf2a:Ethernet12
+      - a-leaf2b:Ethernet12
+
+  - connection:
+      - a-leaf2c:Ethernet1
+      - a-leaf2a:Ethernet5
+
+  - connection:
+      - a-leaf2c:Ethernet2
+      - a-leaf2b:Ethernet5
+
+  - connection:
+      - a-leaf2c:Ethernet5
+      - a-leaf2-server1:Ethernet1
+
+  - connection:
+      - a-leaf2d:Ethernet1
+      - a-leaf2a:Ethernet6
+
+  - connection:
+      - a-leaf2d:Ethernet2
+      - a-leaf2b:Ethernet6
+
+  # ----------------------- #
+  # Borderleafs
+  # ----------------------- #
+  - connection:
+    - a-bleaf1:Ethernet3
+    - a-spine1:Ethernet1
+
+  - connection:
+    - a-bleaf1:Ethernet2
+    - a-spine2:Ethernet2
+
+  - connection:
+    - a-bleaf1:Ethernet1
+    - wan1:Ethernet1
+
+  - connection:
+    - a-bleaf2:Ethernet3
+    - a-spine1:Ethernet2
+
+  - connection:
+    - a-bleaf2:Ethernet2
+    - a-spine2:Ethernet1
+
+  - connection:
+    - a-bleaf2:Ethernet1
+    - wan1:Ethernet2
+
+  # ----------------------------------- #
+  # Campus B
+  # ----------------------------------- #
+
+  # ----------------------- #
+  # Leaf 1
+  # ----------------------- #
+  - connection:
+      - b-leaf1a:Ethernet1
+      - b-spine1:Ethernet5
+
+  - connection:
+      - b-leaf1a:Ethernet2
+      - b-spine2:Ethernet5
+
+  - connection:
+      - b-leaf1b:Ethernet1
+      - b-spine1:Ethernet6
+
+  - connection:
+      - b-leaf1b:Ethernet2
+      - b-spine2:Ethernet6
+
+  - connection:
+      - b-leaf1a:Ethernet11
+      - b-leaf1b:Ethernet11
+
+  - connection:
+      - b-leaf1a:Ethernet12
+      - b-leaf1b:Ethernet12
+
+  - connection:
+      - b-leaf1a:Ethernet5
+      - b-leaf1-server1:Ethernet1
+
+  # ----------------------- #
+  # Leaf 2
+  # ----------------------- #
+  - connection:
+      - b-leaf2a:Ethernet1
+      - b-spine1:Ethernet7
+
+  - connection:
+      - b-leaf2a:Ethernet2
+      - b-spine2:Ethernet7
+
+  - connection:
+      - b-leaf2b:Ethernet1
+      - b-spine1:Ethernet8
+
+  - connection:
+      - b-leaf2b:Ethernet2
+      - b-spine2:Ethernet8
+
+  - connection:
+      - b-leaf2a:Ethernet11
+      - b-leaf2b:Ethernet11
+
+  - connection:
+      - b-leaf2a:Ethernet12
+      - b-leaf2b:Ethernet12
+
+  - connection:
+      - b-leaf2c:Ethernet1
+      - b-leaf2a:Ethernet5
+
+  - connection:
+      - b-leaf2c:Ethernet2
+      - b-leaf2b:Ethernet5
+
+  - connection:
+      - b-leaf2c:Ethernet5
+      - b-leaf2-server1:Ethernet1
+
+  - connection:
+      - b-leaf2d:Ethernet1
+      - b-leaf2a:Ethernet6
+
+  - connection:
+      - b-leaf2d:Ethernet2
+      - b-leaf2b:Ethernet6
+
+  # ----------------------- #
+  # APSwitch
+  # ----------------------- #
+  - connection:
+    - b-apswitch:Ethernet1
+    - b-leaf2d:Ethernet3
+
+  - connection:
+    - b-apswitch:Ethernet2
+    - b-leaf2-wifi:Ethernet1
+
+  # ----------------------- #
+  # WLAN
+  # ----------------------- #
+  - connection:
+    - b-wlan1:Ethernet1
+    - b-bleaf1:Ethernet4
+
+  - connection:
+    - b-wlan2:Ethernet1
+    - b-bleaf2:Ethernet4
+
+  - connection:
+    - b-wlan1:Ethernet11
+    - b-wlan2:Ethernet11
+
+  - connection:
+    - b-wlan1:Ethernet12
+    - b-wlan2:Ethernet12
+
+  # ----------------------- #
+  # Borderleafs
+  # ----------------------- #
+  - connection:
+    - b-bleaf1:Ethernet3
+    - b-spine1:Ethernet1
+
+  - connection:
+    - b-bleaf1:Ethernet2
+    - b-spine2:Ethernet2
+
+  - connection:
+    - b-bleaf1:Ethernet1
+    - wan1:Ethernet3
+
+  - connection:
+    - b-bleaf2:Ethernet2
+    - b-spine1:Ethernet2
+
+  - connection:
+    - b-bleaf2:Ethernet3
+    - b-spine2:Ethernet1
+
+  - connection:
+    - b-bleaf2:Ethernet1
+    - wan1:Ethernet4
+
+  # ----------------------------------- #
+  # Campus C
+  # ----------------------------------- #
+
+  # ----------------------- #
+  # Leaf 1
+  # ----------------------- #
+  - connection:
+      - c-leaf1a:Ethernet1
+      - c-spine1:Ethernet5
+
+  - connection:
+      - c-leaf1a:Ethernet2
+      - c-spine2:Ethernet5
+
+  - connection:
+      - c-leaf1b:Ethernet1
+      - c-spine1:Ethernet6
+
+  - connection:
+      - c-leaf1b:Ethernet2
+      - c-spine2:Ethernet6
+
+  - connection:
+      - c-leaf1a:Ethernet11
+      - c-leaf1b:Ethernet11
+
+  - connection:
+      - c-leaf1a:Ethernet12
+      - c-leaf1b:Ethernet12
+
+  - connection:
+      - c-leaf1a:Ethernet5
+      - c-leaf1-server1:Ethernet1
+
+  # ----------------------- #
+  # Leaf 2
+  # ----------------------- #
+  - connection:
+      - c-leaf2a:Ethernet1
+      - c-spine1:Ethernet7
+
+  - connection:
+      - c-leaf2a:Ethernet2
+      - c-spine2:Ethernet7
+
+  - connection:
+      - c-leaf2b:Ethernet1
+      - c-spine1:Ethernet8
+
+  - connection:
+      - c-leaf2b:Ethernet2
+      - c-spine2:Ethernet8
+
+  - connection:
+      - c-leaf2a:Ethernet11
+      - c-leaf2b:Ethernet11
+
+  - connection:
+      - c-leaf2a:Ethernet12
+      - c-leaf2b:Ethernet12
+
+  - connection:
+      - c-leaf2c:Ethernet1
+      - c-leaf2a:Ethernet5
+
+  - connection:
+      - c-leaf2c:Ethernet2
+      - c-leaf2b:Ethernet5
+
+  - connection:
+      - c-leaf2c:Ethernet5
+      - c-leaf2-server1:Ethernet1
+
+  - connection:
+      - c-leaf2d:Ethernet1
+      - c-leaf2a:Ethernet6
+
+  - connection:
+      - c-leaf2d:Ethernet2
+      - c-leaf2b:Ethernet6
+
+  # ----------------------- #
+  # Borderleafs
+  # ----------------------- #
+  - connection:
+    - c-bleaf1:Ethernet3
+    - c-spine1:Ethernet1
+
+  - connection:
+    - c-bleaf1:Ethernet2
+    - c-spine2:Ethernet2
+
+  - connection:
+    - c-bleaf1:Ethernet1
+    - wan1:Ethernet5
+
+  - connection:
+    - c-bleaf1:Ethernet11
+    - c-bleaf2:Ethernet11
+
+  - connection:
+    - c-bleaf1:Ethernet12
+    - c-bleaf2:Ethernet12
+
+  - connection:
+    - c-bleaf2:Ethernet2
+    - c-spine1:Ethernet2
+
+  - connection:
+    - c-bleaf2:Ethernet3
+    - c-spine2:Ethernet1
+
+  - connection:
+    - c-bleaf2:Ethernet1
+    - wan1:Ethernet6
+
+  # ----------------------------------- #
+  # Campus D
+  # ----------------------------------- #
+
+  # ----------------------- #
+  # Spines
+  # ----------------------- #
+  - connection:
+    - d-spine1:Ethernet1
+    - wan1:Ethernet7
+
+  - connection:
+    - d-spine2:Ethernet1
+    - wan1:Ethernet8
+
+  - connection:
+    - d-spine1:Ethernet11
+    - d-spine2:Ethernet11
+
+  - connection:
+    - d-spine1:Ethernet12
+    - d-spine2:Ethernet12
+
+  # ----------------------- #
+  # Leaf 1
+  # ----------------------- #
+  - connection:
+      - d-leaf1a:Ethernet1
+      - d-spine1:Ethernet5
+
+  - connection:
+      - d-leaf1a:Ethernet2
+      - d-spine2:Ethernet5
+
+  - connection:
+      - d-leaf1b:Ethernet1
+      - d-spine1:Ethernet6
+
+  - connection:
+      - d-leaf1b:Ethernet2
+      - d-spine2:Ethernet6
+
+  - connection:
+      - d-leaf1a:Ethernet11
+      - d-leaf1b:Ethernet11
+
+  - connection:
+      - d-leaf1a:Ethernet12
+      - d-leaf1b:Ethernet12
+
+  - connection:
+      - d-leaf1a:Ethernet5
+      - d-leaf1-server1:Ethernet1
+
+  # ----------------------- #
+  # Leaf 2
+  # ----------------------- #
+  - connection:
+      - d-leaf2a:Ethernet1
+      - d-spine1:Ethernet7
+
+  - connection:
+      - d-leaf2a:Ethernet2
+      - d-spine2:Ethernet7
+
+  - connection:
+      - d-leaf2b:Ethernet1
+      - d-spine1:Ethernet8
+
+  - connection:
+      - d-leaf2b:Ethernet2
+      - d-spine2:Ethernet8
+
+  - connection:
+      - d-leaf2a:Ethernet11
+      - d-leaf2b:Ethernet11
+
+  - connection:
+      - d-leaf2a:Ethernet12
+      - d-leaf2b:Ethernet12
+
+  - connection:
+      - d-leaf2c:Ethernet1
+      - d-leaf2a:Ethernet5
+
+  - connection:
+      - d-leaf2c:Ethernet2
+      - d-leaf2b:Ethernet5
+
+  - connection:
+      - d-leaf2c:Ethernet5
+      - d-leaf2-server1:Ethernet1
+
+  - connection:
+      - d-leaf2d:Ethernet1
+      - d-leaf2a:Ethernet6
+
+  - connection:
+      - d-leaf2d:Ethernet2
+      - d-leaf2b:Ethernet6
+

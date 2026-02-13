@@ -1,8 +1,6 @@
 ---
-# default_connected_endpoints_description: "{endpoint}{endpoint_port?<_}"
-
 # ----------------------------------- #
-# MARK: Port Profiles
+# Port Profiles
 # ----------------------------------- #
 port_profiles:
   - profile: "TENANT_A_B_All_Vlans"
@@ -37,7 +35,7 @@ port_profiles:
       mode: "active"
 
 # ----------------------------------- #
-# MARK: Servers
+# Servers
 # ----------------------------------- #
 servers:
   # --------------------------------- #

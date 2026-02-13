@@ -26,6 +26,10 @@ build_campus_b: ## Build AVD configs for CAMPUS_B
 build_campus_c: ## Build AVD configs for CAMPUS_C
 				ansible-playbook playbooks/fabric_deploy.yml --tags build --ask-vault-password --limit CAMPUS_C
 
+.PHONY: build_campus_d
+build_campus_d: ## Build AVD configs for CAMPUS_D
+				ansible-playbook playbooks/fabric_deploy.yml --tags build --ask-vault-password --limit CAMPUS_D
+
 # ------------------------------------------------------- #
 #                         Deploy                          #
 # ------------------------------------------------------- #
@@ -45,6 +49,10 @@ deploy_campus_b_cvp: ## Deploy CAMPUS_B AVD configs through CVP
 .PHONY: deploy_campus_c_cvp
 deploy_campus_c_cvp: ## Deploy CAMPUS_C AVD configs through CVP
 				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --ask-vault-password --limit CAMPUS_C
+
+.PHONY: deploy_campus_d_cvp
+deploy_campus_d_cvp: ## Deploy CAMPUS_D AVD configs through CVP
+				ansible-playbook playbooks/fabric_deploy.yml -i inventory/inventory.yml --ask-vault-password --limit CAMPUS_D
 
 # .PHONY: deploy_cert
 # deploy_cert: ## Deploy xyz.crt to switches
@@ -73,3 +81,8 @@ validate_state_campus_b: ## Validate state of CAMPUS_B
 .PHONY: validate_state_campus_c
 validate_state_campus_c: ## Validate state of CAMPUS_C
 				ansible-playbook playbooks/validate_state.yml -i inventory/act_inventory.yml --ask-vault-password --limit CAMPUS_C
+
+.PHONY: validate_state_campus_d
+validate_state_campus_d: ## Validate state of CAMPUS_D
+				ansible-playbook playbooks/validate_state.yml -i inventory/act_inventory.yml --ask-vault-password --limit CAMPUS_D
+
