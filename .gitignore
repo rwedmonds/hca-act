@@ -2,3 +2,5 @@ inventory/config_backup
 ansible.log
 *DS_Store
 ansible-log
+error.log
+
