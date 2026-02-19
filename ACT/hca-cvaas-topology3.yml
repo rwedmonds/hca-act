@@ -354,12 +354,13 @@ nodes:
   - ansible:
       ip_addr: 192.168.0.6
       node_type: generic
-      ports: Ethernet1-3
+      ports: 
+        - Ethernet1-3
   - wan1:
       ip_addr: 192.168.0.7
       node_type: veos
       ports:
-        Ethernet1-12
+        - Ethernet1-12
 
 links:
   # --------------------------------- #
