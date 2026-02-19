@@ -1,5 +1,35 @@
-fatal: [campus-c-spine1 -> localhost]: FAILED! => {"anta_tests_summary": {"devices_with_test_errors": [], "devices_with_test_failures": ["campus-a-leaf1a", "campus-a-leaf1b", "campus-a-leaf2a", "campus-a-leaf2b", "campus-a-leaf2c", "campus-a-leaf2d", "campus-a-spine1", "campus-a-spine2", "campus-b-leaf1a", "campus-b-leaf1b", "campus-b-leaf2a", "campus-b-leaf2b",
- "campus-b-leaf2c", "campus-b-leaf2d", "campus-b-spine1", "campus-b-spine2", "campus-c-leaf1a", "campus-c-leaf1b", "campus-c-leaf2a", "campus-c-leaf2b", "campus-c-leaf2c", "campus-c-leaf2d", "campus-c-spine1", "campus-c-spine2"], "tests_error": 0, "tests_failed": 114, "tests_passed": 444, "tests_skipped": 144, "tests_unset": 0, "total_tests": 702}, "changed": fa
-lse, "msg": "Task failed due to ANTA test failures/errors."}
-...ignoring
+
+Error(s) encountered:
+Node:'a-leaf1-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'a-leaf2-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'b-leaf1-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'b-leaf2-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'b-leaf2-wifi' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'c-leaf1-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'c-leaf2-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'d-leaf1-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'d-leaf2-server1' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Node:'ansible' node_type:'generic' does not support 
+ports definition. Please remove from topology file and re-validate
+
+Found duplicate serial numbers specified in the nodes list:
+    faa48f09a5ed4f0caf9bd4606898a459
 

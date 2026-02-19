@@ -31,7 +31,7 @@ nodes:
   - a-spine2:
       ip_addr: 192.168.0.32
       node_type: veos
-      serial_number: faa48f09a5ed4f0caf9bd4606898a459
+      serial_number: 92c15ee877a24df4a7173b541c3183cb
       ports:
         - Ethernet1-12
   # L3Leafs
