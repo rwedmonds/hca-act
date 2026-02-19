@@ -302,13 +302,13 @@ nodes:
   # ----------------------- #
   - a-leaf1-server1:
       ip_addr: 192.168.0.111
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
   - a-leaf2-server1:
       ip_addr: 192.168.0.112
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
@@ -318,19 +318,19 @@ nodes:
   # ----------------------- #
   - b-leaf1-server1:
       ip_addr: 192.168.0.121
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
   - b-leaf2-server1:
       ip_addr: 192.168.0.122
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
   - b-leaf2-wifi:
       ip_addr: 192.168.0.123
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
@@ -340,13 +340,13 @@ nodes:
   # ----------------------- #
   - c-leaf1-server1:
       ip_addr: 192.168.0.131
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
   - c-leaf2-server1:
       ip_addr: 192.168.0.132
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
@@ -356,13 +356,13 @@ nodes:
   # ----------------------- #
   - d-leaf1-server1:
       ip_addr: 192.168.0.141
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
   - d-leaf2-server1:
       ip_addr: 192.168.0.142
-      node_type: veos
+      node_type: generic
       serial_number: 
       ports:
         - Ethernet1-12
