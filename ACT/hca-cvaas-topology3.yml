@@ -293,13 +293,9 @@ nodes:
   - a-leaf1-server1:
       ip_addr: 192.168.0.111
       node_type: generic
-      ports:
-        - Ethernet1-3
   - a-leaf2-server1:
       ip_addr: 192.168.0.112
       node_type: generic
-      ports:
-        - Ethernet1-3
 
   # ----------------------- #
   # Campus B Hosts
@@ -307,18 +303,12 @@ nodes:
   - b-leaf1-server1:
       ip_addr: 192.168.0.121
       node_type: generic
-      ports:
-        - Ethernet1-3
   - b-leaf2-server1:
       ip_addr: 192.168.0.122
       node_type: generic
-      ports:
-        - Ethernet1-3
   - b-leaf2-wifi:
       ip_addr: 192.168.0.123
       node_type: generic
-      ports:
-        - Ethernet1-3
 
   # ----------------------- #
   # Campus C Hosts
@@ -326,13 +316,9 @@ nodes:
   - c-leaf1-server1:
       ip_addr: 192.168.0.131
       node_type: generic
-      ports:
-        - Ethernet1-3
   - c-leaf2-server1:
       ip_addr: 192.168.0.132
       node_type: generic
-      ports:
-        - Ethernet1-3
 
   # ----------------------- #
   # Campus D Hosts
@@ -340,13 +326,9 @@ nodes:
   - d-leaf1-server1:
       ip_addr: 192.168.0.141
       node_type: generic
-      ports:
-        - Ethernet1-3
   - d-leaf2-server1:
       ip_addr: 192.168.0.142
       node_type: generic
-      ports:
-        - Ethernet1-3
 
   # ----------------------- #
   # Tools & Routers
@@ -354,8 +336,6 @@ nodes:
   - ansible:
       ip_addr: 192.168.0.6
       node_type: generic
-      ports: 
-        - Ethernet1-3
   - wan1:
       ip_addr: 192.168.0.7
       node_type: veos
