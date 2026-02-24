@@ -1,35 +1,5 @@
 
 Error(s) encountered:
-Node:'a-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'a-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'b-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'b-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'b-leaf2-wifi' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'c-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'c-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'d-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'d-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'ansible' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
 Found duplicate serial numbers specified in the nodes list:
     faa48f09a5ed4f0caf9bd4606898a459
 
