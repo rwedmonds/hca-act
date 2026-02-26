@@ -1,0 +1,201 @@
+---
+all:
+  children:
+    VEOS:
+      hosts:
+        # ----------------------- #
+        # Campus A
+        # ----------------------- #
+        # Spines
+        a-spine1:
+          ansible_host: 192.168.0.31
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        a-spine2:
+          ansible_host: 192.168.0.32
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # L3Leafs
+        a-leaf1a:
+          ansible_host: 192.168.0.33
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        a-leaf1b:
+          ansible_host: 192.168.0.34
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        a-leaf2a:
+          ansible_host: 192.168.0.35
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        a-leaf2b:
+          ansible_host: 192.168.0.36
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # L2Leafs
+        a-leaf2c:
+          ansible_host: 192.168.0.37
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        a-leaf2d:
+          ansible_host: 192.168.0.38
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # Borderleafs
+        a-bleaf1:
+          ansible_host: 192.168.0.133
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        a-bleaf2:
+          ansible_host: 192.168.0.134
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+
+        # ----------------------- #
+        # Campus B
+        # ----------------------- #
+        # Spines
+        b-spine1:
+          ansible_host: 192.168.0.41
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        b-spine2:
+          ansible_host: 192.168.0.42
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # L3Leafs
+        b-leaf1a:
+          ansible_host: 192.168.0.43
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        b-leaf1b:
+          ansible_host: 192.168.0.44
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        b-leaf2a:
+          ansible_host: 192.168.0.45
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        b-leaf2b:
+          ansible_host: 192.168.0.46
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # L2Leafs
+        b-leaf2c:
+          ansible_host: 192.168.0.47
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        b-leaf2d:
+          ansible_host: 192.168.0.48
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # WLAN Switches
+        b-wlan1:
+          ansible_host: 192.168.0.145
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        b-wlan2:
+          ansible_host: 192.168.0.146
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # Borderleafs
+        b-bleaf1:
+          ansible_host: 192.168.0.143
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        b-bleaf2:
+          ansible_host: 192.168.0.144
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # AP Switch
+        b-apswitch:
+          ansible_host: 192.168.0.147
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+
+        # ----------------------- #
+        # Campus C
+        # ----------------------- #
+        # Spines
+        c-spine1:
+          ansible_host: 192.168.0.51
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        c-spine2:
+          ansible_host: 192.168.0.52
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # L3Leafs
+        c-leaf1a:
+          ansible_host: 192.168.0.53
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        c-leaf1b:
+          ansible_host: 192.168.0.54
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        c-leaf2a:
+          ansible_host: 192.168.0.55
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        c-leaf2b:
+          ansible_host: 192.168.0.56
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # L2Leafs
+        c-leaf2c:
+          ansible_host: 192.168.0.57
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        c-leaf2d:
+          ansible_host: 192.168.0.58
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # Borderleafs
+        c-bleaf1:
+          ansible_host: 192.168.0.153
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        c-bleaf2:
+          ansible_host: 192.168.0.154
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+
+        # ----------------------- #
+        # Campus D
+        # ----------------------- #
+        # Spines
+        d-spine1:
+          ansible_host: 192.168.0.61
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        d-spine2:
+          ansible_host: 192.168.0.62
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # L2Leafs
+        d-leaf1a:
+          ansible_host: 192.168.0.63
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        d-leaf1b:
+          ansible_host: 192.168.0.64
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        d-leaf2a:
+          ansible_host: 192.168.0.65
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        d-leaf2b:
+          ansible_host: 192.168.0.66
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        # Member Leafs
+        d-leaf2c:
+          ansible_host: 192.168.0.67
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123
+        d-leaf2d:
+          ansible_host: 192.168.0.68
+          ansible_user: cvpadmin
+          ansibble_ssh_pass: arista123

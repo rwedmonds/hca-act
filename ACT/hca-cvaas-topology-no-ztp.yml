@@ -377,9 +377,10 @@ nodes:
   - ansible:
       ip_addr: 192.168.0.6
       node_type: generic
-  - wan1:
+  - wan-router:
       ip_addr: 192.168.0.7
       node_type: veos
+      serial_number: c23edd0d1bf442568356c344835031e4
       ports:
         - Ethernet1-12
 
@@ -482,7 +483,7 @@ links:
 
   - connection:
       - a-bleaf1:Ethernet1
-      - wan1:Ethernet1
+      - wan-router:Ethernet1
 
   - connection:
       - a-bleaf2:Ethernet3
@@ -494,7 +495,7 @@ links:
 
   - connection:
       - a-bleaf2:Ethernet1
-      - wan1:Ethernet2
+      - wan-router:Ethernet2
 
   # MLAG
   - connection:
@@ -634,7 +635,7 @@ links:
 
   - connection:
       - b-bleaf1:Ethernet1
-      - wan1:Ethernet3
+      - wan-router:Ethernet3
 
   - connection:
       - b-bleaf2:Ethernet2
@@ -646,7 +647,7 @@ links:
 
   - connection:
       - b-bleaf2:Ethernet1
-      - wan1:Ethernet4
+      - wan-router:Ethernet4
 
   # MLAG
   - connection:
@@ -754,7 +755,7 @@ links:
 
   - connection:
       - c-bleaf1:Ethernet1
-      - wan1:Ethernet5
+      - wan-router:Ethernet5
 
   - connection:
       - c-bleaf2:Ethernet2
@@ -766,7 +767,7 @@ links:
 
   - connection:
       - c-bleaf2:Ethernet1
-      - wan1:Ethernet6
+      - wan-router:Ethernet6
 
   # MLAG
   - connection:
@@ -786,11 +787,11 @@ links:
   # ----------------------- #
   - connection:
       - d-spine1:Ethernet1
-      - wan1:Ethernet7
+      - wan-router:Ethernet7
 
   - connection:
       - d-spine2:Ethernet1
-      - wan1:Ethernet8
+      - wan-router:Ethernet8
 
   # MLAG
   - connection:
