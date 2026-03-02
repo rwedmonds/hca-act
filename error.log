@@ -1,35 +1,26 @@
 
-Error(s) encountered:
-Node:'a-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
+[ERROR]: Task failed: Found duplicate objects with conflicting data while generating configuration for EthernetInterfaces. 
 
-Node:'a-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
+{'name': 'Ethernet5', 'description': 'SERVER_campus-a-leaf1-server1_Ethernet1', 'shutdown': False, 'channel_group': {'id': 5, 'mode': 'active'}, 'metadata': {'peer': 'campus-a-leaf1-server1', 'peer_interface': 'Ethernet1', 'peer_type': 'server', 'peer_key': 'servers', 'port_profile': 'TENANT_A_Vl110'}} conflicts with 
 
-Node:'b-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
+{'name': 'Ethernet5', 'description': 'L2_campus-a-leaf2c_Ethernet1', 'shutdown': False, 'channel_group': {'id': 5, 'mode': 'active'}, 'metadata': {'peer': 'campus-a-leaf2c', 'peer_interface': 'Ethernet1', 'peer_type': 'l2leaf'}}.
+Origin: /home/avd/.ansible/collections/ansible_collections/arista/avd/roles/eos_designs/tasks/main.yml:53:7
 
-Node:'b-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
+51       run_once: true
+52
+53     - name: Generate device configuration in structured format
+         ^ column 7
 
-Node:'b-leaf2-wifi' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'c-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'c-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'d-leaf1-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'d-leaf2-server1' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Node:'ansible' node_type:'generic' does not support 
-ports definition. Please remove from topology file and re-validate
-
-Found duplicate serial numbers specified in the nodes list:
-    faa48f09a5ed4f0caf9bd4606898a459
+fatal: [campus-a-leaf1a -> localhost]: FAILED! => {"changed": false, "msg": "Found duplicate objects with conflicting data while generating configuration for EthernetInterfaces. {'n
+ame': 'Ethernet5', 'description': 'SERVER_campus-a-leaf1-server1_Ethernet1', 'shutdown': False, 'channel_group': {'id': 5, 'mode': 'active'}, 'metadata': {'peer': 'campus-a-leaf1-se
+rver1', 'peer_interface': 'Ethernet1', 'peer_type': 'server', 'peer_key': 'servers', 'port_profile': 'TENANT_A_Vl110'}} conflicts with {'name': 'Ethernet5', 'description': 'L2_campu
+s-a-leaf2c_Ethernet1', 'shutdown': False, 'channel_group': {'id': 5, 'mode': 'active'}, 'metadata': {'peer': 'campus-a-leaf2c', 'peer_interface': 'Ethernet1', 'peer_type': 'l2leaf'}
+}."}
+changed: [campus-a-leaf2a -> localhost]
+changed: [campus-a-leaf2b -> localhost]
+changed: [campus-a-leaf1b -> localhost]
+ok: [campus-a-spine1 -> localhost]
+ok: [campus-a-spine2 -> localhost]
+changed: [campus-a-leaf2c -> localhost]
+ok: [campus-a-leaf2d -> localhost]
 

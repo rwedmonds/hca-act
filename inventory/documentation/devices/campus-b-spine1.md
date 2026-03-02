@@ -4,17 +4,8 @@
 
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
-  - [IP Name Servers](#ip-name-servers)
-  - [Clock Settings](#clock-settings)
-  - [NTP](#ntp)
-  - [IP Client Source Interfaces](#ip-client-source-interfaces)
-  - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
-  - [Local Users](#local-users)
   - [Enable Password](#enable-password)
-- [Monitoring](#monitoring)
-  - [TerminAttr Daemon](#terminattr-daemon)
-  - [SNMP](#snmp)
 - [Spanning Tree](#spanning-tree)
   - [Spanning Tree Summary](#spanning-tree-summary)
   - [Spanning Tree Device Configuration](#spanning-tree-device-configuration)
@@ -22,7 +13,6 @@
   - [Internal VLAN Allocation Policy Summary](#internal-vlan-allocation-policy-summary)
   - [Internal VLAN Allocation Policy Device Configuration](#internal-vlan-allocation-policy-device-configuration)
 - [Interfaces](#interfaces)
-  - [Interface Defaults](#interface-defaults)
   - [Ethernet Interfaces](#ethernet-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
 - [Routing](#routing)
@@ -39,7 +29,6 @@
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
-- [EOS CLI Device Configuration](#eos-cli-device-configuration)
 
 ## Management
 
@@ -51,13 +40,13 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | OOB_MANAGEMENT | oob | default | 192.168.0.41/24 | 192.168.0.1 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.0.41/24 | 192.168.0.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | OOB_MANAGEMENT | oob | default | - | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
@@ -66,168 +55,15 @@
 interface Management1
    description OOB_MANAGEMENT
    no shutdown
+   vrf MGMT
    ip address 192.168.0.41/24
-```
-
-### IP Name Servers
-
-#### IP Name Servers Summary
-
-| Name Server | VRF | Priority |
-| ----------- | --- | -------- |
-| 169.254.169.254 | default | - |
-
-#### IP Name Servers Device Configuration
-
-```eos
-ip name-server vrf default 169.254.169.254
-```
-
-### Clock Settings
-
-#### Clock Timezone Settings
-
-Clock Timezone is set to **America/Chicago**.
-
-#### Clock Device Configuration
-
-```eos
-!
-clock timezone America/Chicago
-```
-
-### NTP
-
-#### NTP Summary
-
-##### NTP Local Interface
-
-| Interface | VRF |
-| --------- | --- |
-| Management1 | default |
-
-##### NTP Servers
-
-| Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
-| ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 1.pool.ntp.org | default | - | - | - | - | - | - | - | - |
-
-#### NTP Device Configuration
-
-```eos
-!
-ntp local-interface Management1
-ntp server 1.pool.ntp.org
-```
-
-### IP Client Source Interfaces
-
-| IP Client | VRF | Source Interface Name |
-| --------- | --- | --------------------- |
-| SSH | default | Loopback0 |
-
-#### IP Client Source Interfaces Device Configuration
-
-```eos
-!
-ip ssh client source-interface Loopback0
- ```
-
-### Management API HTTP
-
-#### Management API HTTP Summary
-
-| HTTP | HTTPS | UNIX-Socket | Default Services |
-| ---- | ----- | ----------- | ---------------- |
-| False | True | - | - |
-
-#### Management API VRF Access
-
-| VRF Name | IPv4 ACL | IPv6 ACL |
-| -------- | -------- | -------- |
-| default | - | - |
-
-#### Management API HTTP Device Configuration
-
-```eos
-!
-management api http-commands
-   protocol https
-   no shutdown
-   !
-   vrf default
-      no shutdown
 ```
 
 ## Authentication
 
-### Local Users
-
-#### Local Users Summary
-
-| User | Privilege | Role | Disabled | Shell |
-| ---- | --------- | ---- | -------- | ----- |
-| admin | 15 | network-admin | False | - |
-| ansible | 15 | network-admin | False | - |
-| cvpadmin | 15 | network-admin | False | - |
-| robert | 15 | network-admin | False | - |
-
-#### Local Users Device Configuration
-
-```eos
-!
-username admin privilege 15 role network-admin secret sha512 <removed>
-username ansible privilege 15 role network-admin secret sha512 <removed>
-username cvpadmin privilege 15 role network-admin secret sha512 <removed>
-username robert privilege 15 role network-admin nopassword
-username robert ssh-key ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK7U+usFHr9Xhqph3HcmaWpi/Tjl0a3aof1AQRvSXuOw redmonds@redmonds
-```
-
 ### Enable Password
 
-sha512 encrypted enable password is configured
-
-#### Enable Password Device Configuration
-
-```eos
-!
-enable password sha512 <removed>
-!
-```
-
-## Monitoring
-
-### TerminAttr Daemon
-
-#### TerminAttr Daemon Summary
-
-| CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
-| -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | 192.168.0.5:9910 | default | token,/tmp/cv-onboarding-token | ale,flexCounter,hardware,kni,pulse,strata | - | True |
-
-#### TerminAttr Daemon Device Configuration
-
-```eos
-!
-daemon TerminAttr
-   exec /usr/bin/TerminAttr -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/cv-onboarding-token -cvvrf=default -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -taillogs
-   no shutdown
-```
-
-### SNMP
-
-#### SNMP Configuration Summary
-
-| Contact | Location | SNMP Traps | State |
-| ------- | -------- | ---------- | ----- |
-| - | HCA CAMPUS_B campus-b-spine1 | All | Disabled |
-
-#### SNMP Device Configuration
-
-```eos
-!
-snmp-server location HCA CAMPUS_B campus-b-spine1
-```
+Enable password has been disabled
 
 ## Spanning Tree
 
@@ -247,7 +83,7 @@ spanning-tree mode none
 ### Internal VLAN Allocation Policy Summary
 
 | Policy Allocation | Range Beginning | Range Ending |
-| ------------------| --------------- | ------------ |
+| ----------------- | --------------- | ------------ |
 | ascending | 1006 | 1199 |
 
 ### Internal VLAN Allocation Policy Device Configuration
@@ -258,21 +94,6 @@ vlan internal order ascending range 1006 1199
 ```
 
 ## Interfaces
-
-### Interface Defaults
-
-#### Interface Defaults Summary
-
-- Default Ethernet Interface Shutdown: True
-
-#### Interface Defaults Device Configuration
-
-```eos
-!
-interface defaults
-   ethernet
-      shutdown
-```
 
 ### Ethernet Interfaces
 
@@ -287,10 +108,12 @@ interface defaults
 
 ##### IPv4
 
-| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Interface | Description | Channel Group | IP Address | VRF | MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | --- | --- | -------- | ------ | ------- |
 | Ethernet5 | P2P_campus-b-leaf1a_Ethernet1 | - | 172.16.0.88/31 | default | 1500 | False | - | - |
 | Ethernet6 | P2P_campus-b-leaf1b_Ethernet1 | - | 172.16.0.92/31 | default | 1500 | False | - | - |
+| Ethernet7 | P2P_campus-b-leaf2a_Ethernet1 | - | 172.16.0.96/31 | default | 1500 | False | - | - |
+| Ethernet8 | P2P_campus-b-leaf2b_Ethernet1 | - | 172.16.0.100/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -310,9 +133,19 @@ interface Ethernet6
    no switchport
    ip address 172.16.0.92/31
 !
-interface Management1
-   no lldp transmit
-   no lldp receive
+interface Ethernet7
+   description P2P_campus-b-leaf2a_Ethernet1
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.16.0.96/31
+!
+interface Ethernet8
+   description P2P_campus-b-leaf2b_Ethernet1
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.16.0.100/31
 ```
 
 ### Loopback Interfaces
@@ -359,12 +192,14 @@ service routing protocols model multi-agent
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
+| MGMT | False |
 
 #### IP Routing Device Configuration
 
 ```eos
 !
 ip routing
+no ip routing vrf MGMT
 ```
 
 ### IPv6 Routing
@@ -374,7 +209,7 @@ ip routing
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
-| default | false |
+| MGMT | false |
 
 ### Static Routes
 
@@ -382,13 +217,13 @@ ip routing
 
 | VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
 | --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
-| default | 0.0.0.0/0 | 192.168.0.1 | - | 1 | - | - | - |
+| MGMT | 0.0.0.0/0 | 192.168.0.1 | - | 1 | - | - | - |
 
 #### Static Routes Device Configuration
 
 ```eos
 !
-ip route 0.0.0.0/0 192.168.0.1
+ip route vrf MGMT 0.0.0.0/0 192.168.0.1
 ```
 
 ### Router BGP
@@ -404,7 +239,7 @@ ASN Notation: asplain
 | BGP Tuning |
 | ---------- |
 | no bgp default ipv4-unicast |
-| maximum-paths 4 ecmp 4 |
+| maximum-paths 4 |
 
 #### Router BGP Peer Groups
 
@@ -426,7 +261,7 @@ ASN Notation: asplain
 | -------- | ----- |
 | Address Family | ipv4 |
 | Send community | all |
-| Maximum routes | 12000 |
+| Maximum routes | 256000 |
 
 #### BGP Neighbors
 
@@ -434,8 +269,12 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 172.16.0.89 | 65201 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 172.16.0.93 | 65201 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 172.16.0.97 | 65202 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 172.16.0.101 | 65202 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 172.16.20.23 | 65201 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 172.16.20.24 | 65201 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 172.16.20.25 | 65202 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 172.16.20.26 | 65202 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -452,7 +291,7 @@ ASN Notation: asplain
 router bgp 65100
    router-id 192.168.234.21
    no bgp default ipv4-unicast
-   maximum-paths 4 ecmp 4
+   maximum-paths 4
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
@@ -464,19 +303,31 @@ router bgp 65100
    neighbor IPv4-UNDERLAY-PEERS peer group
    neighbor IPv4-UNDERLAY-PEERS password 7 <removed>
    neighbor IPv4-UNDERLAY-PEERS send-community
-   neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
+   neighbor IPv4-UNDERLAY-PEERS maximum-routes 256000
    neighbor 172.16.0.89 peer group IPv4-UNDERLAY-PEERS
    neighbor 172.16.0.89 remote-as 65201
    neighbor 172.16.0.89 description campus-b-leaf1a_Ethernet1
    neighbor 172.16.0.93 peer group IPv4-UNDERLAY-PEERS
    neighbor 172.16.0.93 remote-as 65201
    neighbor 172.16.0.93 description campus-b-leaf1b_Ethernet1
+   neighbor 172.16.0.97 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.16.0.97 remote-as 65202
+   neighbor 172.16.0.97 description campus-b-leaf2a_Ethernet1
+   neighbor 172.16.0.101 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.16.0.101 remote-as 65202
+   neighbor 172.16.0.101 description campus-b-leaf2b_Ethernet1
    neighbor 172.16.20.23 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.20.23 remote-as 65201
    neighbor 172.16.20.23 description campus-b-leaf1a_Loopback0
    neighbor 172.16.20.24 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.20.24 remote-as 65201
    neighbor 172.16.20.24 description campus-b-leaf1b_Loopback0
+   neighbor 172.16.20.25 peer group EVPN-OVERLAY-PEERS
+   neighbor 172.16.20.25 remote-as 65202
+   neighbor 172.16.20.25 description campus-b-leaf2a_Loopback0
+   neighbor 172.16.20.26 peer group EVPN-OVERLAY-PEERS
+   neighbor 172.16.20.26 remote-as 65202
+   neighbor 172.16.20.26 description campus-b-leaf2b_Loopback0
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn
@@ -549,15 +400,11 @@ route-map RM-CONN-2-BGP permit 10
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
+| MGMT | disabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
-```
-
-## EOS CLI Device Configuration
-
-```eos
 !
-no schedule tech-support
+vrf instance MGMT
 ```

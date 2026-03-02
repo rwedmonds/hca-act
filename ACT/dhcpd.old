@@ -1,0 +1,218 @@
+default-lease-time 600;
+max-lease-time 7200;
+
+ddns-update-style none;
+
+authoritative;
+
+subnet 192.168.0.0 netmask 255.255.255.0 {
+    range 192.168.0.200 192.168.0.254;
+    option routers 192.168.0.1;
+    option domain-name-servers 192.168.20.1;
+}
+
+host a-spine1{
+  option host-name a-spine1;
+  hardware ethernet 50:01:99:01:01:01;
+  fixed-address 192.168.0.31;
+}
+host a-spine2{
+  option host-name a-spine2;
+  hardware ethernet 50:01:99:01:01:02;
+  fixed-address 192.168.0.32;
+}
+host a-leaf1a{
+  option host-name a-leaf1a;
+  hardware ethernet 50:01:99:01:02:01;
+  fixed-address 192.168.0.33;
+}
+host a-leaf1b{
+  option host-name a-leaf1b;
+  hardware ethernet 50:01:99:01:02:02;
+  fixed-address 192.168.0.34;
+}
+host a-leaf2a{
+  option host-name a-leaf2a;
+  hardware ethernet 50:01:99:01:02:03;
+  fixed-address 192.168.0.35;
+}
+host a-leaf2b{
+  option host-name a-leaf2b;
+  hardware ethernet 50:01:99:01:02:04;
+  fixed-address 192.168.0.36;
+}
+host a-leaf2c{
+  option host-name a-leaf2c;
+  hardware ethernet 50:01:99:01:02:05;
+  fixed-address 192.168.0.37;
+}
+host a-leaf2d{
+  option host-name a-leaf2d;
+  hardware ethernet 50:01:99:01:02:06;
+  fixed-address 192.168.0.38;
+}
+host a-bleaf1{
+  option host-name a-bleaf1;
+  hardware ethernet 50:01:99:01:02:07;
+  fixed-address 192.168.0.133;
+}
+host a-bleaf2{
+  option host-name a-bleaf2;
+  hardware ethernet 50:01:99:01:02:08;
+  fixed-address 192.168.0.134;
+}
+host b-spine1{
+  option host-name b-spine1;
+  hardware ethernet 50:01:99:02:01:01;
+  fixed-address 192.168.0.41;
+}
+host b-spine2{
+  option host-name b-spine2;
+  hardware ethernet 50:01:99:02:01:02;
+  fixed-address 192.168.0.42;
+}
+host b-leaf1a{
+  option host-name b-leaf1a;
+  hardware ethernet 50:01:99:02:02:01;
+  fixed-address 192.168.0.43;
+}
+host b-leaf1b{
+  option host-name b-leaf1b;
+  hardware ethernet 50:01:99:02:02:02;
+  fixed-address 192.168.0.44;
+}
+host b-leaf2a{
+  option host-name b-leaf2a;
+  hardware ethernet 50:01:99:02:02:03;
+  fixed-address 192.168.0.45;
+}
+host b-leaf2b{
+  option host-name b-leaf2b;
+  hardware ethernet 50:01:99:02:02:04;
+  fixed-address 192.168.0.46;
+}
+host b-leaf2c{
+  option host-name b-leaf2c;
+  hardware ethernet 50:01:99:02:02:05;
+  fixed-address 192.168.0.47;
+}
+host b-leaf2d{
+  option host-name b-leaf2d;
+  hardware ethernet 50:01:99:02:02:06;
+  fixed-address 192.168.0.48;
+}
+host b-wlan1{
+  option host-name b-wlan1;
+  hardware ethernet 50:01:99:02:02:07;
+  fixed-address 192.168.0.145;
+}
+host b-wlan2{
+  option host-name b-wlan2;
+  hardware ethernet 50:01:99:02:02:08;
+  fixed-address 192.168.0.146;
+}
+host b-bleaf1{
+  option host-name b-bleaf1;
+  hardware ethernet 50:01:99:02:02:09;
+  fixed-address 192.168.0.143;
+}
+host b-bleaf2{
+  option host-name b-bleaf2;
+  hardware ethernet 50:01:99:02:02:10;
+  fixed-address 192.168.0.144;
+}
+host b-apswitch{
+  option host-name b-apswitch;
+  hardware ethernet 50:01:99:02:02:11;
+  fixed-address 192.168.0.147;
+}
+host c-spine1{
+  option host-name c-spine1;
+  hardware ethernet 50:01:99:03:01:01;
+  fixed-address 192.168.0.51;
+}
+host c-spine2{
+  option host-name c-spine2;
+  hardware ethernet 50:01:99:03:01:02;
+  fixed-address 192.168.0.52;
+}
+host c-leaf1a{
+  option host-name c-leaf1a;
+  hardware ethernet 50:01:99:03:02:01;
+  fixed-address 192.168.0.53;
+}
+host c-leaf1b{
+  option host-name c-leaf1b;
+  hardware ethernet 50:01:99:03:02:02;
+  fixed-address 192.168.0.54;
+}
+host c-leaf2a{
+  option host-name c-leaf2a;
+  hardware ethernet 50:01:99:03:02:03;
+  fixed-address 192.168.0.55;
+}
+host c-leaf2b{
+  option host-name c-leaf2b;
+  hardware ethernet 50:01:99:03:02:04;
+  fixed-address 192.168.0.56;
+}
+host c-leaf2c{
+  option host-name c-leaf2c;
+  hardware ethernet 50:01:99:03:02:05;
+  fixed-address 192.168.0.57;
+}
+host c-leaf2d{
+  option host-name c-leaf2d;
+  hardware ethernet 50:01:99:03:02:06;
+  fixed-address 192.168.0.58;
+}
+host c-bleaf1{
+  option host-name c-bleaf1;
+  hardware ethernet 50:01:99:03:02:07;
+  fixed-address 192.168.0.153;
+}
+host c-bleaf2{
+  option host-name c-bleaf2;
+  hardware ethernet 50:01:99:03:02:08;
+  fixed-address 192.168.0.154;
+}
+host d-spine1{
+  option host-name d-spine1;
+  hardware ethernet 50:01:99:04:01:01;
+  fixed-address 192.168.0.61;
+}
+host d-spine2{
+  option host-name d-spine2;
+  hardware ethernet 50:01:99:04:01:02;
+  fixed-address 192.168.0.62;
+}
+host d-leaf1a{
+  option host-name d-leaf1a;
+  hardware ethernet 50:01:99:04:02:01;
+  fixed-address 192.168.0.63;
+}
+host d-leaf1b{
+  option host-name d-leaf1b;
+  hardware ethernet 50:01:99:04:02:02;
+  fixed-address 192.168.0.64;
+}
+host d-leaf2a{
+  option host-name d-leaf2a;
+  hardware ethernet 50:01:99:04:02:03;
+  fixed-address 192.168.0.65;
+}
+host d-leaf2b{
+  option host-name d-leaf2b;
+  hardware ethernet 50:01:99:04:02:04;
+  fixed-address 192.168.0.66;
+}
+host d-leaf2c{
+  option host-name d-leaf2c;
+  hardware ethernet 50:01:99:04:02:05;
+  fixed-address 192.168.0.67;
+}
+host d-leaf2d{
+    option host-name d-leaf2d;
+    hardware ethernet 50:01:99:04:02:06;
+    fixed-address 192.168.0.68;
+   }

@@ -1,9 +1,4 @@
 {
-  "image": "ghcr.io/aristanetworks/avd/universal:python3.11-avd-v5.7.2",
-  "remoteUser": "avd",
-{
-  "runArgs": [
-    "--env-file", ".devcontainer/.env"
-  ]
-},
+  "image": "ghcr.io/aristanetworks/avd/universal:python3.11-avd-v6.0.0",
+  "remoteUser": "avd"
 }

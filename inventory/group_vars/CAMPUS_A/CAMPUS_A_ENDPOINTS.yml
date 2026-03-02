@@ -61,7 +61,7 @@ servers:
       - switches:
           - "campus-a-leaf2c"
         switch_ports:
-          - "Ethernet6"
+          - "Ethernet5"
         endpoint_ports:
           - "Ethernet1"
         profile: "TENANT_A_Vl110"

@@ -24,12 +24,16 @@ nodes:
   # Spines
   - a-spine1:
       ip_addr: 192.168.0.31
+      ztp: true
+      system_mac_address: 50:01:99:01:01:01
       node_type: veos
       serial_number: faa48f09a5ed4f0caf9bd4606898a459
       ports:
         - Ethernet1-12
   - a-spine2:
       ip_addr: 192.168.0.32
+      ztp: true
+      system_mac_address: 50:01:99:01:01:02
       node_type: veos
       serial_number: 92c15ee877a24df4a7173b541c3183cb
       ports:
@@ -37,24 +41,32 @@ nodes:
   # L3Leafs
   - a-leaf1a:
       ip_addr: 192.168.0.33
+      ztp: true
+      system_mac_address: 50:01:99:01:02:01
       node_type: veos
       serial_number: 6aa0bfddefb6460b80d11c9f8ebce4e3
       ports:
         - Ethernet1-12
   - a-leaf1b:
       ip_addr: 192.168.0.34
+      ztp: true
+      system_mac_address: 50:01:99:01:02:02
       node_type: veos
       serial_number: 9e1040869d474d779a3366964c0fc274
       ports:
         - Ethernet1-12
   - a-leaf2a:
       ip_addr: 192.168.0.35
+      ztp: true
+      system_mac_address: 50:01:99:01:02:03
       node_type: veos
       serial_number: b83d3577cc544a99b39b09a5a9c6279a
       ports:
         - Ethernet1-12
   - a-leaf2b:
       ip_addr: 192.168.0.36
+      ztp: true
+      system_mac_address: 50:01:99:01:02:04
       node_type: veos
       serial_number: dff86b564d524d3e9a97994ff87fcf08
       ports:
@@ -62,12 +74,16 @@ nodes:
   # L2Leafs
   - a-leaf2c:
       ip_addr: 192.168.0.37
+      ztp: true
+      system_mac_address: 50:01:99:01:02:05
       node_type: veos
       serial_number: 67d758b10ccb448ba7b920fcebd3962a
       ports:
         - Ethernet1-12
   - a-leaf2d:
       ip_addr: 192.168.0.38
+      ztp: true
+      system_mac_address: 50:01:99:01:02:06
       node_type: veos
       serial_number: e9a7d3597d914976802ff0f6665fb3b8
       ports:
@@ -75,12 +91,16 @@ nodes:
   # Borderleafs
   - a-bleaf1:
       ip_addr: 192.168.0.133
+      ztp: true
+      system_mac_address: 50:01:99:01:02:07
       node_type: veos
       serial_number: 0e88552b42824f6bbb2c25c983f7ad31
       ports:
         - Ethernet1-12
   - a-bleaf2:
       ip_addr: 192.168.0.134
+      ztp: true
+      system_mac_address: 50:01:99:01:02:08
       node_type: veos
       serial_number: 96b046821c3842258bbf1b697d12201a
       ports:
@@ -92,12 +112,16 @@ nodes:
   # Spines
   - b-spine1:
       ip_addr: 192.168.0.41
+      ztp: true
+      system_mac_address: 50:01:99:02:01:01
       node_type: veos
       serial_number: e05fb9d0fd7742baab23686ddc388b5e
       ports:
         - Ethernet1-12
   - b-spine2:
       ip_addr: 192.168.0.42
+      ztp: true
+      system_mac_address: 50:01:99:02:01:02
       node_type: veos
       serial_number: 04c6b91f679a42999984c37ac5fdfd1f
       ports:
@@ -105,24 +129,32 @@ nodes:
   # L3Leafs
   - b-leaf1a:
       ip_addr: 192.168.0.43
+      ztp: true
+      system_mac_address: 50:01:99:02:02:01
       node_type: veos
       serial_number: 160a6d68b2af4b33863fff37645505fa
       ports:
         - Ethernet1-12
   - b-leaf1b:
       ip_addr: 192.168.0.44
+      ztp: true
+      system_mac_address: 50:01:99:02:02:02
       node_type: veos
       serial_number: 9a46f7d20dab432aa38194bfd61add07
       ports:
         - Ethernet1-12
   - b-leaf2a:
       ip_addr: 192.168.0.45
+      ztp: true
+      system_mac_address: 50:01:99:02:02:03
       node_type: veos
       serial_number: e528662acd58401b9c6a622b76ff178d
       ports:
         - Ethernet1-12
   - b-leaf2b:
       ip_addr: 192.168.0.46
+      ztp: true
+      system_mac_address: 50:01:99:02:02:04
       node_type: veos
       serial_number: 03379434e0fc402380eb3d6bc58cdae4
       ports:
@@ -130,12 +162,16 @@ nodes:
   # L2Leafs
   - b-leaf2c:
       ip_addr: 192.168.0.47
+      ztp: true
+      system_mac_address: 50:01:99:02:02:05
       node_type: veos
       serial_number: e065c73b061449bbb4aeafe4a3610806
       ports:
         - Ethernet1-12
   - b-leaf2d:
       ip_addr: 192.168.0.48
+      ztp: true
+      system_mac_address: 50:01:99:02:02:06
       node_type: veos
       serial_number: 8c3aec1eb9ac4c17be6bf8a3c81e06e1
       ports:
@@ -143,12 +179,16 @@ nodes:
   # WLAN Switches
   - b-wlan1:
       ip_addr: 192.168.0.145
+      ztp: true
+      system_mac_address: 50:01:99:02:02:07
       node_type: veos
       serial_number: a906a626d1794af896c7c59c19f860e5
       ports:
         - Ethernet1-12
   - b-wlan2:
       ip_addr: 192.168.0.146
+      ztp: true
+      system_mac_address: 50:01:99:02:02:08
       node_type: veos
       serial_number: fa19c745ab364f58b7280918ad78d163
       ports:
@@ -156,12 +196,16 @@ nodes:
   # Borderleafs
   - b-bleaf1:
       ip_addr: 192.168.0.143
+      ztp: true
+      system_mac_address: 50:01:99:02:02:09
       node_type: veos
       serial_number: 5545ce8a75fc46199c0d4efb1c8fa594
       ports:
         - Ethernet1-12
   - b-bleaf2:
       ip_addr: 192.168.0.144
+      ztp: true
+      system_mac_address: 50:01:99:02:02:10
       node_type: veos
       serial_number: 017d963cd2c2407a8e3ecb1a6b5440d6
       ports:
@@ -169,6 +213,8 @@ nodes:
   # AP Switch
   - b-apswitch:
       ip_addr: 192.168.0.147
+      ztp: true
+      system_mac_address: 50:01:99:02:02:11
       node_type: veos
       serial_number: fb1fd0492815460293797518c5812ffa
       ports:
@@ -180,54 +226,74 @@ nodes:
   # Spines
   - c-spine1:
       ip_addr: 192.168.0.51
+      ztp: true
+      system_mac_address: 50:01:99:03:01:01
       node_type: veos
       ports:
         - Ethernet1-12
   - c-spine2:
       ip_addr: 192.168.0.52
+      ztp: true
+      system_mac_address: 50:01:99:03:01:02
       node_type: veos
       ports:
         - Ethernet1-12
   # L3Leafs
   - c-leaf1a:
       ip_addr: 192.168.0.53
+      ztp: true
+      system_mac_address: 50:01:99:03:02:01
       node_type: veos
       ports:
         - Ethernet1-12
   - c-leaf1b:
       ip_addr: 192.168.0.54
+      ztp: true
+      system_mac_address: 50:01:99:03:02:02
       node_type: veos
       ports:
         - Ethernet1-12
   - c-leaf2a:
       ip_addr: 192.168.0.55
+      ztp: true
+      system_mac_address: 50:01:99:03:02:03
       node_type: veos
       ports:
         - Ethernet1-12
   - c-leaf2b:
       ip_addr: 192.168.0.56
+      ztp: true
+      system_mac_address: 50:01:99:03:02:04
       node_type: veos
       ports:
         - Ethernet1-12
   # L2Leafs
   - c-leaf2c:
       ip_addr: 192.168.0.57
+      ztp: true
+      system_mac_address: 50:01:99:03:02:05
       node_type: veos
       ports:
         - Ethernet1-12
   - c-leaf2d:
       ip_addr: 192.168.0.58
+      ztp: true
+      system_mac_address: 50:01:99:03:02:06
       node_type: veos
       ports:
         - Ethernet1-12
   # Borderleafs
   - c-bleaf1:
       ip_addr: 192.168.0.153
+      ztp: true
+      system_mac_address: 50:01:99:03:02:07
       node_type: veos
       ports:
         - Ethernet1-12
   - c-bleaf2:
       ip_addr: 192.168.0.154
+      ztp: true
+      system_mac_address: 50:01:99:03:02:08
       node_type: veos
       ports:
         - Ethernet1-12
@@ -238,12 +304,16 @@ nodes:
   # Spines
   - d-spine1:
       ip_addr: 192.168.0.61
+      ztp: true
+      system_mac_address: 50:01:99:04:01:01
       node_type: veos
       serial_number: 95ab87ab66974721b8f791f1555b3fbb
       ports:
         - Ethernet1-12
   - d-spine2:
       ip_addr: 192.168.0.62
+      ztp: true
+      system_mac_address: 50:01:99:04:01:02
       node_type: veos
       serial_number: 3409d809f1044d86974a472da09736c1
       ports:
@@ -251,24 +321,32 @@ nodes:
   # L2Leafs
   - d-leaf1a:
       ip_addr: 192.168.0.63
+      ztp: true
+      system_mac_address: 50:01:99:04:02:01
       node_type: veos
       serial_number: 97a34181658e4f638685283614e2a22d
       ports:
         - Ethernet1-12
   - d-leaf1b:
       ip_addr: 192.168.0.64
+      ztp: true
+      system_mac_address: 50:01:99:04:02:02
       node_type: veos
       serial_number: ea4d78feea3940f680dc520811c1d634
       ports:
         - Ethernet1-12
   - d-leaf2a:
       ip_addr: 192.168.0.65
+      ztp: true
+      system_mac_address: 50:01:99:04:02:03
       node_type: veos
       serial_number: 5bd7f392f13e495281a5527399a80b91
       ports:
         - Ethernet1-12
   - d-leaf2b:
       ip_addr: 192.168.0.66
+      ztp: true
+      system_mac_address: 50:01:99:04:02:04
       node_type: veos
       serial_number: e94d231243194d3388bf69a498324121
       ports:
@@ -276,12 +354,16 @@ nodes:
   # Member Leafs
   - d-leaf2c:
       ip_addr: 192.168.0.67
+      ztp: true
+      system_mac_address: 50:01:99:04:02:05
       node_type: veos
       serial_number: 86df824fc91d407896c260516dd65959
       ports:
         - Ethernet1-12
   - d-leaf2d:
       ip_addr: 192.168.0.68
+      ztp: true
+      system_mac_address: 50:01:99:04:02:06
       node_type: veos
       serial_number: f3ea70309b08407c8b67b1bf3c39fac9
       ports:
@@ -432,37 +514,37 @@ links:
   # Borderleafs
   # ----------------------- #
   - connection:
-    - a-bleaf1:Ethernet3
-    - a-spine1:Ethernet1
+      - a-bleaf1:Ethernet3
+      - a-spine1:Ethernet1
 
   - connection:
-    - a-bleaf1:Ethernet2
-    - a-spine2:Ethernet2
+      - a-bleaf1:Ethernet2
+      - a-spine2:Ethernet2
 
   - connection:
-    - a-bleaf1:Ethernet1
-    - wan1:Ethernet1
+      - a-bleaf1:Ethernet1
+      - wan1:Ethernet1
 
   - connection:
-    - a-bleaf2:Ethernet3
-    - a-spine1:Ethernet2
+      - a-bleaf2:Ethernet3
+      - a-spine1:Ethernet2
 
   - connection:
-    - a-bleaf2:Ethernet2
-    - a-spine2:Ethernet1
+      - a-bleaf2:Ethernet2
+      - a-spine2:Ethernet1
 
   - connection:
-    - a-bleaf2:Ethernet1
-    - wan1:Ethernet2
+      - a-bleaf2:Ethernet1
+      - wan1:Ethernet2
 
   # MLAG
   - connection:
-    - a-bleaf1:Ethernet11
-    - a-bleaf2:Ethernet11
+      - a-bleaf1:Ethernet11
+      - a-bleaf2:Ethernet11
 
   - connection:
-    - a-bleaf1:Ethernet12
-    - a-bleaf2:Ethernet12
+      - a-bleaf1:Ethernet12
+      - a-bleaf2:Ethernet12
 
   # ----------------------------------- #
   # Campus B
@@ -553,69 +635,69 @@ links:
   # APSwitch
   # ----------------------- #
   - connection:
-    - b-apswitch:Ethernet1
-    - b-leaf2d:Ethernet3
+      - b-apswitch:Ethernet1
+      - b-leaf2d:Ethernet3
 
   - connection:
-    - b-apswitch:Ethernet2
-    - b-leaf2-wifi:Ethernet1
+      - b-apswitch:Ethernet2
+      - b-leaf2-wifi:Ethernet1
 
   # ----------------------- #
   # WLAN
   # ----------------------- #
   - connection:
-    - b-wlan1:Ethernet1
-    - b-bleaf1:Ethernet4
+      - b-wlan1:Ethernet1
+      - b-bleaf1:Ethernet4
 
   - connection:
-    - b-wlan2:Ethernet1
-    - b-bleaf2:Ethernet4
+      - b-wlan2:Ethernet1
+      - b-bleaf2:Ethernet4
 
   # MLAG
   - connection:
-    - b-wlan1:Ethernet11
-    - b-wlan2:Ethernet11
+      - b-wlan1:Ethernet11
+      - b-wlan2:Ethernet11
 
   - connection:
-    - b-wlan1:Ethernet12
-    - b-wlan2:Ethernet12
+      - b-wlan1:Ethernet12
+      - b-wlan2:Ethernet12
 
   # ----------------------- #
   # Borderleafs
   # ----------------------- #
   - connection:
-    - b-bleaf1:Ethernet3
-    - b-spine1:Ethernet1
+      - b-bleaf1:Ethernet3
+      - b-spine1:Ethernet1
 
   - connection:
-    - b-bleaf1:Ethernet2
-    - b-spine2:Ethernet2
+      - b-bleaf1:Ethernet2
+      - b-spine2:Ethernet2
 
   - connection:
-    - b-bleaf1:Ethernet1
-    - wan1:Ethernet3
+      - b-bleaf1:Ethernet1
+      - wan1:Ethernet3
 
   - connection:
-    - b-bleaf2:Ethernet2
-    - b-spine1:Ethernet2
+      - b-bleaf2:Ethernet2
+      - b-spine1:Ethernet2
 
   - connection:
-    - b-bleaf2:Ethernet3
-    - b-spine2:Ethernet1
+      - b-bleaf2:Ethernet3
+      - b-spine2:Ethernet1
 
   - connection:
-    - b-bleaf2:Ethernet1
-    - wan1:Ethernet4
+      - b-bleaf2:Ethernet1
+      - wan1:Ethernet4
 
   # MLAG
   - connection:
-    - b-bleaf1:Ethernet11
-    - b-bleaf2:Ethernet11
+      - b-bleaf1:Ethernet11
+      - b-bleaf2:Ethernet11
 
   - connection:
-    - b-bleaf1:Ethernet12
-    - b-bleaf2:Ethernet12
- 
+      - b-bleaf1:Ethernet12
+      - b-bleaf2:Ethernet12
+
   # ----------------------------------- #
   # Campus C
   # ----------------------------------- #
@@ -704,37 +786,37 @@ links:
   # Borderleafs
   # ----------------------- #
   - connection:
-    - c-bleaf1:Ethernet3
-    - c-spine1:Ethernet1
+      - c-bleaf1:Ethernet3
+      - c-spine1:Ethernet1
 
   - connection:
-    - c-bleaf1:Ethernet2
-    - c-spine2:Ethernet2
+      - c-bleaf1:Ethernet2
+      - c-spine2:Ethernet2
 
   - connection:
-    - c-bleaf1:Ethernet1
-    - wan1:Ethernet5
+      - c-bleaf1:Ethernet1
+      - wan1:Ethernet5
 
   - connection:
-    - c-bleaf2:Ethernet2
-    - c-spine1:Ethernet2
+      - c-bleaf2:Ethernet2
+      - c-spine1:Ethernet2
 
   - connection:
-    - c-bleaf2:Ethernet3
-    - c-spine2:Ethernet1
+      - c-bleaf2:Ethernet3
+      - c-spine2:Ethernet1
 
   - connection:
-    - c-bleaf2:Ethernet1
-    - wan1:Ethernet6
+      - c-bleaf2:Ethernet1
+      - wan1:Ethernet6
 
   # MLAG
   - connection:
-    - c-bleaf1:Ethernet11
-    - c-bleaf2:Ethernet11
+      - c-bleaf1:Ethernet11
+      - c-bleaf2:Ethernet11
 
   - connection:
-    - c-bleaf1:Ethernet12
-    - c-bleaf2:Ethernet12
+      - c-bleaf1:Ethernet12
+      - c-bleaf2:Ethernet12
 
   # ----------------------------------- #
   # Campus D
@@ -744,21 +826,21 @@ links:
   # Spines
   # ----------------------- #
   - connection:
-    - d-spine1:Ethernet1
-    - wan1:Ethernet7
+      - d-spine1:Ethernet1
+      - wan1:Ethernet7
 
   - connection:
-    - d-spine2:Ethernet1
-    - wan1:Ethernet8
+      - d-spine2:Ethernet1
+      - wan1:Ethernet8
 
   # MLAG
   - connection:
-    - d-spine1:Ethernet11
-    - d-spine2:Ethernet11
+      - d-spine1:Ethernet11
+      - d-spine2:Ethernet11
 
   - connection:
-    - d-spine1:Ethernet12
-    - d-spine2:Ethernet12
+      - d-spine1:Ethernet12
+      - d-spine2:Ethernet12
 
   # ----------------------- #
   # Leaf 1
@@ -839,4 +921,3 @@ links:
   - connection:
       - d-leaf2a:Ethernet12
       - d-leaf2b:Ethernet12
-
