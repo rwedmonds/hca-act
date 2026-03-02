@@ -169,30 +169,29 @@ all:
 
         CAMPUS_BORDERLEAFS:
           hosts:
-            campus-a-leaf2a:
-            campus-a-leaf2b:
-            campus-b-leaf2a:
-            campus-b-leaf2b:
-            campus-c-leaf2a:
-            campus-c-leaf2b:
+            a-leaf2a:
+            a-leaf2b:
+            b-leaf2a:
+            b-leaf2b:
+            c-leaf2a:
+            c-leaf2b:
         MLAG_ODD:
           hosts:
-            campus-a-leaf1a:
-            campus-a-leaf2a:
-            campus-b-leaf1a:
-            campus-b-leaf2a:
-            campus-c-leaf1a:
-            campus-c-leaf2a:
-            campus-d-leaf1a:
-            campus-d-leaf2a:
+            a-leaf1a:
+            a-leaf2a:
+            b-leaf1a:
+            b-leaf2a:
+            c-leaf1a:
+            c-leaf2a:
+            d-leaf1a:
+            d-leaf2a:
         MLAG_EVEN:
           hosts:
-            campus-a-leaf1b:
-            campus-a-leaf2b:
-            campus-b-leaf1b:
-            campus-b-leaf2b:
-            campus-c-leaf1b:
-            campus-c-leaf2b:
-            campus-d-leaf1b:
-            campus-d-leaf2b:
-
+            a-leaf1b:
+            a-leaf2b:
+            b-leaf1b:
+            b-leaf2b:
+            c-leaf1b:
+            c-leaf2b:
+            d-leaf1b:
+            d-leaf2b:

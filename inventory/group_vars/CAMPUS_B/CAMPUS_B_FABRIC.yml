@@ -139,8 +139,8 @@ l3leaf:
     - group: "b-leaf2"
       bgp_as: 65202
       uplink_switches:
-        - "campus-b-spine1"
-        - "campus-b-spine2"
+        - "b-spine1"
+        - "b-spine2"
 
       nodes:
 

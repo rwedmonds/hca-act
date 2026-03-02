@@ -1,0 +1,105 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+ethernet_interfaces:
+- name: Ethernet1
+  description: L2_a-leaf2a_Ethernet5
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  metadata:
+    peer: a-leaf2a
+    peer_interface: Ethernet5
+    peer_type: l3leaf
+- name: Ethernet2
+  description: L2_a-leaf2b_Ethernet5
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  metadata:
+    peer: a-leaf2b
+    peer_interface: Ethernet5
+    peer_type: l3leaf
+- name: Ethernet5
+  description: SERVER_a-leaf2-server1_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 5
+    mode: active
+  metadata:
+    peer: a-leaf2-server1
+    peer_interface: Ethernet1
+    peer_type: server
+    peer_key: servers
+    port_profile: TENANT_A_Vl110
+hostname: a-leaf2c
+ip_igmp_snooping:
+  globally_enabled: true
+management_interfaces:
+- name: Management1
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: MGMT
+  ip_address: 192.168.0.41/24
+  type: oob
+  gateway: 192.168.0.1
+metadata:
+  is_deployed: true
+  platform: vEOS-LAB
+  dc_name: CAMPUS_A
+  fabric_name: HCA
+port_channel_interfaces:
+- name: Port-Channel1
+  description: L2_a-leaf2_Port-Channel5
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 10,20,30,40
+- name: Port-Channel5
+  description: SERVER_a-leaf2-server1
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: 110
+service_routing_protocols_model: multi-agent
+static_routes:
+- vrf: MGMT
+  prefix: 0.0.0.0/0
+  next_hop: 192.168.0.1
+transceiver_qsfp_default_mode_4x10: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+vlans:
+- id: 10
+  name: MGMT
+  metadata:
+    tenants:
+    - HCA
+- id: 20
+  name: USER
+  metadata:
+    tenants:
+    - HCA
+- id: 30
+  name: VOICE
+  metadata:
+    tenants:
+    - HCA
+- id: 40
+  name: PACS
+  metadata:
+    tenants:
+    - HCA
+vrfs:
+- name: MGMT
+  ip_routing: false

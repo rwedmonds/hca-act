@@ -1,0 +1,273 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+ethernet_interfaces:
+- name: Ethernet11
+  description: MLAG_d-spine2_Ethernet11
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+  metadata:
+    peer: d-spine2
+    peer_interface: Ethernet11
+    peer_type: mlag_peer
+- name: Ethernet12
+  description: MLAG_d-spine2_Ethernet12
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+  metadata:
+    peer: d-spine2
+    peer_interface: Ethernet12
+    peer_type: mlag_peer
+- name: Ethernet5
+  description: L2_d-leaf1a_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 5
+    mode: active
+  metadata:
+    peer: d-leaf1a
+    peer_interface: Ethernet1
+    peer_type: l2leaf
+- name: Ethernet6
+  description: L2_d-leaf1b_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 5
+    mode: active
+  metadata:
+    peer: d-leaf1b
+    peer_interface: Ethernet1
+    peer_type: l2leaf
+- name: Ethernet7
+  description: L2_d-leaf2a_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 7
+    mode: active
+  metadata:
+    peer: d-leaf2a
+    peer_interface: Ethernet1
+    peer_type: l2leaf
+- name: Ethernet8
+  description: L2_d-leaf2b_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 7
+    mode: active
+  metadata:
+    peer: d-leaf2b
+    peer_interface: Ethernet1
+    peer_type: l2leaf
+- name: Ethernet1
+  shutdown: false
+  ip_address: 169.254.40.0/31
+  metadata:
+    peer_type: l3_interface
+  switchport:
+    enabled: false
+hostname: d-spine1
+ip_igmp_snooping:
+  globally_enabled: true
+ip_routing: true
+ip_virtual_router_mac_address: 00:1c:73:00:dc:01
+loopback_interfaces:
+- name: Loopback0
+  description: ROUTER_ID
+  shutdown: false
+  ip_address: 172.16.40.1/32
+management_interfaces:
+- name: Management1
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: MGMT
+  ip_address: 192.168.0.61
+  type: oob
+  gateway: 192.168.0.1
+metadata:
+  is_deployed: true
+  platform: vEOS
+  dc_name: CAMPUS
+  fabric_name: HCA
+  validate_hardware:
+    enabled: false
+mlag_configuration:
+  domain_id: d-spines
+  local_interface: Vlan4094
+  peer_address: 192.168.255.1
+  peer_link: Port-Channel11
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+port_channel_interfaces:
+- name: Port-Channel11
+  description: MLAG_d-spine2_Port-Channel11
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 2-4094
+      groups:
+      - MLAG
+- name: Port-Channel5
+  description: L2_d-leaf1_Port-Channel1
+  shutdown: false
+  mlag: 5
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 10,20,30,40
+- name: Port-Channel7
+  description: L2_d-leaf2_Port-Channel1
+  shutdown: false
+  mlag: 7
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 10,20,30,40
+prefix_lists:
+- name: PL-MLAG-PEER-VRFS
+  sequence_numbers:
+  - sequence: 10
+    action: permit 192.168.254.0/31
+route_maps:
+- name: RM-CONN-2-BGP-VRFS
+  sequence_numbers:
+  - sequence: 10
+    type: deny
+    match:
+    - ip address prefix-list PL-MLAG-PEER-VRFS
+  - sequence: 20
+    type: permit
+router_bgp:
+  as: '65401'
+  distance:
+    external_routes: 20
+    internal_routes: 200
+    local_routes: 200
+  graceful_restart:
+    enabled: true
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  bgp:
+    default:
+      ipv4_unicast: false
+  peer_groups:
+  - name: WAN
+    remote_as: '65534'
+    description: WAN Routers
+    bfd: true
+    send_community: all
+    maximum_routes: 12000
+  neighbors:
+  - ip_address: 169.254.40.1
+    peer_group: WAN
+    description: WAN Router
+service_routing_protocols_model: multi-agent
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 32768
+  no_spanning_tree_vlan: 4093-4094
+static_routes:
+- vrf: MGMT
+  prefix: 0.0.0.0/0
+  next_hop: 192.168.0.1
+transceiver_qsfp_default_mode_4x10: true
+vlan_interfaces:
+- name: Vlan4094
+  description: MLAG
+  shutdown: false
+  ip_address: 192.168.255.0/31
+  mtu: 1500
+  no_autostate: true
+- name: Vlan10
+  description: MGMT
+  shutdown: false
+  ip_address_virtual: 10.40.10.1/24
+  metadata:
+    tenants:
+    - HCA
+- name: Vlan20
+  description: USER
+  shutdown: false
+  ip_address_virtual: 10.40.20.1/24
+  metadata:
+    tenants:
+    - HCA
+- name: Vlan30
+  description: VOICE
+  shutdown: false
+  ip_address_virtual: 10.40.30.1/24
+  metadata:
+    tenants:
+    - HCA
+- name: Vlan40
+  description: PACS
+  shutdown: false
+  ip_address_virtual: 10.40.40.1/24
+  metadata:
+    tenants:
+    - HCA
+- name: Vlan3009
+  description: MLAG_L3_VRF_default
+  shutdown: false
+  vrf: default
+  ip_address: 192.168.254.0/31
+  mtu: 1500
+  metadata:
+    tenants:
+    - HCA
+    type: underlay_peering
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+vlans:
+- id: 4094
+  name: MLAG
+  trunk_groups:
+  - MLAG
+  metadata:
+    tenants:
+    - system
+- id: 10
+  name: MGMT
+  metadata:
+    tenants:
+    - HCA
+- id: 20
+  name: USER
+  metadata:
+    tenants:
+    - HCA
+- id: 30
+  name: VOICE
+  metadata:
+    tenants:
+    - HCA
+- id: 40
+  name: PACS
+  metadata:
+    tenants:
+    - HCA
+- id: 3009
+  name: MLAG_L3_VRF_default
+  trunk_groups:
+  - MLAG
+  metadata:
+    tenants:
+    - HCA
+vrfs:
+- name: MGMT
+  ip_routing: false

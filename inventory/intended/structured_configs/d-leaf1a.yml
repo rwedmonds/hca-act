@@ -1,0 +1,151 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+ethernet_interfaces:
+- name: Ethernet11
+  description: MLAG_d-leaf1b_Ethernet11
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+  metadata:
+    peer: d-leaf1b
+    peer_interface: Ethernet11
+    peer_type: mlag_peer
+- name: Ethernet12
+  description: MLAG_d-leaf1b_Ethernet12
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+  metadata:
+    peer: d-leaf1b
+    peer_interface: Ethernet12
+    peer_type: mlag_peer
+- name: Ethernet1
+  description: L2_d-spine1_Ethernet5
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  metadata:
+    peer: d-spine1
+    peer_interface: Ethernet5
+    peer_type: l3spine
+- name: Ethernet2
+  description: L2_d-spine2_Ethernet5
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  metadata:
+    peer: d-spine2
+    peer_interface: Ethernet5
+    peer_type: l3spine
+hostname: d-leaf1a
+ip_igmp_snooping:
+  globally_enabled: true
+ip_routing: true
+management_interfaces:
+- name: Management1
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: MGMT
+  ip_address: 192.168.0.63
+  type: oob
+  gateway: 192.168.0.1
+metadata:
+  is_deployed: true
+  platform: vEOS
+  dc_name: CAMPUS
+  fabric_name: HCA
+  validate_hardware:
+    enabled: false
+  cv_tags:
+    device_tags:
+    - name: MLAG
+      value: odd
+mlag_configuration:
+  domain_id: d-leaf1
+  local_interface: Vlan4094
+  peer_address: 192.168.255.1
+  peer_link: Port-Channel11
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+port_channel_interfaces:
+- name: Port-Channel11
+  description: MLAG_d-leaf1b_Port-Channel11
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 2-4094
+      groups:
+      - MLAG
+- name: Port-Channel1
+  description: L2_d-spines_Port-Channel5
+  shutdown: false
+  mlag: 1
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 10,20,30,40
+service_routing_protocols_model: multi-agent
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 32768
+  no_spanning_tree_vlan: '4094'
+static_routes:
+- vrf: MGMT
+  prefix: 0.0.0.0/0
+  next_hop: 192.168.0.1
+transceiver_qsfp_default_mode_4x10: true
+vlan_interfaces:
+- name: Vlan4094
+  description: MLAG
+  shutdown: false
+  ip_address: 192.168.255.0/31
+  mtu: 1500
+  no_autostate: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+vlans:
+- id: 4094
+  name: MLAG
+  trunk_groups:
+  - MLAG
+  metadata:
+    tenants:
+    - system
+- id: 10
+  name: MGMT
+  metadata:
+    tenants:
+    - HCA
+- id: 20
+  name: USER
+  metadata:
+    tenants:
+    - HCA
+- id: 30
+  name: VOICE
+  metadata:
+    tenants:
+    - HCA
+- id: 40
+  name: PACS
+  metadata:
+    tenants:
+    - HCA
+vrfs:
+- name: MGMT
+  ip_routing: false

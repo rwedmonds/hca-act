@@ -1,0 +1,191 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+ethernet_interfaces:
+- name: Ethernet5
+  description: P2P_c-leaf1a_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.0.130/31
+  metadata:
+    peer: c-leaf1a
+    peer_interface: Ethernet2
+    peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet6
+  description: P2P_c-leaf1b_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.0.134/31
+  metadata:
+    peer: c-leaf1b
+    peer_interface: Ethernet2
+    peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet7
+  description: P2P_c-leaf2a_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.0.138/31
+  metadata:
+    peer: c-leaf2a
+    peer_interface: Ethernet2
+    peer_type: l3leaf
+  switchport:
+    enabled: false
+- name: Ethernet8
+  description: P2P_c-leaf2b_Ethernet2
+  shutdown: false
+  mtu: 1500
+  ip_address: 172.16.0.142/31
+  metadata:
+    peer: c-leaf2b
+    peer_interface: Ethernet2
+    peer_type: l3leaf
+  switchport:
+    enabled: false
+hostname: c-spine2
+ip_routing: true
+loopback_interfaces:
+- name: Loopback0
+  description: ROUTER_ID
+  shutdown: false
+  ip_address: 192.168.224.32/32
+management_interfaces:
+- name: Management1
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: MGMT
+  ip_address: 192.168.0.52/24
+  type: oob
+  gateway: 192.168.0.1
+metadata:
+  is_deployed: true
+  platform: vEOS-LAB
+  dc_name: CAMPUS
+  fabric_name: HCA
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 192.168.224.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+router_bfd:
+  multihop:
+    interval: 1200
+    min_rx: 1200
+    multiplier: 3
+router_bgp:
+  as: '65300'
+  router_id: 192.168.224.32
+  maximum_paths:
+    paths: 4
+  bgp:
+    default:
+      ipv4_unicast: false
+  peer_groups:
+  - name: IPv4-UNDERLAY-PEERS
+    metadata:
+      type: ipv4
+    password: AQQvKeimxJu+uGQ/yYvv9w==
+    send_community: all
+    maximum_routes: 256000
+  - name: EVPN-OVERLAY-PEERS
+    metadata:
+      type: evpn
+    next_hop_unchanged: true
+    update_source: Loopback0
+    bfd: true
+    ebgp_multihop: 3
+    password: q+VNViP5i4rVjW1cxFv2wA==
+    send_community: all
+    maximum_routes: 0
+  neighbors:
+  - ip_address: 172.16.0.131
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65301'
+    metadata:
+      peer: c-leaf1a
+    description: c-leaf1a_Ethernet2
+  - ip_address: 172.16.0.135
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65301'
+    metadata:
+      peer: c-leaf1b
+    description: c-leaf1b_Ethernet2
+  - ip_address: 172.16.0.139
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65302'
+    metadata:
+      peer: c-leaf2a
+    description: c-leaf2a_Ethernet2
+  - ip_address: 172.16.0.143
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65302'
+    metadata:
+      peer: c-leaf2b
+    description: c-leaf2b_Ethernet2
+  - ip_address: 172.16.30.33
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65301'
+    metadata:
+      peer: c-leaf1a
+    description: c-leaf1a_Loopback0
+  - ip_address: 172.16.30.34
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65301'
+    metadata:
+      peer: c-leaf1b
+    description: c-leaf1b_Loopback0
+  - ip_address: 172.16.30.35
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65302'
+    metadata:
+      peer: c-leaf2a
+    description: c-leaf2a_Loopback0
+  - ip_address: 172.16.30.36
+    peer_group: EVPN-OVERLAY-PEERS
+    remote_as: '65302'
+    metadata:
+      peer: c-leaf2b
+    description: c-leaf2b_Loopback0
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  address_family_ipv4:
+    peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+service_routing_protocols_model: multi-agent
+spanning_tree:
+  mode: none
+static_routes:
+- vrf: MGMT
+  prefix: 0.0.0.0/0
+  next_hop: 192.168.0.1
+transceiver_qsfp_default_mode_4x10: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+vrfs:
+- name: MGMT
+  ip_routing: false
