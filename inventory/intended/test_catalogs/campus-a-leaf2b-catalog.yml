@@ -1,18 +1,18 @@
 anta.tests.connectivity:
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-leaf2a
+    - neighbor_device: a-leaf2a
       neighbor_port: Ethernet3
       port: Ethernet3
     result_overwrite:
-      custom_field: 'Local: Ethernet3 - Remote: campus-a-leaf2a Ethernet3'
+      custom_field: 'Local: Ethernet3 - Remote: a-leaf2a Ethernet3'
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-leaf2a
+    - neighbor_device: a-leaf2a
       neighbor_port: Ethernet4
       port: Ethernet4
     result_overwrite:
-      custom_field: 'Local: Ethernet4 - Remote: campus-a-leaf2a Ethernet4'
+      custom_field: 'Local: Ethernet4 - Remote: a-leaf2a Ethernet4'
 - VerifyReachability:
     hosts:
     - destination: 192.168.244.11
@@ -20,7 +20,7 @@ anta.tests.connectivity:
       source: 192.168.244.16
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: campus-a-spine1
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: a-spine1
         Loopback0 (IP: 192.168.244.11)'
 - VerifyReachability:
     hosts:
@@ -29,7 +29,7 @@ anta.tests.connectivity:
       source: 192.168.244.16
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: campus-a-spine2
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: a-spine2
         Loopback0 (IP: 192.168.244.12)'
 - VerifyReachability:
     hosts:
@@ -38,7 +38,7 @@ anta.tests.connectivity:
       source: 192.168.244.16
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: campus-a-leaf1a
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: a-leaf1a
         Loopback0 (IP: 192.168.244.13)'
 - VerifyReachability:
     hosts:
@@ -47,7 +47,7 @@ anta.tests.connectivity:
       source: 192.168.244.16
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: campus-a-leaf1b
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: a-leaf1b
         Loopback0 (IP: 192.168.244.14)'
 - VerifyReachability:
     hosts:
@@ -56,7 +56,7 @@ anta.tests.connectivity:
       source: 192.168.244.16
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: campus-a-leaf2a
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: a-leaf2a
         Loopback0 (IP: 192.168.244.15)'
 - VerifyReachability:
     hosts:
@@ -65,7 +65,7 @@ anta.tests.connectivity:
       source: 192.168.244.16
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: campus-a-leaf2b
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.16) - Destination: a-leaf2b
         Loopback0 (IP: 192.168.244.16)'
 anta.tests.interfaces:
 - VerifyInterfacesStatus:
@@ -73,13 +73,13 @@ anta.tests.interfaces:
     - name: Ethernet3
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet3 - MLAG_campus-a-leaf2a_Ethernet3 = 'up'
+      custom_field: Interface Ethernet3 - MLAG_a-leaf2a_Ethernet3 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet4
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet4 - MLAG_campus-a-leaf2a_Ethernet4 = 'up'
+      custom_field: Interface Ethernet4 - MLAG_a-leaf2a_Ethernet4 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Management1
@@ -91,7 +91,7 @@ anta.tests.interfaces:
     - name: Port-Channel3
       status: up
     result_overwrite:
-      custom_field: Interface Port-Channel3 - MLAG_campus-a-leaf2a_Port-Channel3 =
+      custom_field: Interface Port-Channel3 - MLAG_a-leaf2a_Port-Channel3 =
         'up'
 - VerifyInterfacesStatus:
     interfaces:
@@ -205,7 +205,7 @@ anta.tests.routing.bgp:
       - 10.255.254.28
       safi: unicast
     result_overwrite:
-      custom_field: 'BGP IPv4 Unicast Peer: campus-a-leaf2a (IP: 10.255.254.28)'
+      custom_field: 'BGP IPv4 Unicast Peer: a-leaf2a (IP: 10.255.254.28)'
 anta.tests.routing.generic:
 - VerifyRoutingProtocolModel:
     model: multi-agent
@@ -213,42 +213,42 @@ anta.tests.routing.generic:
       custom_field: 'Routing protocol model: multi-agent'
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.11 - Peer: campus-a-spine1'
+      custom_field: 'Route: 192.168.244.11 - Peer: a-spine1'
     routes:
     - 192.168.244.11
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.12 - Peer: campus-a-spine2'
+      custom_field: 'Route: 192.168.244.12 - Peer: a-spine2'
     routes:
     - 192.168.244.12
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.13 - Peer: campus-a-leaf1a'
+      custom_field: 'Route: 192.168.244.13 - Peer: a-leaf1a'
     routes:
     - 192.168.244.13
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.14 - Peer: campus-a-leaf1b'
+      custom_field: 'Route: 192.168.244.14 - Peer: a-leaf1b'
     routes:
     - 192.168.244.14
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.15 - Peer: campus-a-leaf2a'
+      custom_field: 'Route: 192.168.244.15 - Peer: a-leaf2a'
     routes:
     - 192.168.244.15
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.16 - Peer: campus-a-leaf2b'
+      custom_field: 'Route: 192.168.244.16 - Peer: a-leaf2b'
     routes:
     - 192.168.244.16
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.243.13 - Peer: campus-a-leaf1a'
+      custom_field: 'Route: 192.168.243.13 - Peer: a-leaf1a'
     routes:
     - 192.168.243.13
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.243.15 - Peer: campus-a-leaf2a'
+      custom_field: 'Route: 192.168.243.15 - Peer: a-leaf2a'
     routes:
     - 192.168.243.15
 anta.tests.system:

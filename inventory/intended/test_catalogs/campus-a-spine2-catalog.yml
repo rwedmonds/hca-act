@@ -1,18 +1,18 @@
 anta.tests.connectivity:
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-leaf1a
+    - neighbor_device: a-leaf1a
       neighbor_port: Ethernet2
       port: Ethernet5
     result_overwrite:
-      custom_field: 'Local: Ethernet5 - Remote: campus-a-leaf1a Ethernet2'
+      custom_field: 'Local: Ethernet5 - Remote: a-leaf1a Ethernet2'
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-leaf1b
+    - neighbor_device: a-leaf1b
       neighbor_port: Ethernet2
       port: Ethernet6
     result_overwrite:
-      custom_field: 'Local: Ethernet6 - Remote: campus-a-leaf1b Ethernet2'
+      custom_field: 'Local: Ethernet6 - Remote: a-leaf1b Ethernet2'
 - VerifyReachability:
     hosts:
     - destination: 172.31.254.51
@@ -21,7 +21,7 @@ anta.tests.connectivity:
       vrf: default
     result_overwrite:
       custom_field: 'Source: P2P Interface Ethernet5 (IP: 172.31.254.50) - Destination:
-        campus-a-leaf1a Ethernet2 (IP: 172.31.254.51)'
+        a-leaf1a Ethernet2 (IP: 172.31.254.51)'
 - VerifyReachability:
     hosts:
     - destination: 172.31.254.55
@@ -30,20 +30,20 @@ anta.tests.connectivity:
       vrf: default
     result_overwrite:
       custom_field: 'Source: P2P Interface Ethernet6 (IP: 172.31.254.54) - Destination:
-        campus-a-leaf1b Ethernet2 (IP: 172.31.254.55)'
+        a-leaf1b Ethernet2 (IP: 172.31.254.55)'
 anta.tests.interfaces:
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet5
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet5 - P2P_campus-a-leaf1a_Ethernet2 = 'up'
+      custom_field: Interface Ethernet5 - P2P_a-leaf1a_Ethernet2 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet6
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet6 - P2P_campus-a-leaf1b_Ethernet2 = 'up'
+      custom_field: Interface Ethernet6 - P2P_a-leaf1b_Ethernet2 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Management1
@@ -63,14 +63,14 @@ anta.tests.routing.bgp:
       peers:
       - 192.168.244.13
     result_overwrite:
-      custom_field: 'BGP EVPN Peer: campus-a-leaf1a (IP: 192.168.244.13)'
+      custom_field: 'BGP EVPN Peer: a-leaf1a (IP: 192.168.244.13)'
 - VerifyBGPSpecificPeers:
     address_families:
     - afi: evpn
       peers:
       - 192.168.244.14
     result_overwrite:
-      custom_field: 'BGP EVPN Peer: campus-a-leaf1b (IP: 192.168.244.14)'
+      custom_field: 'BGP EVPN Peer: a-leaf1b (IP: 192.168.244.14)'
 - VerifyBGPSpecificPeers:
     address_families:
     - afi: ipv4
@@ -78,7 +78,7 @@ anta.tests.routing.bgp:
       - 172.31.254.51
       safi: unicast
     result_overwrite:
-      custom_field: 'BGP IPv4 Unicast Peer: campus-a-leaf1a (IP: 172.31.254.51)'
+      custom_field: 'BGP IPv4 Unicast Peer: a-leaf1a (IP: 172.31.254.51)'
 - VerifyBGPSpecificPeers:
     address_families:
     - afi: ipv4
@@ -86,7 +86,7 @@ anta.tests.routing.bgp:
       - 172.31.254.55
       safi: unicast
     result_overwrite:
-      custom_field: 'BGP IPv4 Unicast Peer: campus-a-leaf1b (IP: 172.31.254.55)'
+      custom_field: 'BGP IPv4 Unicast Peer: a-leaf1b (IP: 172.31.254.55)'
 anta.tests.routing.generic:
 - VerifyRoutingProtocolModel:
     model: multi-agent

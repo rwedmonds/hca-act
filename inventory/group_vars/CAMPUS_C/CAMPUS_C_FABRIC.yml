@@ -75,11 +75,11 @@ spine:
     loopback_ipv4_pool: "192.168.224.0/24"
 
   nodes:
-    - name: "campus-c-spine1"
+    - name: "c-spine1"
       id: 31
       mgmt_ip: "192.168.0.51/24"
 
-    - name: "campus-c-spine2"
+    - name: "c-spine2"
       id: 32
       mgmt_ip: "192.168.0.52/24"
 
@@ -102,8 +102,8 @@ l3leaf:
     loopback_ipv4_pool: "172.16.30.0/24"
     vtep_loopback_ipv4_pool: "172.16.31.0/24"
     uplink_switches:
-      - "campus-c-spine1"
-      - "campus-c-spine2"
+      - "c-spine1"
+      - "c-spine2"
     uplink_interfaces:
       - "Ethernet1"
       - "Ethernet2"
@@ -120,28 +120,28 @@ l3leaf:
     spanning_tree_priority: 16384
 
   node_groups:
-    - group: "campus-c-leaf1"
+    - group: "c-leaf1"
       bgp_as: 65301
 
       nodes:
-        - name: "campus-c-leaf1a"
+        - name: "c-leaf1a"
           id: 33
           mgmt_ip: "192.168.0.53/24"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
-        - name: "campus-c-leaf1b"
+        - name: "c-leaf1b"
           id: 34
           mgmt_ip: "192.168.0.54/24"
           uplink_switch_interfaces:
             - "Ethernet6"
             - "Ethernet6"
 
-    - group: "campus-c-leaf2"
+    - group: "c-leaf2"
       bgp_as: 65302
 
       nodes:
-        - name: "campus-c-leaf2a"
+        - name: "c-leaf2a"
           id: 35
           mgmt_ip: "192.168.0.55/24"
           uplink_switch_interfaces:
@@ -181,7 +181,7 @@ l3leaf:
                   - name: "WAN"
                     activate: true
 
-        - name: "campus-c-leaf2b"
+        - name: "c-leaf2b"
           id: 36
           mgmt_ip: "192.168.0.56/24"
           uplink_switch_interfaces:
@@ -229,22 +229,22 @@ l2leaf:
     mlag: false
     platform: "vEOS-LAB"
     uplink_switches:
-      - "campus-c-leaf2a"
-      - "campus-c-leaf2b"
+      - "c-leaf2a"
+      - "c-leaf2b"
     uplink_interfaces:
       - "Ethernet1"
       - "Ethernet2"
   node_groups:
-    - group: "campus-c-leaf2"
+    - group: "c-leaf2"
       filter:
       nodes:
-        - name: "campus-c-leaf2c"
+        - name: "c-leaf2c"
           id: 37
           mgmt_ip: "192.168.0.57/24"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
-        - name: "campus-c-leaf2d"
+        - name: "c-leaf2d"
           id: 38
           mgmt_ip: "192.168.0.58/24"
           uplink_switch_interfaces:

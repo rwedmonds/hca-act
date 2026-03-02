@@ -41,20 +41,20 @@ servers:
   # --------------------------------- #
   # campus-d
   # --------------------------------- #
-  - name: "campus-d-leaf1-server1"
+  - name: "d-leaf1-server1"
     adapters:
       - switches:
-          - "campus-d-leaf1a"
+          - "a-leaf1a"
         switch_ports:
           - "Ethernet5"
         endpoint_ports:
           - "Ethernet1"
         profile: "TENANT_A_Vl110"
 
-  - name: "campus-d-leaf2-server1"
+  - name: "d-leaf2-server1"
     adapters:
       - switches:
-          - "campus-d-leaf2c"
+          - "a-leaf2c"
         switch_ports:
           - "Ethernet6"
         endpoint_ports:

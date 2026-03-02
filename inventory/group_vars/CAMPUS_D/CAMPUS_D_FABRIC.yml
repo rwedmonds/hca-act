@@ -60,10 +60,10 @@ l3spine:
       - "graceful-restart"
 
   node_groups:
-    - group: "campus-d-spines"
+    - group: "d-spines"
       bgp_as: "65401"
       nodes:
-        - name: "campus-d-spine1"
+        - name: "d-spine1"
           id: 1
           mgmt_ip: "192.168.0.61"
           l3_interfaces:
@@ -97,7 +97,7 @@ l3spine:
                   peer_group: "WAN"
                   description: "WAN Router"
 
-        - name: "campus-d-spine2"
+        - name: "d-spine2"
           id: 2
           mgmt_ip: "192.168.0.62"
           l3_interfaces:
@@ -137,8 +137,8 @@ l3spine:
 l2leaf:
   defaults:
     uplink_switches:
-      - "campus-d-spine1"
-      - "campus-d-spine2"
+      - "d-spine1"
+      - "d-spine2"
     uplink_interfaces:
       - "Ethernet1"
       - "Ethernet2"
@@ -155,33 +155,33 @@ l2leaf:
 # Leaf1
 # ----------------------------------- #
   node_groups:
-    - group: "campus-d-leaf1"
+    - group: "d-leaf1"
       platform: "vEOS"
       nodes:
-        - name: "campus-d-leaf1a"
+        - name: "d-leaf1a"
           id: 1
           mgmt_ip: "192.168.0.63"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
 
-        - name: "campus-d-leaf1b"
+        - name: "d-leaf1b"
           id: 2
           mgmt_ip: "192.168.0.64"
           uplink_switch_interfaces:
             - "Ethernet6"
             - "Ethernet6"
 
-    - group: "campus-d-leaf2"
+    - group: "d-leaf2"
       platform: "vEOS"
       nodes:
-        - name: "campus-d-leaf2a"
+        - name: "d-leaf2a"
           id: 3
           mgmt_ip: "192.168.0.65"
           uplink_switch_interfaces:
             - "Ethernet7"
             - "Ethernet7"
-        - name: "campus-d-leaf2b"
+        - name: "d-leaf2b"
           id: 4
           mgmt_ip: "192.168.0.66"
           uplink_switch_interfaces:
@@ -191,30 +191,29 @@ l2leaf:
 # ----------------------------------- #
 # Leaf2
 # ----------------------------------- #
-    - group: "campus-d-leaf2c"
+    - group: "d-leaf2c"
       platform: "vEOS"
       mlag: false
       nodes:
-        - name: "campus-d-leaf2c"
+        - name: "d-leaf2c"
           id: 5
           mgmt_ip: "192.168.0.67"
           uplink_switches:
-            - "campus-d-leaf2a"
-            - "campus-d-leaf2b"
+            - "d-leaf2a"
+            - "d-leaf2b"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
-    - group: "campus-d-leaf2d"
+    - group: "d-leaf2d"
       platform: "vEOS"
       mlag: false
       nodes:
-        - name: "campus-d-leaf2d"
+        - name: "d-leaf2d"
           id: 6
           mgmt_ip: "192.168.0.68"
           uplink_switches:
-            - "campus-d-leaf2a"
-            - "campus-d-leaf2b"
+            - "d-leaf2a"
+            - "d-leaf2b"
           uplink_switch_interfaces:
             - "Ethernet6"
             - "Ethernet6"
-

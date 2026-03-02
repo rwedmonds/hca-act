@@ -74,10 +74,10 @@ spine:
     bgp_as: 65100
     loopback_ipv4_pool: "192.168.234.0/24"
   nodes:
-    - name: "campus-b-spine1"
+    - name: "b-spine1"
       id: 21
       mgmt_ip: "192.168.0.41/24"
-    - name: "campus-b-spine2"
+    - name: "b-spine2"
       id: 22
       mgmt_ip: "192.168.0.42/24"
 
@@ -115,28 +115,28 @@ l3leaf:
     spanning_tree_priority: 16384
 
   node_groups:
-    - group: "campus-b-leaf1"
+    - group: "b-leaf1"
       bgp_as: 65201
       uplink_switches:
-        - "campus-b-spine1"
-        - "campus-b-spine2"
+        - "b-spine1"
+        - "b-spine2"
 
       nodes:
-        - name: "campus-b-leaf1a"
+        - name: "b-leaf1a"
           id: 23
           mgmt_ip: "192.168.0.43/24"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
 
-        - name: "campus-b-leaf1b"
+        - name: "b-leaf1b"
           id: 24
           mgmt_ip: "192.168.0.44/24"
           uplink_switch_interfaces:
             - "Ethernet6"
             - "Ethernet6"
 
-    - group: "campus-b-leaf2"
+    - group: "b-leaf2"
       bgp_as: 65202
       uplink_switches:
         - "campus-b-spine1"
@@ -144,7 +144,7 @@ l3leaf:
 
       nodes:
 
-        - name: "campus-b-leaf2a"
+        - name: "b-leaf2a"
           id: 25
           mgmt_ip: "192.168.0.45/24"
           uplink_switch_interfaces:
@@ -186,7 +186,7 @@ l3leaf:
                   - name: "WAN"
                     activate: true
 
-        - name: "campus-b-leaf2b"
+        - name: "b-leaf2b"
           id: 26
           mgmt_ip: "192.168.0.46/24"
           uplink_switch_interfaces:
@@ -236,25 +236,25 @@ l2leaf:
     mlag: false
     platform: "vEOS-LAB"
     uplink_switches:
-      - "campus-b-leaf2a"
-      - "campus-b-leaf2b"
+      - "b-leaf2a"
+      - "b-leaf2b"
     uplink_interfaces:
       - "Ethernet1"
       - "Ethernet2"
 
   node_groups:
-    - group: "campus-b-leaf2"
+    - group: "b-leaf2"
       filter:
 
       nodes:
-        - name: "campus-b-leaf2c"
+        - name: "b-leaf2c"
           id: 27
           mgmt_ip: "192.168.0.47/24"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
 
-        - name: "campus-b-leaf2d"
+        - name: "b-leaf2d"
           id: 28
           mgmt_ip: "192.168.0.48/24"
           uplink_switch_interfaces:
