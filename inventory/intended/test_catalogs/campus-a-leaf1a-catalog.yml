@@ -1,39 +1,39 @@
 anta.tests.connectivity:
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-leaf1b
+    - neighbor_device: a-leaf1b
       neighbor_port: Ethernet3
       port: Ethernet3
     result_overwrite:
-      custom_field: 'Local: Ethernet3 - Remote: campus-a-leaf1b Ethernet3'
+      custom_field: 'Local: Ethernet3 - Remote: a-leaf1b Ethernet3'
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-leaf1b
+    - neighbor_device: a-leaf1b
       neighbor_port: Ethernet4
       port: Ethernet4
     result_overwrite:
-      custom_field: 'Local: Ethernet4 - Remote: campus-a-leaf1b Ethernet4'
+      custom_field: 'Local: Ethernet4 - Remote: a-leaf1b Ethernet4'
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-spine1
+    - neighbor_device: a-spine1
       neighbor_port: Ethernet5
       port: Ethernet1
     result_overwrite:
-      custom_field: 'Local: Ethernet1 - Remote: campus-a-spine1 Ethernet5'
+      custom_field: 'Local: Ethernet1 - Remote: a-spine1 Ethernet5'
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-spine2
+    - neighbor_device: a-spine2
       neighbor_port: Ethernet5
       port: Ethernet2
     result_overwrite:
-      custom_field: 'Local: Ethernet2 - Remote: campus-a-spine2 Ethernet5'
+      custom_field: 'Local: Ethernet2 - Remote: a-spine2 Ethernet5'
 - VerifyLLDPNeighbors:
     neighbors:
-    - neighbor_device: campus-a-leaf2d
+    - neighbor_device: a-leaf2d
       neighbor_port: Ethernet1
       port: Ethernet6
     result_overwrite:
-      custom_field: 'Local: Ethernet6 - Remote: campus-a-leaf2d Ethernet1'
+      custom_field: 'Local: Ethernet6 - Remote: a-leaf2d Ethernet1'
 - VerifyReachability:
     hosts:
     - destination: 172.31.254.48
@@ -42,7 +42,7 @@ anta.tests.connectivity:
       vrf: default
     result_overwrite:
       custom_field: 'Source: P2P Interface Ethernet1 (IP: 172.31.254.49) - Destination:
-        campus-a-spine1 Ethernet5 (IP: 172.31.254.48)'
+        a-spine1 Ethernet5 (IP: 172.31.254.48)'
 - VerifyReachability:
     hosts:
     - destination: 172.31.254.50
@@ -51,7 +51,7 @@ anta.tests.connectivity:
       vrf: default
     result_overwrite:
       custom_field: 'Source: P2P Interface Ethernet2 (IP: 172.31.254.51) - Destination:
-        campus-a-spine2 Ethernet5 (IP: 172.31.254.50)'
+        a-spine2 Ethernet5 (IP: 172.31.254.50)'
 - VerifyReachability:
     hosts:
     - destination: 192.168.244.11
@@ -59,7 +59,7 @@ anta.tests.connectivity:
       source: 192.168.244.13
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: campus-a-spine1
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: a-spine1
         Loopback0 (IP: 192.168.244.11)'
 - VerifyReachability:
     hosts:
@@ -68,7 +68,7 @@ anta.tests.connectivity:
       source: 192.168.244.13
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: campus-a-spine2
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: a-spine2
         Loopback0 (IP: 192.168.244.12)'
 - VerifyReachability:
     hosts:
@@ -77,7 +77,7 @@ anta.tests.connectivity:
       source: 192.168.244.13
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: campus-a-leaf1a
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: a-leaf1a
         Loopback0 (IP: 192.168.244.13)'
 - VerifyReachability:
     hosts:
@@ -86,7 +86,7 @@ anta.tests.connectivity:
       source: 192.168.244.13
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: campus-a-leaf1b
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: a-leaf1b
         Loopback0 (IP: 192.168.244.14)'
 - VerifyReachability:
     hosts:
@@ -95,7 +95,7 @@ anta.tests.connectivity:
       source: 192.168.244.13
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: campus-a-leaf2a
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: a-leaf2a
         Loopback0 (IP: 192.168.244.15)'
 - VerifyReachability:
     hosts:
@@ -104,7 +104,7 @@ anta.tests.connectivity:
       source: 192.168.244.13
       vrf: default
     result_overwrite:
-      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: campus-a-leaf2b
+      custom_field: 'Source: Loopback0 (IP: 192.168.244.13) - Destination: a-leaf2b
         Loopback0 (IP: 192.168.244.16)'
 anta.tests.interfaces:
 - VerifyInterfacesStatus:
@@ -112,38 +112,38 @@ anta.tests.interfaces:
     - name: Ethernet3
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet3 - MLAG_campus-a-leaf1b_Ethernet3 = 'up'
+      custom_field: Interface Ethernet3 - MLAG_a-leaf1b_Ethernet3 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet4
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet4 - MLAG_campus-a-leaf1b_Ethernet4 = 'up'
+      custom_field: Interface Ethernet4 - MLAG_a-leaf1b_Ethernet4 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet1
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet1 - P2P_campus-a-spine1_Ethernet5 = 'up'
+      custom_field: Interface Ethernet1 - P2P_a-spine1_Ethernet5 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet2
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet2 - P2P_campus-a-spine2_Ethernet5 = 'up'
+      custom_field: Interface Ethernet2 - P2P_a-spine2_Ethernet5 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet5
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet5 - SERVER_campus-a-leaf1-server1_Ethernet1
+      custom_field: Interface Ethernet5 - SERVER_a-leaf1-server1_Ethernet1
         = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Ethernet6
       status: up
     result_overwrite:
-      custom_field: Interface Ethernet6 - L2_campus-a-leaf2d_Ethernet1 = 'up'
+      custom_field: Interface Ethernet6 - L2_a-leaf2d_Ethernet1 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Management1
@@ -155,20 +155,20 @@ anta.tests.interfaces:
     - name: Port-Channel3
       status: up
     result_overwrite:
-      custom_field: Interface Port-Channel3 - MLAG_campus-a-leaf1b_Port-Channel3 =
+      custom_field: Interface Port-Channel3 - MLAG_a-leaf1b_Port-Channel3 =
         'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Port-Channel5
       status: up
     result_overwrite:
-      custom_field: Interface Port-Channel5 - SERVER_campus-a-leaf1-server1 = 'up'
+      custom_field: Interface Port-Channel5 - SERVER_a-leaf1-server1 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Port-Channel6
       status: up
     result_overwrite:
-      custom_field: Interface Port-Channel6 - L2_campus-a-leaf2d_Port-Channel1 = 'up'
+      custom_field: Interface Port-Channel6 - L2_a-leaf2d_Port-Channel1 = 'up'
 - VerifyInterfacesStatus:
     interfaces:
     - name: Vlan4093
@@ -280,14 +280,14 @@ anta.tests.routing.bgp:
       peers:
       - 192.168.244.11
     result_overwrite:
-      custom_field: 'BGP EVPN Peer: campus-a-spine1 (IP: 192.168.244.11)'
+      custom_field: 'BGP EVPN Peer: a-spine1 (IP: 192.168.244.11)'
 - VerifyBGPSpecificPeers:
     address_families:
     - afi: evpn
       peers:
       - 192.168.244.12
     result_overwrite:
-      custom_field: 'BGP EVPN Peer: campus-a-spine2 (IP: 192.168.244.12)'
+      custom_field: 'BGP EVPN Peer: a-spine2 (IP: 192.168.244.12)'
 - VerifyBGPSpecificPeers:
     address_families:
     - afi: ipv4
@@ -295,7 +295,7 @@ anta.tests.routing.bgp:
       - 10.255.254.25
       safi: unicast
     result_overwrite:
-      custom_field: 'BGP IPv4 Unicast Peer: campus-a-leaf1b (IP: 10.255.254.25)'
+      custom_field: 'BGP IPv4 Unicast Peer: a-leaf1b (IP: 10.255.254.25)'
 - VerifyBGPSpecificPeers:
     address_families:
     - afi: ipv4
@@ -303,7 +303,7 @@ anta.tests.routing.bgp:
       - 172.31.254.48
       safi: unicast
     result_overwrite:
-      custom_field: 'BGP IPv4 Unicast Peer: campus-a-spine1 (IP: 172.31.254.48)'
+      custom_field: 'BGP IPv4 Unicast Peer: a-spine1 (IP: 172.31.254.48)'
 - VerifyBGPSpecificPeers:
     address_families:
     - afi: ipv4
@@ -311,7 +311,7 @@ anta.tests.routing.bgp:
       - 172.31.254.50
       safi: unicast
     result_overwrite:
-      custom_field: 'BGP IPv4 Unicast Peer: campus-a-spine2 (IP: 172.31.254.50)'
+      custom_field: 'BGP IPv4 Unicast Peer: a-spine2 (IP: 172.31.254.50)'
 anta.tests.routing.generic:
 - VerifyRoutingProtocolModel:
     model: multi-agent
@@ -319,42 +319,42 @@ anta.tests.routing.generic:
       custom_field: 'Routing protocol model: multi-agent'
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.11 - Peer: campus-a-spine1'
+      custom_field: 'Route: 192.168.244.11 - Peer: a-spine1'
     routes:
     - 192.168.244.11
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.12 - Peer: campus-a-spine2'
+      custom_field: 'Route: 192.168.244.12 - Peer: a-spine2'
     routes:
     - 192.168.244.12
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.13 - Peer: campus-a-leaf1a'
+      custom_field: 'Route: 192.168.244.13 - Peer: a-leaf1a'
     routes:
     - 192.168.244.13
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.14 - Peer: campus-a-leaf1b'
+      custom_field: 'Route: 192.168.244.14 - Peer: a-leaf1b'
     routes:
     - 192.168.244.14
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.15 - Peer: campus-a-leaf2a'
+      custom_field: 'Route: 192.168.244.15 - Peer: a-leaf2a'
     routes:
     - 192.168.244.15
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.244.16 - Peer: campus-a-leaf2b'
+      custom_field: 'Route: 192.168.244.16 - Peer: a-leaf2b'
     routes:
     - 192.168.244.16
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.243.13 - Peer: campus-a-leaf1a'
+      custom_field: 'Route: 192.168.243.13 - Peer: a-leaf1a'
     routes:
     - 192.168.243.13
 - VerifyRoutingTableEntry:
     result_overwrite:
-      custom_field: 'Route: 192.168.243.15 - Peer: campus-a-leaf2a'
+      custom_field: 'Route: 192.168.243.15 - Peer: a-leaf2a'
     routes:
     - 192.168.243.15
 anta.tests.system:

@@ -43,29 +43,29 @@ all:
               vars:
                 type: spine
               hosts:
-                campus-a-spine1:
+                a-spine1:
                   ansible_host: 192.168.0.31
-                campus-a-spine2:
+                a-spine2:
                   ansible_host: 192.168.0.32
             CAMPUS_A_L3LEAFS:
               vars:
                 type: l3leaf
               hosts:
-                campus-a-leaf1a:
+                a-leaf1a:
                   ansible_host: 192.168.0.33
-                campus-a-leaf1b:
+                a-leaf1b:
                   ansible_host: 192.168.0.34
-                campus-a-leaf2a:
+                a-leaf2a:
                   ansible_host: 192.168.0.35
-                campus-a-leaf2b:
+                a-leaf2b:
                   ansible_host: 192.168.0.36
             CAMPUS_A_L2LEAFS:
               vars:
                 type: l2leaf
               hosts:
-                campus-a-leaf2c:
+                a-leaf2c:
                   ansible_host: 192.168.0.37
-                campus-a-leaf2d:
+                a-leaf2d:
                   ansible_host: 192.168.0.38
 
         # --------------------------- #
@@ -77,29 +77,29 @@ all:
               vars:
                 type: spine
               hosts:
-                campus-b-spine1:
+                b-spine1:
                   ansible_host: 192.168.0.41
-                campus-b-spine2:
+                b-spine2:
                   ansible_host: 192.168.0.42
             CAMPUS_B_L3LEAFS:
               vars:
                 type: l3leaf
               hosts:
-                campus-b-leaf1a:
+                b-leaf1a:
                   ansible_host: 192.168.0.43
-                campus-b-leaf1b:
+                b-leaf1b:
                   ansible_host: 192.168.0.44
-                campus-b-leaf2a:
+                b-leaf2a:
                   ansible_host: 192.168.0.45
-                campus-b-leaf2b:
+                b-leaf2b:
                   ansible_host: 192.168.0.46
             CAMPUS_B_L2LEAFS:
               vars:
                 type: l2leaf
               hosts:
-                campus-b-leaf2c:
+                b-leaf2c:
                   ansible_host: 192.168.0.47
-                campus-b-leaf2d:
+                b-leaf2d:
                   ansible_host: 192.168.0.48
 
         # --------------------------- #
@@ -111,29 +111,29 @@ all:
               vars:
                 type: spine
               hosts:
-                campus-c-spine1:
+                c-spine1:
                   ansible_host: 192.168.0.51
-                campus-c-spine2:
+                c-spine2:
                   ansible_host: 192.168.0.52
             CAMPUS_C_L3LEAFS:
               vars:
                 type: l3leaf
               hosts:
-                campus-c-leaf1a:
+                c-leaf1a:
                   ansible_host: 192.168.0.53
-                campus-c-leaf1b:
+                c-leaf1b:
                   ansible_host: 192.168.0.54
-                campus-c-leaf2a:
+                c-leaf2a:
                   ansible_host: 192.168.0.55
-                campus-c-leaf2b:
+                c-leaf2b:
                   ansible_host: 192.168.0.56
             CAMPUS_C_L2LEAFS:
               vars:
                 type: l2leaf
               hosts:
-                campus-c-leaf2c:
+                c-leaf2c:
                   ansible_host: 192.168.0.57
-                campus-c-leaf2d:
+                c-leaf2d:
                   ansible_host: 192.168.0.58
 
         # --------------------------- #
@@ -145,56 +145,55 @@ all:
               vars:
                 type: l3spine
               hosts:
-                campus-d-spine1:
+                d-spine1:
                   ansible_host: 192.168.0.61
-                campus-d-spine2:
+                d-spine2:
                   ansible_host: 192.168.0.62
             CAMPUS_D_L3LEAFS:
               vars:
                 type: l2leaf
               hosts:
-                campus-d-leaf1a:
+                d-leaf1a:
                   ansible_host: 192.168.0.63
-                campus-d-leaf1b:
+                d-leaf1b:
                   ansible_host: 192.168.0.64
-                campus-d-leaf2a:
+                d-leaf2a:
                   ansible_host: 192.168.0.65
-                campus-d-leaf2b:
+                d-leaf2b:
                   ansible_host: 192.168.0.66
-                campus-d-leaf2c:
+                d-leaf2c:
                   ansible_host: 192.168.0.67
-                campus-d-leaf2d:
+                d-leaf2d:
                   ansible_host: 192.168.0.68
 
         CAMPUS_BORDERLEAFS:
           children:
             hosts:
-              campus-a-leaf2a:
-              campus-a-leaf2b:
-              campus-b-leaf2a:
-              campus-b-leaf2b:
-              campus-c-leaf2a:
-              campus-c-leaf2b:
+              a-leaf2a:
+              a-leaf2b:
+              b-leaf2a:
+              b-leaf2b:
+              c-leaf2a:
+              c-leaf2b:
         MLAG_ODD:
           children:
             hosts:
-              campus-a-leaf1a:
-              campus-a-leaf2a:
-              campus-b-leaf1a:
-              campus-b-leaf2a:
-              campus-c-leaf1a:
-              campus-c-leaf2a:
-              campus-d-leaf1a:
-              campus-d-leaf2a:
+              a-leaf1a:
+              a-leaf2a:
+              b-leaf1a:
+              b-leaf2a:
+              c-leaf1a:
+              c-leaf2a:
+              d-leaf1a:
+              d-leaf2a:
         MLAG_EVEN:
           children:
             hosts:
-              campus-a-leaf1b:
-              campus-a-leaf2b:
-              campus-b-leaf1b:
-              campus-b-leaf2b:
-              campus-c-leaf1b:
-              campus-c-leaf2b:
-              campus-d-leaf1b:
-              campus-d-leaf2b:
-
+              a-leaf1b:
+              a-leaf2b:
+              b-leaf1b:
+              b-leaf2b:
+              c-leaf1b:
+              c-leaf2b:
+              d-leaf1b:
+              d-leaf2b:
