@@ -45,7 +45,7 @@ shutdown_interfaces_towards_undeployed_peers: true
 # --------------------------------------------- #
 # Shutdown interfaces that are not in use
 # --------------------------------------------- #
-interface_defaults:
+csc_interface_defaults:
   ethernet:
     shutdown: true
 
@@ -138,6 +138,9 @@ l3leaf:
 
     - group: "a-leaf2"
       bgp_as: 65102
+      uplink_switches:
+        - "campus-a-spine1"
+        - "campus-a-spine2"
 
       nodes:
         - name: "a-leaf2a"
@@ -146,10 +149,12 @@ l3leaf:
           uplink_switch_interfaces:
             - "Ethernet7"
             - "Ethernet7"
+
           l3_interfaces:
             - name: "Ethernet3"
               ip_address: "169.254.10.0/31"
               enabled: true
+
           structured_config:
             router_bgp:
               bgp:
@@ -186,10 +191,12 @@ l3leaf:
           uplink_switch_interfaces:
             - "Ethernet8"
             - "Ethernet8"
+
           l3_interfaces:
             - name: "Ethernet3"
               ip_address: "169.254.10.2/31"
               enabled: true
+
           structured_config:
             router_bgp:
               bgp:
@@ -242,9 +249,6 @@ l2leaf:
         - name: "a-leaf2c"
           id: 17
           mgmt_ip: "192.168.0.41/24"
-          uplink_switches:
-            - "a-leaf1a"
-            - "a-leaf1b"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
@@ -252,9 +256,6 @@ l2leaf:
         - name: "a-leaf2d"
           id: 18
           mgmt_ip: "192.168.0.42/24"
-          uplink_switches:
-            - "a-leaf1a"
-            - "a-leaf1b"
           uplink_switch_interfaces:
             - "Ethernet6"
             - "Ethernet6"

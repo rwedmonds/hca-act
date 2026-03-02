@@ -4,7 +4,7 @@ all:
     # ------------------------------- #
     # CVaaS
     # ------------------------------- #
-    CVAAS:
+    CloudVision:
       hosts:
         CVAAS:
           ansible_host: "10.18.183.94"
@@ -19,7 +19,8 @@ all:
           ansible_httpapi_validate_certs: false
           ansible_network_os: eos
           ansible_httpapi_port: 443
-          ansible_python_interpreter: $(which python3)
+          # ansible_python_interpreter: $(which python3)
+          ansible_python_interpreter: /usr/bin/python3
 
     # ------------------------------- #
     # HCA Fabric
@@ -31,7 +32,7 @@ all:
         ansible_httpapi_port: 443
         ansible_httpapi_use_ssl: true
         ansible_httpapi_validate_certs: false
-        ansible_become: yes
+        ansible_become: true
         ansible_become_method: enable
       children:
         # --------------------------- #
@@ -167,33 +168,31 @@ all:
                   ansible_host: 192.168.0.68
 
         CAMPUS_BORDERLEAFS:
-          children:
-            hosts:
-              a-leaf2a:
-              a-leaf2b:
-              b-leaf2a:
-              b-leaf2b:
-              c-leaf2a:
-              c-leaf2b:
+          hosts:
+            campus-a-leaf2a:
+            campus-a-leaf2b:
+            campus-b-leaf2a:
+            campus-b-leaf2b:
+            campus-c-leaf2a:
+            campus-c-leaf2b:
         MLAG_ODD:
-          children:
-            hosts:
-              a-leaf1a:
-              a-leaf2a:
-              b-leaf1a:
-              b-leaf2a:
-              c-leaf1a:
-              c-leaf2a:
-              d-leaf1a:
-              d-leaf2a:
+          hosts:
+            campus-a-leaf1a:
+            campus-a-leaf2a:
+            campus-b-leaf1a:
+            campus-b-leaf2a:
+            campus-c-leaf1a:
+            campus-c-leaf2a:
+            campus-d-leaf1a:
+            campus-d-leaf2a:
         MLAG_EVEN:
-          children:
-            hosts:
-              a-leaf1b:
-              a-leaf2b:
-              b-leaf1b:
-              b-leaf2b:
-              c-leaf1b:
-              c-leaf2b:
-              d-leaf1b:
-              d-leaf2b:
+          hosts:
+            campus-a-leaf1b:
+            campus-a-leaf2b:
+            campus-b-leaf1b:
+            campus-b-leaf2b:
+            campus-c-leaf1b:
+            campus-c-leaf2b:
+            campus-d-leaf1b:
+            campus-d-leaf2b:
+

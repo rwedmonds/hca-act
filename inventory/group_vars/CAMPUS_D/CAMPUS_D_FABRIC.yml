@@ -30,7 +30,7 @@ bfd_multihop:
   min_rx: 1200
   multiplier: 3
 
-interface_defaults:
+csc_interface_defaults:
   ethernet:
     shutdown: true
 
