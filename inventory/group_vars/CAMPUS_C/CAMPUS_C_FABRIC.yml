@@ -45,7 +45,7 @@ shutdown_interfaces_towards_undeployed_peers: true
 # --------------------------------------------- #
 # Shutdown interfaces that are not in use
 # --------------------------------------------- #
-interface_defaults:
+csc_interface_defaults:
   ethernet:
     shutdown: true
 
@@ -241,18 +241,12 @@ l2leaf:
         - name: "campus-c-leaf2c"
           id: 37
           mgmt_ip: "192.168.0.57/24"
-          uplink_switches:
-            - "campus-c-leaf1a"
-            - "campus-c-leaf1b"
           uplink_switch_interfaces:
             - "Ethernet5"
             - "Ethernet5"
         - name: "campus-c-leaf2d"
           id: 38
           mgmt_ip: "192.168.0.58/24"
-          uplink_switches:
-            - "campus-c-leaf1a"
-            - "campus-c-leaf1b"
           uplink_switch_interfaces:
             - "Ethernet6"
             - "Ethernet6"

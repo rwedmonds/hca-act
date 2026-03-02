@@ -5,30 +5,30 @@ enable_password:
   disabled: true
 ethernet_interfaces:
 - name: Ethernet1
-  description: L2_campus-b-leaf1a_Ethernet5
+  description: L2_campus-b-leaf2a_Ethernet5
   shutdown: false
   channel_group:
     id: 1
     mode: active
   metadata:
-    peer: campus-b-leaf1a
+    peer: campus-b-leaf2a
     peer_interface: Ethernet5
     peer_type: l3leaf
 - name: Ethernet2
-  description: L2_campus-b-leaf1b_Ethernet5
+  description: L2_campus-b-leaf2b_Ethernet5
   shutdown: false
   channel_group:
     id: 1
     mode: active
   metadata:
-    peer: campus-b-leaf1b
+    peer: campus-b-leaf2b
     peer_interface: Ethernet5
     peer_type: l3leaf
-- name: Ethernet6
+- name: Ethernet5
   description: SERVER_campus-b-leaf2-server1_Ethernet1
   shutdown: false
   channel_group:
-    id: 6
+    id: 5
     mode: active
   metadata:
     peer: campus-b-leaf2-server1
@@ -54,14 +54,14 @@ metadata:
   fabric_name: HCA
 port_channel_interfaces:
 - name: Port-Channel1
-  description: L2_campus-b-leaf1_Port-Channel5
+  description: L2_campus-b-leaf2_Port-Channel5
   shutdown: false
   switchport:
     enabled: true
     mode: trunk
     trunk:
       allowed_vlan: 10,20,30,40
-- name: Port-Channel6
+- name: Port-Channel5
   description: SERVER_campus-b-leaf2-server1
   shutdown: false
   switchport:

@@ -114,9 +114,9 @@ vlan 40
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_campus-b-leaf1a_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
-| Ethernet2 | L2_campus-b-leaf1b_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
-| Ethernet6 | SERVER_campus-b-leaf2-server1_Ethernet1 | *access | *110 | *- | *- | 6 |
+| Ethernet1 | L2_campus-b-leaf2a_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
+| Ethernet2 | L2_campus-b-leaf2b_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
+| Ethernet5 | SERVER_campus-b-leaf2-server1_Ethernet1 | *access | *110 | *- | *- | 5 |
 
 *Inherited from Port-Channel Interface
 
@@ -125,19 +125,19 @@ vlan 40
 ```eos
 !
 interface Ethernet1
-   description L2_campus-b-leaf1a_Ethernet5
+   description L2_campus-b-leaf2a_Ethernet5
    no shutdown
    channel-group 1 mode active
 !
 interface Ethernet2
-   description L2_campus-b-leaf1b_Ethernet5
+   description L2_campus-b-leaf2b_Ethernet5
    no shutdown
    channel-group 1 mode active
 !
-interface Ethernet6
+interface Ethernet5
    description SERVER_campus-b-leaf2-server1_Ethernet1
    no shutdown
-   channel-group 6 mode active
+   channel-group 5 mode active
 ```
 
 ### Port-Channel Interfaces
@@ -148,21 +148,21 @@ interface Ethernet6
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_campus-b-leaf1_Port-Channel5 | trunk | 10,20,30,40 | - | - | - | - | - | - |
-| Port-Channel6 | SERVER_campus-b-leaf2-server1 | access | 110 | - | - | - | - | - | - |
+| Port-Channel1 | L2_campus-b-leaf2_Port-Channel5 | trunk | 10,20,30,40 | - | - | - | - | - | - |
+| Port-Channel5 | SERVER_campus-b-leaf2-server1 | access | 110 | - | - | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel1
-   description L2_campus-b-leaf1_Port-Channel5
+   description L2_campus-b-leaf2_Port-Channel5
    no shutdown
    switchport trunk allowed vlan 10,20,30,40
    switchport mode trunk
    switchport
 !
-interface Port-Channel6
+interface Port-Channel5
    description SERVER_campus-b-leaf2-server1
    no shutdown
    switchport access vlan 110

@@ -190,8 +190,6 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet5 | L2_campus-c-leaf2c_Ethernet2 | *trunk | *10,20,30,40 | *- | *- | 5 |
-| Ethernet6 | L2_campus-c-leaf2d_Ethernet2 | *trunk | *10,20,30,40 | *- | *- | 6 |
 | Ethernet11 | MLAG_campus-c-leaf1a_Ethernet11 | *trunk | *2-4094 | *- | *MLAG | 11 |
 | Ethernet12 | MLAG_campus-c-leaf1a_Ethernet12 | *trunk | *2-4094 | *- | *MLAG | 11 |
 
@@ -222,16 +220,6 @@ interface Ethernet2
    no switchport
    ip address 172.16.0.135/31
 !
-interface Ethernet5
-   description L2_campus-c-leaf2c_Ethernet2
-   no shutdown
-   channel-group 5 mode active
-!
-interface Ethernet6
-   description L2_campus-c-leaf2d_Ethernet2
-   no shutdown
-   channel-group 6 mode active
-!
 interface Ethernet11
    description MLAG_campus-c-leaf1a_Ethernet11
    no shutdown
@@ -251,29 +239,11 @@ interface Ethernet12
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel5 | L2_campus-c-leaf2c_Port-Channel1 | trunk | 10,20,30,40 | - | - | - | - | 5 | - |
-| Port-Channel6 | L2_campus-c-leaf2d_Port-Channel1 | trunk | 10,20,30,40 | - | - | - | - | 6 | - |
 | Port-Channel11 | MLAG_campus-c-leaf1a_Port-Channel11 | trunk | 2-4094 | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
-!
-interface Port-Channel5
-   description L2_campus-c-leaf2c_Port-Channel1
-   no shutdown
-   switchport trunk allowed vlan 10,20,30,40
-   switchport mode trunk
-   switchport
-   mlag 5
-!
-interface Port-Channel6
-   description L2_campus-c-leaf2d_Port-Channel1
-   no shutdown
-   switchport trunk allowed vlan 10,20,30,40
-   switchport mode trunk
-   switchport
-   mlag 6
 !
 interface Port-Channel11
    description MLAG_campus-c-leaf1a_Port-Channel11
@@ -676,10 +646,10 @@ router bfd
 
 | Sequence | Action |
 | -------- | ------ |
-| 10 | permit 10.30.40.0/24 |
-| 20 | permit 10.30.20.0/24 |
-| 30 | permit 10.30.30.0/24 |
-| 40 | permit 10.30.10.0/24 |
+| 10 | permit 10.30.20.0/24 |
+| 20 | permit 10.30.30.0/24 |
+| 30 | permit 10.30.10.0/24 |
+| 40 | permit 10.30.40.0/24 |
 
 #### Prefix-lists Device Configuration
 
@@ -690,10 +660,10 @@ ip prefix-list PL-LOOPBACKS-EVPN-OVERLAY
    seq 20 permit 172.16.31.0/24 eq 32
 !
 ip prefix-list PL-SVI-VRF-DEFAULT
-   seq 10 permit 10.30.40.0/24
-   seq 20 permit 10.30.20.0/24
-   seq 30 permit 10.30.30.0/24
-   seq 40 permit 10.30.10.0/24
+   seq 10 permit 10.30.20.0/24
+   seq 20 permit 10.30.30.0/24
+   seq 30 permit 10.30.10.0/24
+   seq 40 permit 10.30.40.0/24
 ```
 
 ### Route-maps

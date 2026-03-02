@@ -176,6 +176,7 @@ vlan 4094
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | L2_campus-d-spine1_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
 | Ethernet2 | L2_campus-d-spine2_Ethernet5 | *trunk | *10,20,30,40 | *- | *- | 1 |
+| Ethernet5 | SERVER_campus-d-leaf1-server1_Ethernet1 | *access | *110 | *- | *- | 5 |
 | Ethernet11 | MLAG_campus-d-leaf1b_Ethernet11 | *trunk | *2-4094 | *- | *MLAG | 11 |
 | Ethernet12 | MLAG_campus-d-leaf1b_Ethernet12 | *trunk | *2-4094 | *- | *MLAG | 11 |
 
@@ -194,6 +195,11 @@ interface Ethernet2
    description L2_campus-d-spine2_Ethernet5
    no shutdown
    channel-group 1 mode active
+!
+interface Ethernet5
+   description SERVER_campus-d-leaf1-server1_Ethernet1
+   no shutdown
+   channel-group 5 mode active
 !
 interface Ethernet11
    description MLAG_campus-d-leaf1b_Ethernet11
@@ -215,6 +221,7 @@ interface Ethernet12
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | L2_campus-d-spines_Port-Channel5 | trunk | 10,20,30,40 | - | - | - | - | 1 | - |
+| Port-Channel5 | SERVER_campus-d-leaf1-server1 | access | 110 | - | - | - | - | - | - |
 | Port-Channel11 | MLAG_campus-d-leaf1b_Port-Channel11 | trunk | 2-4094 | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -228,6 +235,13 @@ interface Port-Channel1
    switchport mode trunk
    switchport
    mlag 1
+!
+interface Port-Channel5
+   description SERVER_campus-d-leaf1-server1
+   no shutdown
+   switchport access vlan 110
+   switchport mode access
+   switchport
 !
 interface Port-Channel11
    description MLAG_campus-d-leaf1b_Port-Channel11

@@ -15,7 +15,7 @@ custom_structured_configuration_prefix:
 # Management API HTTP
 # ----------------------------------- #
 
-management_api_http:
+csc_management_api_http:
   enable_http: True
   enable_vrfs:
     - name: "default"
@@ -34,14 +34,14 @@ csc_ethernet_interfaces:
 # Source SSH sessions from Lo0
 # ----------------------------------- #
 
-ip_ssh_client_source_interfaces:
+csc_ip_ssh_client_source_interfaces:
   - name: "Loopback0"
 
 # ----------------------------------- #
 # Local Users
 # ----------------------------------- #
 # MARK: Users
-local_users: "{{ secrets.local_users }}"
+csc_local_users: "{{ secrets.local_users }}"
 
 # ----------------------------------- #
 # Enable Password
@@ -53,7 +53,7 @@ csc_enable_password: "{{ secrets.enable_password }}"
 # TerminAttr Config
 # ----------------------------------- #
 # MARK: TerminAttr
-daemon_terminattr:
+csc_daemon_terminattr:
   # Address of the gRPC server on CloudVision
   # TCP 9910 is used for on-prem CV
   # TCP 443 is used on CV as a Service
@@ -73,8 +73,8 @@ daemon_terminattr:
 # OOB Management
 # ----------------------------------- #
 # MARK: OOB
-mgmt_interface_vrf: "default"
-management_interfaces:
+csc_mgmt_interface_vrf: "default"
+csc_management_interfaces:
   - name: "Management1"
     shutdown: false
 
@@ -84,7 +84,7 @@ management_interfaces:
 # DNS Servers
 # ----------------------------------- #
 # MARK: Servers
-ip_name_servers:
+csc_ip_name_servers:
   - ip_address: "169.254.169.254"
     vrf: "default"
 
@@ -94,7 +94,7 @@ ip_name_servers:
 # NTP Servers IP or DNS name, first NTP server will be preferred,
 # and sourced from Management VRF
 
-ntp:
+csc_ntp:
   local_interface:
     name: "Management1"
     vrf: "default"
@@ -102,14 +102,14 @@ ntp:
     - name: "1.pool.ntp.org"
       vrf: "default"
 
-clock:
+csc_clock:
   timezone: America/Chicago
 
 # ----------------------------------- #
 # Raw EOS CLI commands
 # ----------------------------------- #
 
-eos_cli: no schedule tech-support
+csc_eos_cli: no schedule tech-support
 
 # ----------------------------------- #
 # MARK: Banner
@@ -144,10 +144,10 @@ eos_cli: no schedule tech-support
 # ----------------------------------- #
 # SNMP Settings Test
 # ----------------------------------- #
-snmp_settings:
+csc_snmp_settings:
   location: true
 
-snmp_server:
+csc_snmp_server:
   vrfs:
     - name: "default"
       enable: true

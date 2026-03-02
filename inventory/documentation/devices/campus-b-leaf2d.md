@@ -114,8 +114,8 @@ vlan 40
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | L2_campus-b-leaf1a_Ethernet6 | *trunk | *10,20,30,40 | *- | *- | 1 |
-| Ethernet2 | L2_campus-b-leaf1b_Ethernet6 | *trunk | *10,20,30,40 | *- | *- | 1 |
+| Ethernet1 | L2_campus-b-leaf2a_Ethernet6 | *trunk | *10,20,30,40 | *- | *- | 1 |
+| Ethernet2 | L2_campus-b-leaf2b_Ethernet6 | *trunk | *10,20,30,40 | *- | *- | 1 |
 
 *Inherited from Port-Channel Interface
 
@@ -124,12 +124,12 @@ vlan 40
 ```eos
 !
 interface Ethernet1
-   description L2_campus-b-leaf1a_Ethernet6
+   description L2_campus-b-leaf2a_Ethernet6
    no shutdown
    channel-group 1 mode active
 !
 interface Ethernet2
-   description L2_campus-b-leaf1b_Ethernet6
+   description L2_campus-b-leaf2b_Ethernet6
    no shutdown
    channel-group 1 mode active
 ```
@@ -142,14 +142,14 @@ interface Ethernet2
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | L2_campus-b-leaf1_Port-Channel6 | trunk | 10,20,30,40 | - | - | - | - | - | - |
+| Port-Channel1 | L2_campus-b-leaf2_Port-Channel6 | trunk | 10,20,30,40 | - | - | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel1
-   description L2_campus-b-leaf1_Port-Channel6
+   description L2_campus-b-leaf2_Port-Channel6
    no shutdown
    switchport trunk allowed vlan 10,20,30,40
    switchport mode trunk

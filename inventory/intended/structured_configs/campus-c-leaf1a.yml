@@ -47,25 +47,17 @@ ethernet_interfaces:
   switchport:
     enabled: false
 - name: Ethernet5
-  description: L2_campus-c-leaf2c_Ethernet1
+  description: SERVER_campus-c-leaf1-server1_Ethernet1
   shutdown: false
   channel_group:
     id: 5
     mode: active
   metadata:
-    peer: campus-c-leaf2c
+    peer: campus-c-leaf1-server1
     peer_interface: Ethernet1
-    peer_type: l2leaf
-- name: Ethernet6
-  description: L2_campus-c-leaf2d_Ethernet1
-  shutdown: false
-  channel_group:
-    id: 6
-    mode: active
-  metadata:
-    peer: campus-c-leaf2d
-    peer_interface: Ethernet1
-    peer_type: l2leaf
+    peer_type: server
+    peer_key: servers
+    port_profile: TENANT_A_Vl110
 hostname: campus-c-leaf1a
 ip_igmp_snooping:
   globally_enabled: true
@@ -120,23 +112,12 @@ port_channel_interfaces:
       groups:
       - MLAG
 - name: Port-Channel5
-  description: L2_campus-c-leaf2c_Port-Channel1
+  description: SERVER_campus-c-leaf1-server1
   shutdown: false
-  mlag: 5
   switchport:
     enabled: true
-    mode: trunk
-    trunk:
-      allowed_vlan: 10,20,30,40
-- name: Port-Channel6
-  description: L2_campus-c-leaf2d_Port-Channel1
-  shutdown: false
-  mlag: 6
-  switchport:
-    enabled: true
-    mode: trunk
-    trunk:
-      allowed_vlan: 10,20,30,40
+    mode: access
+    access_vlan: 110
 prefix_lists:
 - name: PL-LOOPBACKS-EVPN-OVERLAY
   sequence_numbers:
@@ -147,13 +128,13 @@ prefix_lists:
 - name: PL-SVI-VRF-DEFAULT
   sequence_numbers:
   - sequence: 10
-    action: permit 10.30.10.0/24
+    action: permit 10.30.20.0/24
   - sequence: 20
     action: permit 10.30.30.0/24
   - sequence: 30
-    action: permit 10.30.40.0/24
+    action: permit 10.30.10.0/24
   - sequence: 40
-    action: permit 10.30.20.0/24
+    action: permit 10.30.40.0/24
 route_maps:
 - name: RM-MLAG-PEER-IN
   sequence_numbers:
