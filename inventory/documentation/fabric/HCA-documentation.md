@@ -60,7 +60,7 @@
 ## Fabric Topology
 
 | Type | Node | Node Interface | Peer Type | Peer Node | Peer Interface |
-| ---- | ---- | -------------- | --------- | ----------| -------------- |
+| ---- | ---- | -------------- | --------- | --------- | -------------- |
 | l3leaf | campus-a-leaf1a | Ethernet1 | spine | campus-a-spine1 | Ethernet5 |
 | l3leaf | campus-a-leaf1a | Ethernet2 | spine | campus-a-spine2 | Ethernet5 |
 | l3leaf | campus-a-leaf1a | Ethernet5 | l2leaf | campus-a-leaf2c | Ethernet1 |
@@ -71,8 +71,12 @@
 | l3leaf | campus-a-leaf1b | Ethernet2 | spine | campus-a-spine2 | Ethernet6 |
 | l3leaf | campus-a-leaf1b | Ethernet5 | l2leaf | campus-a-leaf2c | Ethernet2 |
 | l3leaf | campus-a-leaf1b | Ethernet6 | l2leaf | campus-a-leaf2d | Ethernet2 |
+| l3leaf | campus-a-leaf2a | Ethernet1 | spine | campus-a-spine1 | Ethernet7 |
+| l3leaf | campus-a-leaf2a | Ethernet2 | spine | campus-a-spine2 | Ethernet7 |
 | l3leaf | campus-a-leaf2a | Ethernet11 | mlag_peer | campus-a-leaf2b | Ethernet11 |
 | l3leaf | campus-a-leaf2a | Ethernet12 | mlag_peer | campus-a-leaf2b | Ethernet12 |
+| l3leaf | campus-a-leaf2b | Ethernet1 | spine | campus-a-spine1 | Ethernet8 |
+| l3leaf | campus-a-leaf2b | Ethernet2 | spine | campus-a-spine2 | Ethernet8 |
 | l3leaf | campus-b-leaf1a | Ethernet1 | spine | campus-b-spine1 | Ethernet5 |
 | l3leaf | campus-b-leaf1a | Ethernet2 | spine | campus-b-spine2 | Ethernet5 |
 | l3leaf | campus-b-leaf1a | Ethernet5 | l2leaf | campus-b-leaf2c | Ethernet1 |
@@ -83,8 +87,12 @@
 | l3leaf | campus-b-leaf1b | Ethernet2 | spine | campus-b-spine2 | Ethernet6 |
 | l3leaf | campus-b-leaf1b | Ethernet5 | l2leaf | campus-b-leaf2c | Ethernet2 |
 | l3leaf | campus-b-leaf1b | Ethernet6 | l2leaf | campus-b-leaf2d | Ethernet2 |
+| l3leaf | campus-b-leaf2a | Ethernet1 | spine | campus-b-spine1 | Ethernet7 |
+| l3leaf | campus-b-leaf2a | Ethernet2 | spine | campus-b-spine2 | Ethernet7 |
 | l3leaf | campus-b-leaf2a | Ethernet11 | mlag_peer | campus-b-leaf2b | Ethernet11 |
 | l3leaf | campus-b-leaf2a | Ethernet12 | mlag_peer | campus-b-leaf2b | Ethernet12 |
+| l3leaf | campus-b-leaf2b | Ethernet1 | spine | campus-b-spine1 | Ethernet8 |
+| l3leaf | campus-b-leaf2b | Ethernet2 | spine | campus-b-spine2 | Ethernet8 |
 | l3leaf | campus-c-leaf1a | Ethernet1 | spine | campus-c-spine1 | Ethernet5 |
 | l3leaf | campus-c-leaf1a | Ethernet2 | spine | campus-c-spine2 | Ethernet5 |
 | l3leaf | campus-c-leaf1a | Ethernet5 | l2leaf | campus-c-leaf2c | Ethernet1 |
@@ -126,7 +134,7 @@
 
 | Uplink IPv4 Pool | Available Addresses | Assigned addresses | Assigned Address % |
 | ---------------- | ------------------- | ------------------ | ------------------ |
-| 172.16.0.0/24 | 256 | 32 | 12.5 % |
+| 172.16.0.0/24 | 256 | 48 | 18.75 % |
 
 ### Point-To-Point Links Node Allocation
 
@@ -136,10 +144,18 @@
 | campus-a-leaf1a | Ethernet2 | 172.16.0.51/31 | campus-a-spine2 | Ethernet5 | 172.16.0.50/31 |
 | campus-a-leaf1b | Ethernet1 | 172.16.0.53/31 | campus-a-spine1 | Ethernet6 | 172.16.0.52/31 |
 | campus-a-leaf1b | Ethernet2 | 172.16.0.55/31 | campus-a-spine2 | Ethernet6 | 172.16.0.54/31 |
+| campus-a-leaf2a | Ethernet1 | 172.16.0.57/31 | campus-a-spine1 | Ethernet7 | 172.16.0.56/31 |
+| campus-a-leaf2a | Ethernet2 | 172.16.0.59/31 | campus-a-spine2 | Ethernet7 | 172.16.0.58/31 |
+| campus-a-leaf2b | Ethernet1 | 172.16.0.61/31 | campus-a-spine1 | Ethernet8 | 172.16.0.60/31 |
+| campus-a-leaf2b | Ethernet2 | 172.16.0.63/31 | campus-a-spine2 | Ethernet8 | 172.16.0.62/31 |
 | campus-b-leaf1a | Ethernet1 | 172.16.0.89/31 | campus-b-spine1 | Ethernet5 | 172.16.0.88/31 |
 | campus-b-leaf1a | Ethernet2 | 172.16.0.91/31 | campus-b-spine2 | Ethernet5 | 172.16.0.90/31 |
 | campus-b-leaf1b | Ethernet1 | 172.16.0.93/31 | campus-b-spine1 | Ethernet6 | 172.16.0.92/31 |
 | campus-b-leaf1b | Ethernet2 | 172.16.0.95/31 | campus-b-spine2 | Ethernet6 | 172.16.0.94/31 |
+| campus-b-leaf2a | Ethernet1 | 172.16.0.97/31 | campus-b-spine1 | Ethernet7 | 172.16.0.96/31 |
+| campus-b-leaf2a | Ethernet2 | 172.16.0.99/31 | campus-b-spine2 | Ethernet7 | 172.16.0.98/31 |
+| campus-b-leaf2b | Ethernet1 | 172.16.0.101/31 | campus-b-spine1 | Ethernet8 | 172.16.0.100/31 |
+| campus-b-leaf2b | Ethernet2 | 172.16.0.103/31 | campus-b-spine2 | Ethernet8 | 172.16.0.102/31 |
 | campus-c-leaf1a | Ethernet1 | 172.16.0.129/31 | campus-c-spine1 | Ethernet5 | 172.16.0.128/31 |
 | campus-c-leaf1a | Ethernet2 | 172.16.0.131/31 | campus-c-spine2 | Ethernet5 | 172.16.0.130/31 |
 | campus-c-leaf1b | Ethernet1 | 172.16.0.133/31 | campus-c-spine1 | Ethernet6 | 172.16.0.132/31 |
