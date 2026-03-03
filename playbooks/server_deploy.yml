@@ -1,0 +1,8 @@
+--- 
+tasks:
+  - name: Install ZSH
+    apt:
+      name: zsh
+      state: latest 
+      update_cache: true 
+
