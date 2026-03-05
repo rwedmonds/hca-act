@@ -314,6 +314,57 @@
 #       args:
 #         executable: /bin/bash
 #
+
+# --------------------------------------------- #
+# Install Neovim
+# --------------------------------------------- #
+- name: Install Neovim
+  hosts: all
+  become: true
+  vars:
+    nvim_tarball: nvim-linux-x86_64.tar.gz
+    nvim_url: "https://github.com/neovim/neovim/releases/latest/download/{{ nvim_tarball }}"
+    nvim_install_dir: /opt
+    nvim_extract_dir: "{{ nvim_install_dir }}/nvim-linux-x86_64"
+    nvim_download_dest: "/tmp/{{ nvim_tarball }}"
+
+  tasks:
+
+    # ----------------------------------------- #
+    # 1. Download the tarball
+    # ----------------------------------------- #
+    - name: Download Neovim tarball
+      get_url:
+        url: "{{ nvim_url }}"
+        dest: "{{ nvim_download_dest }}"
+        mode: '0644'
+        force: yes
+
+    # ----------------------------------------- #
+    # 2. Remove existing install
+    # ----------------------------------------- #
+    - name: Remove existing Neovim installation
+      file:
+        path: "{{ nvim_extract_dir }}"
+        state: absent
+
+    # ----------------------------------------- #
+    # 3. Extract the tarball
+    # ----------------------------------------- #
+    - name: Extract Neovim tarball
+      unarchive:
+        src: "{{ nvim_download_dest }}"
+        dest: "{{ nvim_install_dir }}"
+        remote_src: yes
+
+    # ----------------------------------------- #
+    # 4. Cleanup downloaded tarball
+    # ----------------------------------------- #
+    - name: Remove Neovim tarball
+      file:
+        path: "{{ nvim_download_dest }}"
+        state: absent
+
 # --------------------------------------------- #
 # Copy Files to Remote Server
 # --------------------------------------------- #

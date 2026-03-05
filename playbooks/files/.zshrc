@@ -43,7 +43,7 @@ source $HOME/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 # ------------------------------------------------------- #
 # PATH config
 #-------------------------------------------------------- #
-export PATH="$PATH:$HOME/.hishtory:/usr/local/bin:/opt/homebrew/bin:/Users/redmonds/Library/Python/3.9/bin:/Applications/WezTerm.app/Contents/MacOS:Users/redmonds/Applications:/Users/redmonds/Documents/Keyboard/qmk_toolchains/qmk_toolchains_macosARM64:/opt/homebrew/Cellar/arm-none-eabi-gcc@8/8.5.0_2:/Users/redmonds/.cargo/bin:~/Github/zclock/zig-out/bin/:/Users/redmonds/dotfiles/nvim/img
+export PATH="$PATH:$HOME/.hishtory:/usr/local/bin:/opt/nvim-linux-x86_64/bin"
 "
 if command -v python3 > /dev/null; then
   export PATH='python3 -m site --user-base'/bin:$PATH
@@ -92,7 +92,7 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 # Yazi config
 #-------------------------------------------------------- #
 export YAZI_CONFIG_HOME="~/.config/yazi"
-export EDITOR="/opt/homebrew/bin/nvim"
+export EDITOR="/usr/bin/vi"
 
 # Exit Yazi to current directory
 function y() {
