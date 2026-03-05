@@ -4,7 +4,7 @@ all:
     # ------------------------------- #
     # MARK: CVaaS
     # ------------------------------- #
-    CVAAS:
+    CloudVision:
       hosts:
         CVAAS:
           ansible_host: "10.18.183.94"
@@ -44,29 +44,37 @@ all:
                 type: spine
               hosts:
                 a-spine1:
-                  ansible_host: 10.18.183.107
+                  ansible_host: 10.255.0.143
                 a-spine2:
-                  ansible_host: 10.18.183.123
+                  ansible_host: 10.255.0.144
             CAMPUS_A_L3LEAFS:
               vars:
                 type: l3leaf
               hosts:
                 a-leaf1a:
-                  ansible_host: 10.18.183.116
+                  ansible_host: 10.255.0.173
                 a-leaf1b:
-                  ansible_host: 10.18.183.95
+                  ansible_host: 10.255.0.163
                 a-leaf2a:
-                  ansible_host: 10.18.183.89
+                  ansible_host: 10.255.0.133
                 a-leaf2b:
-                  ansible_host: 10.18.183.91
+                  ansible_host: 10.255.0.112
+            CAMPUS_A_BORDERLEAFS:
+              vars:
+                type: l3leaf
+              hosts:
+                a-bleaf1:
+                  ansible_host: 10.255.0.139
+                a-bleaf2:
+                  ansible_host: 10.255.0.126
             CAMPUS_A_L2LEAFS:
               vars:
                 type: l2leaf
               hosts:
                 a-leaf2c:
-                  ansible_host: 10.18.183.121
+                  ansible_host: 10.255.0.154
                 a-leaf2d:
-                  ansible_host: 10.18.183.122
+                  ansible_host: 10.255.0.149
 
         # --------------------------- #
         # MARK: Campus-B
@@ -78,29 +86,47 @@ all:
                 type: spine
               hosts:
                 b-spine1:
-                  ansible_host: 10.18.183.102
+                  ansible_host: 10.255.0.174
                 b-spine2:
-                  ansible_host: 10.18.183.105
+                  ansible_host: 10.255.0.101
+            CAMPUS_B_WLAN:
+              vars:
+                type: l3leaf
+              hosts:
+                b-wlan1:
+                  ansible_host: 10.255.0.145
+                b-wlan2:
+                  ansible_host: 10.255.0.96
             CAMPUS_B_L3LEAFS:
               vars:
                 type: l3leaf
               hosts:
                 b-leaf1a:
-                  ansible_host: 10.18.183.112
+                  ansible_host: 10.255.0.114
                 b-leaf1b:
-                  ansible_host: 10.18.183.96
+                  ansible_host: 10.255.0.121
                 b-leaf2a:
-                  ansible_host: 10.18.183.114
+                  ansible_host: 10.255.0.116
                 b-leaf2b:
-                  ansible_host: 10.18.183.90
+                  ansible_host: 10.255.0.137
+            CAMPUS_B_BORDERLEAFS:
+              vars:
+                type: l3leaf
+              hosts:
+                b-bleaf1:
+                  ansible_host: 10.255.0.152
+                b-bleaf2:
+                  ansible_host: 10.255.0.118
             CAMPUS_B_L2LEAFS:
               vars:
                 type: l2leaf
               hosts:
                 b-leaf2c:
-                  ansible_host: 10.18.183.100
+                  ansible_host: 10.255.0.170
                 b-leaf2d:
-                  ansible_host: 10.18.183.104
+                  ansible_host: 10.255.0.98
+                b-apswitch:
+                  ansible_host: 10.255.0.135
 
         # --------------------------- #
         # MARK: Campus-C
@@ -112,29 +138,71 @@ all:
                 type: spine
               hosts:
                 c-spine1:
-                  ansible_host: 10.18.183.103
+                  ansible_host: 10.255.0.153
                 c-spine2:
-                  ansible_host: 10.18.183.125
+                  ansible_host: 10.255.0.168
             CAMPUS_C_L3LEAFS:
               vars:
                 type: l3leaf
               hosts:
                 c-leaf1a:
-                  ansible_host: 10.18.183.92
+                  ansible_host: 10.255.0.122
                 c-leaf1b:
-                  ansible_host: 10.18.183.111
+                  ansible_host: 10.255.0.166
                 c-leaf2a:
-                  ansible_host: 10.18.183.106
+                  ansible_host: 10.255.0.141
                 c-leaf2b:
-                  ansible_host: 10.18.183.119
+                  ansible_host: 10.255.0.117
+            CAMPUS_C_BORDERLEAFS:
+              vars:
+                type: l3leaf
+              hosts:
+                c-bleaf1:
+                  ansible_host: 10.255.0.129
+                c-bleaf2:
+                  ansible_host: 10.255.0.128
             CAMPUS_C_L2LEAFS:
               vars:
                 type: l2leaf
               hosts:
                 c-leaf2c:
-                  ansible_host: 10.18.183.101
+                  ansible_host: 10.255.0.140
                 c-leaf2d:
-                  ansible_host: 10.18.183.117
+                  ansible_host: 10.255.0.146
+
+        # --------------------------- #
+        # MARK: Campus-D
+        # --------------------------- #
+        CAMPUS_D:
+          children:
+            CAMPUS_D_SPINES:
+              vars:
+                type: l3spine
+              hosts:
+                d-spine1:
+                  ansible_host: 10.255.0.171
+                d-spine2:
+                  ansible_host: 10.255.0.110
+            CAMPUS_D_LEAFS:
+              vars:
+                type: leaf
+              hosts:
+                d-leaf1a:
+                  ansible_host: 10.255.0.136
+                d-leaf1b:
+                  ansible_host: 10.255.0.120
+                d-leaf2a:
+                  ansible_host: 10.255.0.138
+                d-leaf2b:
+                  ansible_host: 10.255.0.124
+            CAMPUS_D_MEMBER_LEAFS:
+              vars:
+                type: leaf
+              hosts:
+                d-leaf2c:
+                  ansible_host: 10.255.0.100
+                d-leaf2d:
+                  ansible_host: 10.255.0.148
 
         CAMPUS_BORDERLEAFS:
           children:

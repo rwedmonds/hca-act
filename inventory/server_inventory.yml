@@ -1,5 +1,38 @@
---- 
+---
 all:
-  hosts: ansible
-    ansible_host: 100.100.100.100 
-
+  children:
+    SERVERS:
+      vars:
+        ansible_ssh_user: cvpadmin
+        ansible_ssh_pass: arista123
+      hosts:
+        # ------------------------------------- #
+        # Campus A
+        # ------------------------------------- #
+        a-leaf1-server1:
+          ansible_host: 10.255.0.108
+        a-leaf2-server1:
+          ansible_host: 10.255.0.161
+        # ------------------------------------- #
+        # Campus B
+        # ------------------------------------- #
+        b-leaf1-server1:
+          ansible_host: 10.255.0.95
+        b-leaf2-server1:
+          ansible_host: 10.255.0.107
+        b-leaf2-wifi:
+          ansible_host: 10.255.0.155
+        # ------------------------------------- #
+        # Campus C
+        # ------------------------------------- #
+        c-leaf1-server1:
+          ansible_host: 10.255.0.99
+        c-leaf2-server1:
+          ansible_host: 10.255.0.106
+        # ------------------------------------- #
+        # Campus D
+        # ------------------------------------- #
+        d-leaf1-server1:
+          ansible_host: 10.255.0.162
+        d-leaf2-server1:
+          ansible_host: 10.255.0.156

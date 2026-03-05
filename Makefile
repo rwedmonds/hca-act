@@ -30,6 +30,10 @@ build_campus_c: ## Build AVD configs for CAMPUS_C
 build_campus_d: ## Build AVD configs for CAMPUS_D
 				ansible-playbook playbooks/fabric_deploy.yml --tags build --ask-vault-password --limit CAMPUS_D
 
+.PHONY: build_servers
+build_servers: ## Build server configurations
+				ansible-playbook -i inventory/server_inventory.yml playbooks/server_deploy.yml --limit SERVERS
+
 # ------------------------------------------------------- #
 #                         Deploy                          #
 # ------------------------------------------------------- #
@@ -85,4 +89,3 @@ validate_state_campus_c: ## Validate state of CAMPUS_C
 .PHONY: validate_state_campus_d
 validate_state_campus_d: ## Validate state of CAMPUS_D
 				ansible-playbook playbooks/validate_state.yml -i inventory/act_inventory.yml --ask-vault-password --limit CAMPUS_D
-

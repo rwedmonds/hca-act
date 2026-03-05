@@ -1,6 +1,6 @@
 ---
 # ------------------------------------------------------- #
-# This playbook will connect to CVaaS and generate an 
+# This playbook will connect to CVaaS and generate an
 # onboarding token then push the token to target devices
 # and start terminattr.
 # The target devices will be onboarded in CVaaS.
@@ -45,7 +45,7 @@
 #
 
 - name: Onboard devices to CVaaS
-  hosts: VEOS # Change to your value from inventory file
+  hosts: HCA # Change to your value from inventory file
   gather_facts: false
   vars:
     ansible_user: cvpadmin # Change to a valid username on EOS devices
