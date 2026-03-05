@@ -1,315 +1,364 @@
 ---
-- name: Create new user and configure SSH access
-  hosts: SERVERS
-  become: true
-
-  vars:
-    new_user: robert
-    ssh_public_key_path: "{{ lookup('env', 'HOME') }}/.ssh/act.pub"
-
-  # ----------------------------------------- #
-  # Create new user
-  # ----------------------------------------- #
-  tasks:
-    - name: Ensure sudo group exists (Ubuntu default, but safe)
-      group:
-        name: sudo
-        state: present
-
-    # You may need to 1) install the Ansible posix module, 2)install passlib,
-    # and 3)generate a password hash, and
-    # 1) ansible-galaxy collection install ansible.posix
-    # 2) pip install passlib
-    # 3) ansible all -i localhost, -m debug -a "msg={{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"
-    #   - Replace 'mypassword' with your password and then copy the value
-    - name: Create new user
-      user:
-        name: "{{ new_user }}"
-        shell: /bin/bash
-        groups: sudo
-        append: yes
-        create_home: yes
-        password: "$6$rounds=656000$mysecretsalt$cWntwwWYCZaaZoyLG3ss8wHaJul7d96psWEZ3iShfKOrbnscJMUk5jL34f7YeSBlxZ7UCJ7dnIa7G2d00vdVv1"
-        state: present
-
-    - name: Set up authorized_keys for new user
-      ansible.posix.authorized_key:
-        user: "{{ new_user }}"
-        state: present
-        key: "{{ lookup('file', ssh_public_key_path) }}"
-
-# ----------------------------------------- #
-# Configure user environment
-# ----------------------------------------- #
-
-- name: Configure ZSH and Oh My Posh for user
-  hosts: SERVERS
-  become: true
-
-  vars:
-    target_user: robert
-    user_home: "/home/{{ target_user }}"
-    oh_my_posh_version: "latest"
-    oh_my_posh_bin: "/usr/local/bin/oh-my-posh"
-
-  tasks:
-    # ----------------------------------------- #
-    # Install Required Packages (System Level)
-    # ----------------------------------------- #
-
-    - name: Install required packages
-      apt:
-        name:
-          - zsh
-          - curl
-          - unzip
-          - fzf
-          - ripgrep
-          - bat
-          - gpg
-        state: present
-        update_cache: yes
-
-    # ----------------------------------------- #
-    # Set ZSH as Default Shell
-    # ----------------------------------------- #
-
-    - name: Set zsh as default shell for user
-      user:
-        name: "{{ target_user }}"
-        shell: /usr/bin/zsh
-
-    # ----------------------------------------- #
-    # Install Oh My Posh (Binary Method)
-    # ----------------------------------------- #
-
-    - name: Download Oh My Posh binary
-      get_url:
-        url: "https://cdn.ohmyposh.dev/releases/{{ oh_my_posh_version }}/posh-linux-amd64"
-        dest: "{{ oh_my_posh_bin }}"
-        mode: "0755"
-
-    # ----------------------------------------- #
-    # Install Themes
-    # ----------------------------------------- #
-
-    - name: Create theme directory
-      file:
-        path: "{{ user_home }}/.poshthemes"
-        state: directory
-        owner: "{{ target_user }}"
-        group: "{{ target_user }}"
-        mode: "0755"
-
-    - name: Download Oh My Posh themes
-      get_url:
-        url: "https://cdn.ohmyposh.dev/releases/latest/themes.zip"
-        dest: "/tmp/omp-themes.zip"
-
-    - name: Unzip themes
-      unarchive:
-        src: "/tmp/omp-themes.zip"
-        dest: "{{ user_home }}/.poshthemes"
-        remote_src: yes
-        owner: "{{ target_user }}"
-        group: "{{ target_user }}"
-
-    # ----------------------------------------- #
-    # Configure .zshrc
-    # ----------------------------------------- #
-
-    - name: Configure .zshrc for Oh My Posh
-      copy:
-        dest: "{{ user_home }}/.zshrc"
-        owner: "{{ target_user }}"
-        group: "{{ target_user }}"
-        mode: "0644"
-        content: |
-          export PATH=$PATH:/usr/local/bin
-
-          eval "$(oh-my-posh init zsh --config {{ user_home }}/.poshthemes/jandedobbeleer.omp.json)"
-
-          # Optional aliases
-          alias ll='ls -alF'
-          alias la='ls -A'
-          alias l='ls -CF'
-
-    # ----------------------------------------- #
-    # Install Specific Oh My Posh Theme
-    # ----------------------------------------- #
-
-    - name: Download stelbent.minimal theme file
-      get_url:
-        url: "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/stelbent.minimal.omp.json"
-        dest: "{{ user_home }}/.poshthemes/stelbent.minimal.omp.json"
-        owner: "{{ target_user }}"
-        group: "{{ target_user }}"
-        mode: "0644"
-
-    # ----------------------------------------- #
-    # Update .zshrc to use stelbent.minimal
-    # ----------------------------------------- #
-
-    - name: Configure .zshrc for stelbent.minimal theme
-      copy:
-        dest: "{{ user_home }}/.zshrc"
-        owner: "{{ target_user }}"
-        group: "{{ target_user }}"
-        mode: "0644"
-        content: |
-          export PATH=$PATH:/usr/local/bin
-
-          # Oh My Posh with stelbent.minimal
-          eval "$(oh-my-posh init zsh --config {{ user_home }}/.poshthemes/stelbent.minimal.omp.json)"
-
-          # Optional aliases
-          alias ll='ls -alF'
-          alias la='ls -A'
-          alias l='ls -CF'
-
+# - name: Create new user and configure SSH access
+#   hosts: SERVERS
+#   become: true
+#
+#   vars:
+#     new_user: robert
+#     ssh_public_key_path: "{{ lookup('env', 'HOME') }}/.ssh/act.pub"
+#
+#   # ----------------------------------------- #
+#   # Create new user
+#   # ----------------------------------------- #
+#   tasks:
+#     - name: Ensure sudo group exists (Ubuntu default, but safe)
+#       group:
+#         name: sudo
+#         state: present
+#
+#     # You may need to 1) install the Ansible posix module, 2)install passlib,
+#     # and 3)generate a password hash, and
+#     # 1) ansible-galaxy collection install ansible.posix
+#     # 2) pip install passlib
+#     # 3) ansible all -i localhost, -m debug -a "msg={{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"
+#     #   - Replace 'mypassword' with your password and then copy the value
+#     - name: Create new user
+#       user:
+#         name: "{{ new_user }}"
+#         shell: /bin/bash
+#         groups: sudo
+#         append: yes
+#         create_home: yes
+#         password: "$6$rounds=656000$mysecretsalt$cWntwwWYCZaaZoyLG3ss8wHaJul7d96psWEZ3iShfKOrbnscJMUk5jL34f7YeSBlxZ7UCJ7dnIa7G2d00vdVv1"
+#         state: present
+#
+#     - name: Set up authorized_keys for new user
+#       ansible.posix.authorized_key:
+#         user: "{{ new_user }}"
+#         state: present
+#         key: "{{ lookup('file', ssh_public_key_path) }}"
+#
+# # ----------------------------------------- #
+# # Configure user environment
+# # ----------------------------------------- #
+#
+# - name: Configure ZSH and Oh My Posh for user
+#   hosts: SERVERS
+#   become: true
+#
+#   vars:
+#     target_user: robert
+#     user_home: "/home/{{ target_user }}"
+#     oh_my_posh_version: "latest"
+#     oh_my_posh_bin: "/usr/local/bin/oh-my-posh"
+#
+#   tasks:
+#     # ----------------------------------------- #
+#     # Install Required Packages (System Level)
+#     # ----------------------------------------- #
+#
+#     - name: Install required packages
+#       apt:
+#         name:
+#           - zsh
+#           - curl
+#           - unzip
+#           - fzf
+#           - ripgrep
+#           - bat
+#           - gpg
+#         state: present
+#         update_cache: yes
+#
+#     # ----------------------------------------- #
+#     # Set ZSH as Default Shell
+#     # ----------------------------------------- #
+#
+#     - name: Set zsh as default shell for user
+#       user:
+#         name: "{{ target_user }}"
+#         shell: /usr/bin/zsh
+#
+#     # ----------------------------------------- #
+#     # Install Oh My Posh (Binary Method)
+#     # ----------------------------------------- #
+#
+#     - name: Download Oh My Posh binary
+#       get_url:
+#         url: "https://cdn.ohmyposh.dev/releases/{{ oh_my_posh_version }}/posh-linux-amd64"
+#         dest: "{{ oh_my_posh_bin }}"
+#         mode: "0755"
+#
+#     # ----------------------------------------- #
+#     # Install Themes
+#     # ----------------------------------------- #
+#
+#     - name: Create theme directory
+#       file:
+#         path: "{{ user_home }}/.poshthemes"
+#         state: directory
+#         owner: "{{ target_user }}"
+#         group: "{{ target_user }}"
+#         mode: "0755"
+#
+#     - name: Download Oh My Posh themes
+#       get_url:
+#         url: "https://cdn.ohmyposh.dev/releases/latest/themes.zip"
+#         dest: "/tmp/omp-themes.zip"
+#
+#     - name: Unzip themes
+#       unarchive:
+#         src: "/tmp/omp-themes.zip"
+#         dest: "{{ user_home }}/.poshthemes"
+#         remote_src: yes
+#         owner: "{{ target_user }}"
+#         group: "{{ target_user }}"
+#
+#     # ----------------------------------------- #
+#     # Configure .zshrc
+#     # ----------------------------------------- #
+#
+#     - name: Configure .zshrc for Oh My Posh
+#       copy:
+#         dest: "{{ user_home }}/.zshrc"
+#         owner: "{{ target_user }}"
+#         group: "{{ target_user }}"
+#         mode: "0644"
+#         content: |
+#           export PATH=$PATH:/usr/local/bin
+#
+#           eval "$(oh-my-posh init zsh --config {{ user_home }}/.poshthemes/jandedobbeleer.omp.json)"
+#
+#           # Optional aliases
+#           alias ll='ls -alF'
+#           alias la='ls -A'
+#           alias l='ls -CF'
+#
+#     # ----------------------------------------- #
+#     # Install Specific Oh My Posh Theme
+#     # ----------------------------------------- #
+#
+#     - name: Download stelbent.minimal theme file
+#       get_url:
+#         url: "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/stelbent.minimal.omp.json"
+#         dest: "{{ user_home }}/.poshthemes/stelbent.minimal.omp.json"
+#         owner: "{{ target_user }}"
+#         group: "{{ target_user }}"
+#         mode: "0644"
+#
+#     # ----------------------------------------- #
+#     # Update .zshrc to use stelbent.minimal
+#     # ----------------------------------------- #
+#
+#     - name: Configure .zshrc for stelbent.minimal theme
+#       copy:
+#         dest: "{{ user_home }}/.zshrc"
+#         owner: "{{ target_user }}"
+#         group: "{{ target_user }}"
+#         mode: "0644"
+#         content: |
+#           export PATH=$PATH:/usr/local/bin
+#
+#           # Oh My Posh with stelbent.minimal
+#           eval "$(oh-my-posh init zsh --config {{ user_home }}/.poshthemes/stelbent.minimal.omp.json)"
+#
+#           # Optional aliases
+#           alias ll='ls -alF'
+#           alias la='ls -A'
+#           alias l='ls -CF'
+#
+# # --------------------------------------------- #
+# # Install eza
+# # --------------------------------------------- #
+# - name: Install eza
+#   hosts: SERVERS
+#   become: true
+#
+#   vars:
+#     eza_key_url: "https://raw.githubusercontent.com/eza-community/eza/main/deb.asc"
+#     eza_keyring_path: "/etc/apt/keyrings/eza.gpg"
+#     eza_repo: "deb [signed-by={{ eza_keyring_path }}] http://deb.gierens.de stable main"
+#
+#   tasks:
+#     # ----------------------------------------- #
+#     # Validate OS
+#     # ----------------------------------------- #
+#
+#     - name: Ensure system is Debian-based
+#       fail:
+#         msg: "This playbook only supports Debian/Ubuntu systems."
+#       when: ansible_os_family != "Debian"
+#
+#     # ----------------------------------------- #
+#     # Ensure keyrings directory exists
+#     # ----------------------------------------- #
+#
+#     - name: Ensure /etc/apt/keyrings exists
+#       file:
+#         path: /etc/apt/keyrings
+#         state: directory
+#         mode: "0755"
+#
+#     # ----------------------------------------- #
+#     # Install GPG (required for dearmor)
+#     # ----------------------------------------- #
+#
+#     - name: Ensure gpg is installed
+#       apt:
+#         name: gnupg
+#         state: present
+#         update_cache: yes
+#
+#     # ----------------------------------------- #
+#     # Download and install repository key
+#     # ----------------------------------------- #
+#
+#     - name: Download eza GPG key
+#       get_url:
+#         url: "{{ eza_key_url }}"
+#         dest: /tmp/eza.asc
+#         mode: "0644"
+#
+#     - name: Convert key to keyring format
+#       command: >
+#         gpg --dearmor -o {{ eza_keyring_path }} /tmp/eza.asc
+#       args:
+#         creates: "{{ eza_keyring_path }}"
+#
+#     - name: Set correct permissions on keyring
+#       file:
+#         path: "{{ eza_keyring_path }}"
+#         mode: "0644"
+#
+#     # ----------------------------------------- #
+#     # Add repository
+#     # ----------------------------------------- #
+#
+#     - name: Add eza apt repository
+#       apt_repository:
+#         repo: "{{ eza_repo }}"
+#         filename: eza
+#         state: present
+#         update_cache: yes
+#       register: eza_repo_added
+#
+#     # ----------------------------------------- #
+#     # Install eza
+#     # ----------------------------------------- #
+#
+#     - name: Install eza
+#       apt:
+#         name: eza
+#         state: present
+#
+# # --------------------------------------------- #
+# # Install Zoxide
+# # --------------------------------------------- #
+# - name: Install Zoxide
+#   hosts: all
+#   become: true
+#   vars:
+#     allow_world_readable_tmpfiles: true
+#     zoxide_user: robert
+#     zshrc_path: "/home/{{ zoxide_user }}/.zshrc"
+#
+#   tasks:
+#
+#     # ----------------------------------------- #
+#     # 1. Ensure dependencies for the install script
+#     # ----------------------------------------- #
+#   pre_tasks:
+#     - name: Ensure base dependencies are present
+#       apt:
+#         name:
+#           - curl
+#           - zsh
+#           - acl # ← add this
+#         state: present
+#         update_cache: yes
+#
+#     # ----------------------------------------- #
+#     # 2. Run the official install script as the user
+#     # ----------------------------------------- #
+#     - name: Download zoxide install script
+#       get_url:
+#         url: https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh
+#         dest: /home/robert/zoxide_install.sh
+#         mode: "0755"
+#       # become_user: robert
+#
+#     - name: Run zoxide install script
+#       command: /home/robert/zoxide_install.sh
+#       environment:
+#         HOME: /home/robert
+#
+#     # ----------------------------------------- #
+#     # 3. Add eval line to .zshrc
+#     # ----------------------------------------- #
+#     - name: Add zoxide init to .zshrc
+#       become_user: "{{ zoxide_user }}"
+#       lineinfile:
+#         path: "{{ zshrc_path }}"
+#         line: 'eval "$(zoxide init --cmd cd zsh)"'
+#         create: yes
+#         state: present
+#
+#     # ----------------------------------------- #
+#     # 4. Rebuild zsh completions cache
+#     # ----------------------------------------- #
+#     - name: Rebuild zsh completions cache
+#       become_user: "{{ zoxide_user }}"
+#       shell: |
+#         rm -f /home/{{ zoxide_user }}/.zcompdump*
+#         zsh -c 'autoload -Uz compinit; compinit'
+#       args:
+#         executable: /bin/bash
+#
 # --------------------------------------------- #
-# Install eza
+# Copy Files to Remote Server
 # --------------------------------------------- #
-- name: Install eza
-  hosts: SERVERS
-  become: true
-
-  vars:
-    eza_key_url: "https://raw.githubusercontent.com/eza-community/eza/main/deb.asc"
-    eza_keyring_path: "/etc/apt/keyrings/eza.gpg"
-    eza_repo: "deb [signed-by={{ eza_keyring_path }}] http://deb.gierens.de stable main"
-
-  tasks:
-    # ----------------------------------------- #
-    # Validate OS
-    # ----------------------------------------- #
-
-    - name: Ensure system is Debian-based
-      fail:
-        msg: "This playbook only supports Debian/Ubuntu systems."
-      when: ansible_os_family != "Debian"
-
-    # ----------------------------------------- #
-    # Ensure keyrings directory exists
-    # ----------------------------------------- #
-
-    - name: Ensure /etc/apt/keyrings exists
-      file:
-        path: /etc/apt/keyrings
-        state: directory
-        mode: "0755"
-
-    # ----------------------------------------- #
-    # Install GPG (required for dearmor)
-    # ----------------------------------------- #
-
-    - name: Ensure gpg is installed
-      apt:
-        name: gnupg
-        state: present
-        update_cache: yes
-
-    # ----------------------------------------- #
-    # Download and install repository key
-    # ----------------------------------------- #
-
-    - name: Download eza GPG key
-      get_url:
-        url: "{{ eza_key_url }}"
-        dest: /tmp/eza.asc
-        mode: "0644"
-
-    - name: Convert key to keyring format
-      command: >
-        gpg --dearmor -o {{ eza_keyring_path }} /tmp/eza.asc
-      args:
-        creates: "{{ eza_keyring_path }}"
-
-    - name: Set correct permissions on keyring
-      file:
-        path: "{{ eza_keyring_path }}"
-        mode: "0644"
-
-    # ----------------------------------------- #
-    # Add repository
-    # ----------------------------------------- #
-
-    - name: Add eza apt repository
-      apt_repository:
-        repo: "{{ eza_repo }}"
-        filename: eza
-        state: present
-        update_cache: yes
-      register: eza_repo_added
-
-    # ----------------------------------------- #
-    # Install eza
-    # ----------------------------------------- #
-
-    - name: Install eza
-      apt:
-        name: eza
-        state: present
-
-# --------------------------------------------- #
-# Install Zoxide
-# --------------------------------------------- #
-- name: Install Zoxide
+- name: Copy files to remote server
   hosts: all
   become: true
   vars:
-    allow_world_readable_tmpfiles: true
-    zoxide_user: robert
-    zshrc_path: "/home/{{ zoxide_user }}/.zshrc"
+    dest_user: robert
+    dest_group: robert
+    home_dir: "/home/{{ dest_user }}"
+    config_base: "/home/{{ dest_user }}/.config/zsh/oh-my-posh"
 
   tasks:
 
     # ----------------------------------------- #
-    # 1. Ensure dependencies for the install script
+    # 1. Create directory structure
     # ----------------------------------------- #
-  pre_tasks:
-    - name: Ensure base dependencies are present
-      apt:
-        name:
-          - curl
-          - zsh
-          - acl # ← add this
-        state: present
-        update_cache: yes
+    - name: Create oh-my-posh config directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ dest_user }}"
+        group: "{{ dest_group }}"
+        mode: '0755'
+      loop:
+        - "{{ config_base }}"
+        - "{{ config_base }}/themes"
+        - "{{ config_base }}/plugins"
 
     # ----------------------------------------- #
-    # 2. Run the official install script as the user
+    # 2. Copy files into directory structure
     # ----------------------------------------- #
-    - name: Download zoxide install script
-      get_url:
-        url: https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh
-        dest: /home/robert/zoxide_install.sh
-        mode: "0755"
-      # become_user: robert
+    - name: Copy oh-my-posh config files
+      copy:
+        src: "files/{{ item.src }}"
+        dest: "{{ home_dir }}/{{ item.dest }}"
+        owner: "{{ dest_user }}"
+        group: "{{ dest_group }}"
+        mode: "{{ item.mode }}"
+      loop:
+        - { src: "fzf-tab.plugin.zsh",  dest: "fzf-tab.plugin.zsh",  mode: "0644" }
+        - { src: "python.plugin.zsh",     dest: "python.plugin.zsh",     mode: "0644" }
+        - { src: "virtualenv.plugin.zsh",     dest: "virtualenv.plugin.zsh",     mode: "0644" }
+        - { src: "you-should-use.plugin.zsh",     dest: "you-should-use.plugin.zsh",     mode: "0644" }
+        - { src: "zsh-autosuggestions.plugin.zsh",     dest: "zsh-autosuggestions.plugin.zsh",     mode: "0644" }
+        - { src: "zsh-completions.plugin.zsh",     dest: "zsh-completions.plugin.zsh",     mode: "0644" }
+        - { src: "zsh-syntax-highlighting.plugin.zsh",     dest: "zsh-syntax-highlighting.plugin.zsh",     mode: "0644" }
 
-    - name: Run zoxide install script
-      command: /home/robert/zoxide_install.sh
-      environment:
-        HOME: /home/robert
-
-    # ----------------------------------------- #
-    # 3. Add eval line to .zshrc
-    # ----------------------------------------- #
-    - name: Add zoxide init to .zshrc
-      become_user: "{{ zoxide_user }}"
-      lineinfile:
-        path: "{{ zshrc_path }}"
-        line: 'eval "$(zoxide init --cmd cd zsh)"'
-        create: yes
-        state: present
-
-    # ----------------------------------------- #
-    # 4. Rebuild zsh completions cache
-    # ----------------------------------------- #
-    - name: Rebuild zsh completions cache
-      become_user: "{{ zoxide_user }}"
-      shell: |
-        rm -f /home/{{ zoxide_user }}/.zcompdump*
-        zsh -c 'autoload -Uz compinit; compinit'
-      args:
-        executable: /bin/bash

@@ -26,14 +26,14 @@ nodes:
       ip_addr: 192.168.0.31
       system_mac_address: 50:01:99:01:01:01
       node_type: veos
-      serial_number: SERVER001_faa48f09a5ed4f0caf9bd4606898a459
+      serial_number: faa48f09a5ed4f0caf9bd4606898a459
       ports:
         - Ethernet1-12
   - a-spine2:
       ip_addr: 192.168.0.32
       system_mac_address: 50:01:99:01:01:02
       node_type: veos
-      serial_number: SERVER002_92c15ee877a24df4a7173b541c3183cb
+      serial_number: 92c15ee877a24df4a7173b541c3183cb
       ports:
         - Ethernet1-12
   # L3Leafs
@@ -41,28 +41,28 @@ nodes:
       ip_addr: 192.168.0.33
       system_mac_address: 50:01:99:01:02:01
       node_type: veos
-      serial_number: SERVER003_6aa0bfddefb6460b80d11c9f8ebce4e3
+      serial_number: 6aa0bfddefb6460b80d11c9f8ebce4e3
       ports:
         - Ethernet1-12
   - a-leaf1b:
       ip_addr: 192.168.0.34
       system_mac_address: 50:01:99:01:02:02
       node_type: veos
-      serial_number: SERVER004_9e1040869d474d779a3366964c0fc274
+      serial_number: 9e1040869d474d779a3366964c0fc274
       ports:
         - Ethernet1-12
   - a-leaf2a:
       ip_addr: 192.168.0.35
       system_mac_address: 50:01:99:01:02:03
       node_type: veos
-      serial_number: SERVER005_b83d3577cc544a99b39b09a5a9c6279a
+      serial_number: b83d3577cc544a99b39b09a5a9c6279a
       ports:
         - Ethernet1-12
   - a-leaf2b:
       ip_addr: 192.168.0.36
       system_mac_address: 50:01:99:01:02:04
       node_type: veos
-      serial_number: SERVER006_dff86b564d524d3e9a97994ff87fcf08
+      serial_number: dff86b564d524d3e9a97994ff87fcf08
       ports:
         - Ethernet1-12
   # L2Leafs
@@ -70,14 +70,14 @@ nodes:
       ip_addr: 192.168.0.37
       system_mac_address: 50:01:99:01:02:05
       node_type: veos
-      serial_number: SERVER007_67d758b10ccb448ba7b920fcebd3962a
+      serial_number: 67d758b10ccb448ba7b920fcebd3962a
       ports:
         - Ethernet1-12
   - a-leaf2d:
       ip_addr: 192.168.0.38
       system_mac_address: 50:01:99:01:02:06
       node_type: veos
-      serial_number: SERVER008_e9a7d3597d914976802ff0f6665fb3b8
+      serial_number: e9a7d3597d914976802ff0f6665fb3b8
       ports:
         - Ethernet1-12
   # Borderleafs
@@ -85,14 +85,14 @@ nodes:
       ip_addr: 192.168.0.133
       system_mac_address: 50:01:99:01:02:07
       node_type: veos
-      serial_number: SERVER009_0e88552b42824f6bbb2c25c983f7ad31
+      serial_number: 0e88552b42824f6bbb2c25c983f7ad31
       ports:
         - Ethernet1-12
   - a-bleaf2:
       ip_addr: 192.168.0.134
       system_mac_address: 50:01:99:01:02:08
       node_type: veos
-      serial_number: SERVER010_96b046821c3842258bbf1b697d12201a
+      serial_number: 96b046821c3842258bbf1b697d12201a
       ports:
         - Ethernet1-12
 
@@ -104,14 +104,14 @@ nodes:
       ip_addr: 192.168.0.41
       system_mac_address: 50:01:99:02:01:01
       node_type: veos
-      serial_number: SERVER011_e05fb9d0fd7742baab23686ddc388b5e
+      serial_number: e05fb9d0fd7742baab23686ddc388b5e
       ports:
         - Ethernet1-12
   - b-spine2:
       ip_addr: 192.168.0.42
       system_mac_address: 50:01:99:02:01:02
       node_type: veos
-      serial_number: SERVER012_04c6b91f679a42999984c37ac5fdfd1f
+      serial_number: 04c6b91f679a42999984c37ac5fdfd1f
       ports:
         - Ethernet1-12
   # L3Leafs
@@ -119,28 +119,28 @@ nodes:
       ip_addr: 192.168.0.43
       system_mac_address: 50:01:99:02:02:01
       node_type: veos
-      serial_number: SERVER013_160a6d68b2af4b33863fff37645505fa
+      serial_number: 160a6d68b2af4b33863fff37645505fa
       ports:
         - Ethernet1-12
   - b-leaf1b:
       ip_addr: 192.168.0.44
       system_mac_address: 50:01:99:02:02:02
       node_type: veos
-      serial_number: SERVER014_9a46f7d20dab432aa38194bfd61add07
+      serial_number: 9a46f7d20dab432aa38194bfd61add07
       ports:
         - Ethernet1-12
   - b-leaf2a:
       ip_addr: 192.168.0.45
       system_mac_address: 50:01:99:02:02:03
       node_type: veos
-      serial_number: SERVER015_e528662acd58401b9c6a622b76ff178d
+      serial_number: e528662acd58401b9c6a622b76ff178d
       ports:
         - Ethernet1-12
   - b-leaf2b:
       ip_addr: 192.168.0.46
       system_mac_address: 50:01:99:02:02:04
       node_type: veos
-      serial_number: SERVER016_03379434e0fc402380eb3d6bc58cdae4
+      serial_number: 03379434e0fc402380eb3d6bc58cdae4
       ports:
         - Ethernet1-12
   # L2Leafs
@@ -148,14 +148,14 @@ nodes:
       ip_addr: 192.168.0.47
       system_mac_address: 50:01:99:02:02:05
       node_type: veos
-      serial_number: SERVER017_e065c73b061449bbb4aeafe4a3610806
+      serial_number: e065c73b061449bbb4aeafe4a3610806
       ports:
         - Ethernet1-12
   - b-leaf2d:
       ip_addr: 192.168.0.48
       system_mac_address: 50:01:99:02:02:06
       node_type: veos
-      serial_number: SERVER018_8c3aec1eb9ac4c17be6bf8a3c81e06e1
+      serial_number: 8c3aec1eb9ac4c17be6bf8a3c81e06e1
       ports:
         - Ethernet1-12
   # WLAN Switches
@@ -163,14 +163,14 @@ nodes:
       ip_addr: 192.168.0.145
       system_mac_address: 50:01:99:02:02:07
       node_type: veos
-      serial_number: SERVER019_a906a626d1794af896c7c59c19f860e5
+      serial_number: a906a626d1794af896c7c59c19f860e5
       ports:
         - Ethernet1-12
   - b-wlan2:
       ip_addr: 192.168.0.146
       system_mac_address: 50:01:99:02:02:08
       node_type: veos
-      serial_number: SERVER020_fa19c745ab364f58b7280918ad78d163
+      serial_number: fa19c745ab364f58b7280918ad78d163
       ports:
         - Ethernet1-12
   # Borderleafs
@@ -178,14 +178,14 @@ nodes:
       ip_addr: 192.168.0.143
       system_mac_address: 50:01:99:02:02:09
       node_type: veos
-      serial_number: SERVER021_5545ce8a75fc46199c0d4efb1c8fa594
+      serial_number: 5545ce8a75fc46199c0d4efb1c8fa594
       ports:
         - Ethernet1-12
   - b-bleaf2:
       ip_addr: 192.168.0.144
       system_mac_address: 50:01:99:02:02:10
       node_type: veos
-      serial_number: SERVER022_017d963cd2c2407a8e3ecb1a6b5440d6
+      serial_number: 017d963cd2c2407a8e3ecb1a6b5440d6
       ports:
         - Ethernet1-12
   # AP Switch
@@ -193,7 +193,7 @@ nodes:
       ip_addr: 192.168.0.147
       system_mac_address: 50:01:99:02:02:11
       node_type: veos
-      serial_number: SERVER023_fb1fd0492815460293797518c5812ffa
+      serial_number: fb1fd0492815460293797518c5812ffa
       ports:
         - Ethernet1-12
 
@@ -273,14 +273,14 @@ nodes:
       ip_addr: 192.168.0.61
       system_mac_address: 50:01:99:04:01:01
       node_type: veos
-      serial_number: SERVER024_95ab87ab66974721b8f791f1555b3fbb
+      serial_number: 95ab87ab66974721b8f791f1555b3fbb
       ports:
         - Ethernet1-12
   - d-spine2:
       ip_addr: 192.168.0.62
       system_mac_address: 50:01:99:04:01:02
       node_type: veos
-      serial_number: SERVER025_3409d809f1044d86974a472da09736c1
+      serial_number: 3409d809f1044d86974a472da09736c1
       ports:
         - Ethernet1-12
   # L2Leafs
@@ -288,28 +288,28 @@ nodes:
       ip_addr: 192.168.0.63
       system_mac_address: 50:01:99:04:02:01
       node_type: veos
-      serial_number: SERVER026_97a34181658e4f638685283614e2a22d
+      serial_number: 97a34181658e4f638685283614e2a22d
       ports:
         - Ethernet1-12
   - d-leaf1b:
       ip_addr: 192.168.0.64
       system_mac_address: 50:01:99:04:02:02
       node_type: veos
-      serial_number: SERVER027_ea4d78feea3940f680dc520811c1d634
+      serial_number: ea4d78feea3940f680dc520811c1d634
       ports:
         - Ethernet1-12
   - d-leaf2a:
       ip_addr: 192.168.0.65
       system_mac_address: 50:01:99:04:02:03
       node_type: veos
-      serial_number: SERVER028_5bd7f392f13e495281a5527399a80b91
+      serial_number: 5bd7f392f13e495281a5527399a80b91
       ports:
         - Ethernet1-12
   - d-leaf2b:
       ip_addr: 192.168.0.66
       system_mac_address: 50:01:99:04:02:04
       node_type: veos
-      serial_number: SERVER029_e94d231243194d3388bf69a498324121
+      serial_number: e94d231243194d3388bf69a498324121
       ports:
         - Ethernet1-12
   # Member Leafs
@@ -317,14 +317,14 @@ nodes:
       ip_addr: 192.168.0.67
       system_mac_address: 50:01:99:04:02:05
       node_type: veos
-      serial_number: SERVER030_86df824fc91d407896c260516dd65959
+      serial_number: 86df824fc91d407896c260516dd65959
       ports:
         - Ethernet1-12
   - d-leaf2d:
       ip_addr: 192.168.0.68
       system_mac_address: 50:01:99:04:02:06
       node_type: veos
-      serial_number: SERVER031_f3ea70309b08407c8b67b1bf3c39fac9
+      serial_number: f3ea70309b08407c8b67b1bf3c39fac9
       ports:
         - Ethernet1-12
 
@@ -380,7 +380,7 @@ nodes:
   - wan-router:
       ip_addr: 192.168.0.7
       node_type: veos
-      serial_number: SERVER032_c23edd0d1bf442568356c344835031e4
+      serial_number: c23edd0d1bf442568356c344835031e4
       ports:
         - Ethernet1-12
 

@@ -1,0 +1,407 @@
+# The following packeages need to be installed for these 
+# aliases to work:
+# eza 
+# zoxide 
+# batcat 
+# neovim
+# fzf 
+# ripgrep 
+#
+
+# ------------------------------------------------------- #
+# Global aliases
+# ------------------------------------------------------- #
+alias -g NE='/ 2> /dev/null' # Send null error output to /dev/null
+alias -g JQ='| jq'
+alias -g C='| pbcopy'
+alias -g L='| less'
+alias -g T='| tail'
+alias -g T25='| tail -n 25'
+alias -g T50='| tail -n 50'
+
+# ------------------------------------------------------- #
+# Open files in VS Code
+# ------------------------------------------------------- #
+alias -s yml='code'
+
+# ------------------------------------------------------- #
+# gitk
+# ------------------------------------------------------- #
+alias gk='\gitk --all --branches &!'
+alias gke='\gitk --all $(git log -g --pretty=%h) &!'
+
+# ------------------------------------------------------- #
+# Dir Nav
+# ------------------------------------------------------- #
+alias zoxide='$HOME/.local/bin/zoxide'
+alias cd='z '
+alias .='ls-path'
+alias ..='z ..'
+alias .2='z ../..'
+alias .3='z ../../..'
+alias .4='z ../../../..'
+alias .5='z ../../../../..'
+alias .....='z ../../../..'
+alias ......='z ../../../../..'
+
+# ------------------------------------------------------- #
+# File Mgmt
+# ------------------------------------------------------- #
+alias cp='cp -i'        # Interactive copy with confirmation prompt
+alias mv='mv -i'        # Interactive move with confirmation prompt
+alias rms='shred -uz'   # Sred file and overwrite with zeroes
+alias rm='rm -iv'       # Interactive delete with confirmation prompt
+alias rmr='rm -riv'     # Interactive recursive delete with confirmation prompt
+alias md='mkdir -pv'    # Create directory with parent derectories and verbose output
+alias dud='du -d 1 -h'
+alias duf='du -sh *'
+
+# ------------------------------------------------------- #
+# eza
+# ------------------------------------------------------- #
+alias l='eza -lh -F -l --icons'
+alias lS='eza -1hF --long --icons'
+alias ls='eza -1 --color=always --long --git --no-filesize --icons --no-time --no-user --no-permissions'
+alias la='eza -lahF  --icons --group-directories-first'
+alias lad='eza -lahF --group-directories-first --icons'
+alias lag='eza -lahF --group-directories-first --icons --git --git-repos'
+alias lagg='eza -lahF --group-directories-first --icons -g --git --git-repos'
+alias lagr='eza -lahgF --group-directories-first --icons'
+alias laawk='eza -lahF --group-directories-first --icons | awk "BEGIN{OFS=\"\t\"} {print \$1, \$7, \$8}"'
+alias ladirs='eza -la --icons | awk "/^d/ {print \$1, \$7, \$8}" '
+alias lagrid='eza -la --grid --icons'
+alias lamod='ls -la -s modified -r'
+alias lart='eza -1Fart --icons'
+alias latree='eza -a --tree --long --icons'
+alias latree2='eza -a --tree --level=2 --long --icons'
+alias latree3='eza -a --tree --level=3 --long --icons'
+alias lawk='eza -lFh --icons | awk "BEGIN{OFS=\"\t\"} {print \$1, \$7, \$8}'
+alias ll='eza -lF --icons'
+alias llg='eza -lF --icons --git'
+alias llgr='eza -lFg --icons'
+alias llgrid='eza -l --grid --icons'
+alias lr='eza -tRFh --icons'
+alias lrt='eza -1Frt --icons'
+alias lsdirs='eza -l --icons | awk "/^d/ {print \$1, \$7, \$8}" '
+alias lsgrid='eza --grid --icons'
+alias lstree='eza --tree --long --icons'
+alias lstree2='eza --tree --level=2 --icons'
+alias lstree3='eza --tree --level=3 --icons'
+alias lstree4='eza --tree --level=4 --icons'
+alias lstree5='eza --tree --level=5 --icons'
+alias lstree6='eza --tree --level=6 --icons'
+alias lt='eza -ltFh --icons'
+
+# ------------------------------------------------------- #
+# Env Vars & System/Disk Info
+# ------------------------------------------------------- #
+alias genv='printenv | grep -i '      # Search for specific env vars (case insensitive)
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%T"'
+alias nowtime='now'
+alias nowdate='date +"%d-%m-%Y'
+alias df='df -h'
+
+# ------------------------------------------------------- #
+# Ping/Traceroute
+# ------------------------------------------------------- #
+alias eping='ping -c 10000 -i .5'
+alias eping6='ping6 -c 10000 -i .5'
+alias fastping='ping -c 100 -i .2'
+alias fastping6='ping6 -c 100 -i .2'
+alias gping='gping --vertical-margin 3 -c blue'
+alias ping='ping -c 5 -i .5'
+alias ping6='ping6 -c 5'
+alias mtr='sudo mtr'
+
+# ------------------------------------------------------- #
+# Python
+# ------------------------------------------------------- #
+alias daysleft='python -c "import datetime;print((datetime.date(2025, 12, 31)-datetime.date.today()).days)"'
+alias python='python3'
+alias pip install='pip install --upgrade pip && pip install'
+
+# ------------------------------------------------------- #
+# Misc
+# ------------------------------------------------------- #
+alias _='sudo '
+alias a='ansible'
+alias acon='ansible-console'
+alias aconf='ansible-config'
+alias adoc='ansible-doc'
+alias afind='ack -il'
+alias agal='ansible-galaxy'
+alias agal-ls='ansible-galaxy collection list'
+alias ainv='ansible-inventory'
+alias aplaybook='ansible-playbook'
+alias apull='ansible-pull'
+alias arinit='ansible-role-init'
+alias aval='ansible-vault'
+alias aver='ansible-version'
+alias c='clear'
+alias cat='batcat'
+alias diff='vimdiff'
+alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
+alias fetch='fastfetch --kitty ~/Pictures/apple_logo.png --logo-width 60 --logo-padding-top 0'
+alias fgrep='fgrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
+alias G='| grep'
+alias ggpur='ggu'
+alias globurl='noglob urlglobber'
+alias glp='_git_log_prettily'
+alias gp='git push'
+alias grep='grep --color'
+alias grt='z "$(git rev-parse --show-toplevel || echo .)'
+alias gstu='gsta --include-untracked'
+alias gtl='gtl(){ git tag --sort=-v:refname -n -l "${1}*" }; noglob gtl'
+alias gu='gitupdate'
+alias halt='sudo /sbin/halt'
+alias help='man'
+alias hgrep='fc -lf 0 | grep'
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
+alias histop='~/histop.sh'
+alias iftop='sudo iftop'
+alias ip='ifconfig | grep '\''inet '\'
+alias ip4='ip | awk '\''{print }'\'
+alias lg='lazygit'
+
+batman() {
+  man $1 | bat -l man
+}
+
+alias myip="curl -s http://checkip.dyndns.org/ | sed 's/[a-zA-Z<>/ :]//g'"
+alias numdirs='ls -la | cut -c1 | grep d | wc -l'
+alias ofd='open_command $PWD'
+alias p='ps -f'
+alias ports='netstat -tulanp'
+alias poweroff='sudo /sbin/poweroff'
+alias ps='procs'
+alias rd='rmdir'
+alias reboot='sudo /sbin/reboot'
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
+alias shutdown='sudo /sbin/shutdown'
+alias speedtest='sudo speedtest-cli --secure'
+alias sortnr='sort -n -r'
+alias src='source ~/.zshrc'
+alias sudo='sudo -E '
+alias unexport='unset'
+alias vi='nvim'
+alias which-command='whence'
+alias zrc='source ~/.zshrc'
+alias zshrc='${=EDITOR} ~/.zshrc'
+
+# ------------------------------------------------------- #
+# fzf
+# ------------------------------------------------------- #
+alias vifzf='vi $(fzf)'
+
+# ------------------------------------------------------- #
+# extract files
+# ------------------------------------------------------- #
+ex ()
+{
+  if -f $1  ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xJf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# ------------------------------------------------------- #
+# find
+# ------------------------------------------------------- #
+# alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+
+# ------------------------------------------------------- #
+# git
+# ------------------------------------------------------- #
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
+alias gam='git am'
+alias gama='git am --abort'
+alias gamc='git am --continue'
+alias gams='git am --skip'
+alias gamscp='git am --show-current-patch'
+alias gap='git apply'
+alias gapa='git add --patch'
+alias gapt='git apply --3way'
+alias gau='git add --update'
+alias gav='git add --verbose'
+alias gb='git branch'
+alias gbD='git branch -D'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbda='git branch --no-color --merged | command grep -vE "^(+*|\s*($(git_main_branch)|$(git_develop_branch))\s*$)" | command xargs git branch -d 2>/dev/null'
+alias gbl='git blame -b -w'
+alias gbnm='git branch --no-merged'
+alias gbr='git branch --remote'
+alias gbs='git bisect'
+alias gbsb='git bisect bad'
+alias gbsg='git bisect good'
+alias gbsr='git bisect reset'
+alias gbss='git bisect start'
+alias gc='git commit -v'
+alias 'gc!'='git commit -v --amend'
+alias gca='git commit -v -a'
+alias 'gca!'='git commit -v -a --amend'
+alias gcam='git commit -a -m'
+alias 'gcan!'='git commit -v -a --no-edit --amend'
+alias 'gcans!'='git commit -v -a -s --no-edit --amend'
+alias gcas='git commit -a -s'
+alias gcasm='git commit -a -s -m'
+alias gcb='git checkout -b'
+alias gcd='git checkout $(git_develop_branch)'
+alias gcf='git config --list'
+alias gcl='git clone --recurse-submodules'
+alias gclean='git clean -id'
+alias gcm='git checkout $(git_main_branch)'
+alias gcmsg='git commit -m'
+alias 'gcn!'='git commit -v --no-edit --amend'
+alias gco='git checkout'
+alias gcor='git checkout --recurse-submodules'
+alias gcount='git shortlog -sn'
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
+alias gcs='git commit -S'
+alias gcsm='git commit -s -m'
+alias gcss='git commit -S -s'
+alias gcssm='git commit -S -s -m'
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gdct='git describe --tags $(git rev-list --tags --max-count=1)'
+alias gdcw='git diff --cached --word-diff'
+alias gds='git diff --staged'
+alias gdt='git diff-tree --no-commit-id --name-only -r'
+alias gdup='git diff @{upstream}'
+alias gdw='git diff --word-diff'
+alias gf='git fetch'
+alias gfa='git fetch --all --prune --jobs=10'
+alias gfg='git ls-files | grep'
+alias gfo='git fetch origin'
+alias gg='git gui citool'
+alias gga='git gui citool --amend'
+alias ggpull='git pull origin "$(git_current_branch)'
+alias ggpush='git push origin "$(git_current_branch)'
+alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
+alias ghd='gh dash'
+alias ghh='git help'
+alias gignore='git update-index --assume-unchanged'
+alias gignored='git ls-files -v | grep "^:lower:'
+alias git-svn-dcommit-push='git svn dcommit && git push github $(git_main_branch):svntrunk'
+alias gitam='git add . && git commit -m'
+alias gl='git pull'
+alias glg='git log --stat'
+alias glgg='git log --graph'
+alias glgga='git log --graph --decorate --all'
+alias glgm='git log --graph --max-count=10'
+alias glgp='git log --stat -p'
+alias glo='git log --oneline'
+alias glod='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'
+alias glods='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'' --date=short'
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
+alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'
+alias glola='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'' --all'
+alias glols='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'\'' --stat'
+alias glum='git pull upstream $(git_main_branch)'
+alias gm='git merge'
+alias gma='git merge --abort'
+alias gmom='git merge origin/$(git_main_branch)'
+alias gmtl='git mergetool --no-prompt'
+alias gmtlvim='git mergetool --no-prompt --tool=vimdiff'
+alias gmum='git merge upstream/$(git_main_branch)'
+alias gpd='git push --dry-run'
+alias gpf='git push --force-with-lease'
+alias 'gpf!'='git push --force'
+alias gpoat='git push origin --all && git push origin --tags'
+alias gpr='git pull --rebase'
+alias gpristine='git reset --hard && git clean -dffx'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias gpu='git push upstream'
+alias gpv='git push -v'
+alias gr='git remote'
+alias gra='git remote add'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbd='git rebase $(git_develop_branch)'
+alias grbi='git rebase -i'
+alias grbm='git rebase $(git_main_branch)'
+alias grbo='git rebase --onto'
+alias grbom='git rebase origin/$(git_main_branch)'
+alias grbs='git rebase --skip'
+alias grev='git revert'
+alias grh='git reset'
+alias grhh='git reset --hard'
+alias grm='git rm'
+alias grmc='git rm --cached'
+alias grmv='git remote rename'
+alias groh='git reset origin/$(git_current_branch) --hard'
+alias grrm='git remote remove'
+alias grs='git restore'
+alias grset='git remote set-url'
+alias grss='git restore --source'
+alias grst='git restore --staged'
+alias gru='git reset --'
+alias grup='git remote update'
+alias grv='git remote -v'
+alias gsb='git status -sb'
+alias gsd='git svn dcommit'
+alias gsh='git show'
+alias gsi='git submodule init'
+alias gsps='git show --pretty=short --show-signature'
+alias gsr='git svn rebase'
+alias gss='git status -s'
+alias gst='git status'
+alias gsta='git stash push'
+alias gstaa='git stash apply'
+alias gstall='git stash --all'
+alias gstc='git stash clear'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show --text'
+alias gsu='git submodule update'
+alias gsw='git switch'
+alias gswc='git switch -c'
+alias gswd='git switch $(git_develop_branch)'
+alias gswm='git switch $(git_main_branch)'
+alias gts='git tag -s'
+alias gtv='git tag | sort -V'
+alias gunignore='git update-index --no-assume-unchanged'
+alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+alias gup='git pull --rebase'
+alias gupa='git pull --rebase --autostash'
+alias gupav='git pull --rebase --autostash -v'
+alias gupom='git pull --rebase origin $(git_main_branch)'
+alias gupomi='git pull --rebase=interactive origin $(git_main_branch)'
+alias gupv='git pull --rebase -v'
+alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
+alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- skip ci'
+alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- skip ci'
+
+# ------------------------------------------------------- #
+# history
+# ------------------------------------------------------- #
+alias h='history'
+alias hm='history | more'
+alias hs='history | grep'
+alias hsi='history | grep -i'
+alias ht='history | tail'
+alias htn='history | tail -n'
